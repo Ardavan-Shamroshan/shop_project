@@ -139,7 +139,7 @@
                     '</section>';
 
                 $('.toast-wrapper').append(successToastTag);
-                $('.toast').toast('show').delay('500').queue(function () {
+                $('.toast').toast('show').delay('2000').queue(function () {
                     $(this).remove();
                 });
             }
@@ -155,7 +155,7 @@
                     '</section>';
 
                 $('.toast-wrapper').append(errorToastTag);
-                $('.toast').toast('show').delay('500').queue(function () {
+                $('.toast').toast('show').delay('2000').queue(function () {
                     $(this).remove();
                 });
             }
@@ -210,7 +210,7 @@
                     '</section>';
 
                 $('.toast-wrapper').append(successToastTag);
-                $('.toast').toast('show').delay('500').queue(function () {
+                $('.toast').toast('show').delay('2000').queue(function () {
                     $(this).remove();
                 });
             }
@@ -226,7 +226,7 @@
                     '</section>';
 
                 $('.toast-wrapper').append(errorToastTag);
-                $('.toast').toast('show').delay('500').queue(function () {
+                $('.toast').toast('show').delay('2000').queue(function () {
                     $(this).remove();
                 });
             }

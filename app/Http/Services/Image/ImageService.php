@@ -5,7 +5,8 @@ namespace App\Http\Services\Image;
 use Illuminate\Support\Facades\Config;
 use Intervention\Image\Facades\Image;
 
-class ImageService extends ImageToolsService {
+class ImageService extends ImageToolsService
+{
     public function save($image) {
         // set image
         $this->setImage($image);
@@ -62,7 +63,7 @@ class ImageService extends ImageToolsService {
         $this->getImageName() ?? $this->setImageName(time());
         $imageName = $this->getImageName();
 
-        $indexArray = array ();
+        $indexArray = array();
         foreach ($imageSizes as $sizeAlias => $imageSize) {
             // create and set this size name
             $currentImageName = $imageName . '_' . $sizeAlias;
@@ -94,12 +95,11 @@ class ImageService extends ImageToolsService {
         if (!is_dir($directory))
             return false;
         $files = glob($directory . DIRECTORY_SEPARATOR . '*', GLOB_MARK);
-        foreach ($files as $file) {
+        foreach ($files as $file)
             if (is_dir($file))
                 $this->deleteDirectoryAndFiles($file);
             else
                 unlink($file);
-        }
         $result = rmdir($directory);
         return $result;
     }

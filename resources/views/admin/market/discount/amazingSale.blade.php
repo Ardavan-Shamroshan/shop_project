@@ -96,7 +96,7 @@
             })
 
             function successToast(message) {
-                var successToastTag = '<section class="toast" data-delay="5000">\n' +
+                var successToastTag = '<section class="toast" data-delay="2000">\n' +
                     '<section class="toast-body py-3 d-flex bg-success text-white">\n' +
                     '<p class="ml-auto mt-3">' + message + '</p>\n' +
                     '<button type="button" class="mr-2 close" data-dismiss="toast" aria-label="Close">\n' +
@@ -106,13 +106,13 @@
                     '</section>';
 
                 $('.toast-wrapper').append(successToastTag);
-                $('.toast').toast('show').delay('5000').queue(function () {
+                $('.toast').toast('show').delay('2000').queue(function () {
                     $(this).remove();
                 });
             }
 
             function errorToast(message) {
-                var errorToastTag = '<section class="toast" data-delay="5000">\n' +
+                var errorToastTag = '<section class="toast" data-delay="2000">\n' +
                     '<section class="toast-body py-3 d-flex bg-danger text-white">\n' +
                     '<p class="ml-auto mt-3">' + message + '</p>\n' +
                     '<button type="button" class="mr-2 close" data-dismiss="toast" aria-label="Close">\n' +
@@ -122,7 +122,7 @@
                     '</section>';
 
                 $('.toast-wrapper').append(errorToastTag);
-                $('.toast').toast('show').delay('5000').queue(function () {
+                $('.toast').toast('show').delay('2000').queue(function () {
                     $(this).remove();
                 });
             }

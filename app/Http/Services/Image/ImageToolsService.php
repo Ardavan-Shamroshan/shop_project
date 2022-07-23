@@ -2,7 +2,8 @@
 
 namespace App\Http\Services\Image;
 
-class ImageToolsService {
+class ImageToolsService
+{
     /**
      *          final image directory     final image name
      *     ------------------------------- --------------
@@ -104,6 +105,9 @@ class ImageToolsService {
 
     protected function checkDirectory($imageDirectory) {
         if (!file_exists($imageDirectory)) mkdir($imageDirectory, 666, true);
+//        if (!file_exists($imageDirectory)) if (!mkdir($imageDirectory, 666, true) && !is_dir($imageDirectory)) {
+//            throw new \RuntimeException(sprintf('Directory "%s" was not created', $imageDirectory));
+        //    }
     }
 
     public function getImageAddress() {

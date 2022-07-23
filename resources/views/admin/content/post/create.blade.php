@@ -207,7 +207,7 @@
             $('#form').submit(function () {
                 if (select_tags.val() !== null && select_tags.val().length > 0) {
                     var selectedSource = select_tags.val().join(',');
-                    tags_input.val(selectedSource)
+                    tags_input.val(selectedSource);xxx
                 }
             })
         })

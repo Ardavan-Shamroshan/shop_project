@@ -7,7 +7,8 @@ use App\Http\Requests\Admin\Content\PostCategoryRequest;
 use App\Http\Services\Image\ImageService;
 use App\Models\Content\PostCategory;
 
-class CategoryController extends Controller {
+class CategoryController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -87,8 +88,7 @@ class CategoryController extends Controller {
             if ($result === false)
                 return redirect()->route('admin.content.category')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
             $inputs['image'] = $result;
-        }
-        else
+        } else
             if (isset($inputs['currentImage']) && !empty($postCategory->image)) {
                 $image = $postCategory->image;
                 $image['currentImage'] = $inputs['currentImage'];
@@ -124,8 +124,7 @@ class CategoryController extends Controller {
                     'status' => true,
                     'checked' => true,
                 ]);
-        }
-        else
+        } else
             return response()->json(['status' => false]);
     }
 }

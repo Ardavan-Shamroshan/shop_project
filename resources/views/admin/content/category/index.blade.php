@@ -5,7 +5,8 @@
 @section('content')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item font-size-12"><i class="fa fa-home text-muted"></i><a href="{{ route('admin.home') }}">خانه</a></li>
+            <li class="breadcrumb-item font-size-12">
+                <i class="fa fa-home text-muted"></i><a href="{{ route('admin.home') }}">خانه</a></li>
             <li class="breadcrumb-item font-size-12 p-0"><a href="">بخش محتوی</a></li>
             <li class="breadcrumb-item font-size-12 active" aria-current="page"> دسته بندی</li>
         </ol>
@@ -47,15 +48,12 @@
                         <td>{{ $postCategory->tags }}</td>
                         <td>
                             <label for="">
-                                <input type="checkbox" id="{{ $postCategory->id }}" onchange="changeStatus({{ $postCategory->id }})"
-                                       data-url="{{ route('admin.content.category.status', $postCategory->id) }}"
-                                       data-value="{{ $postCategory->status }}"
-                                       @if($postCategory->status === 1) checked @endif>
+                                <input type="checkbox" id="{{ $postCategory->id }}" onchange="changeStatus({{ $postCategory->id }})" data-url="{{ route('admin.content.category.status', $postCategory->id) }}" data-value="{{ $postCategory->status }}" @if($postCategory->status === 1) checked @endif>
                             </label>
                         </td>
                         <td class="width-16-rem text-left">
-                            <a href="{{ route('admin.content.category.edit', $postCategory->id) }}"
-                               class="btn btn-primary btn-sm border rounded-pill btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش </a>
+                            <a href="{{ route('admin.content.category.edit', $postCategory->id) }}" class="btn btn-primary btn-sm border rounded-pill btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش
+                            </a>
                             <form class="d-inline" action="{{ route('admin.content.category.destroy', $postCategory->id) }}" method="post">
                                 @csrf
                                 {{ method_field('delete') }}
@@ -111,8 +109,9 @@
                 }
             })
 
+
             function successToast(message) {
-                var successToastTag = '<section class="toast" data-delay="5000">\n' +
+                var successToastTag = '<section class="toast" data-delay="2000">\n' +
                     '<section class="toast-body py-3 d-flex bg-success text-white">\n' +
                     '<p class="ml-auto mt-3">' + message + '</p>\n' +
                     '<button type="button" class="mr-2 close" data-dismiss="toast" aria-label="Close">\n' +
@@ -122,13 +121,13 @@
                     '</section>';
 
                 $('.toast-wrapper').append(successToastTag);
-                $('.toast').toast('show').delay('5000').queue(function () {
+                $('.toast').toast('show').delay('2000').queue(function () {
                     $(this).remove();
                 });
             }
 
             function errorToast(message) {
-                var errorToastTag = '<section class="toast" data-delay="5000">\n' +
+                var errorToastTag = '<section class="toast" data-delay="2000">\n' +
                     '<section class="toast-body py-3 d-flex bg-danger text-white">\n' +
                     '<p class="ml-auto mt-3">' + message + '</p>\n' +
                     '<button type="button" class="mr-2 close" data-dismiss="toast" aria-label="Close">\n' +
@@ -138,7 +137,7 @@
                     '</section>';
 
                 $('.toast-wrapper').append(errorToastTag);
-                $('.toast').toast('show').delay('5000').queue(function () {
+                $('.toast').toast('show').delay('2000').queue(function () {
                     $(this).remove();
                 });
             }

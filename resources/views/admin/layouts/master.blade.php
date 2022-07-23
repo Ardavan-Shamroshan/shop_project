@@ -6,7 +6,7 @@
 </head>
 <body dir="rtl">
 @include('admin.layouts.header')
-<section class="body-container">
+<section class="body-container bg-dark">
     @include('admin.layouts.sidebar')
     <section id="main-body" class="main-body">
         @yield('content')
@@ -14,7 +14,6 @@
 </section>
 @include('admin.layouts.script')
 @yield('script')
-
 <section class="toast-wrapper flex-row-reverse">
     @include('admin.alerts.toast.success')
     @include('admin.alerts.toast.error')

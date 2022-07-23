@@ -82,27 +82,27 @@ class CategoryController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductCategoryRequest $request, ProductCategory $productCategory, ImageService $imageService)
-    {
-        $inputs = $request->all();
-        if ($request->hasFile('image')) {
-            if (!empty($productCategory->image))
-                $imageService->deleteDirectoryAndFiles($productCategory->image['directory']);
-            $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'product-category');
-            $result = $imageService->createIndexAndSave($request->file('image'));
-            if ($result === false)
-                return redirect()->route('admin.market.category')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
-            $inputs['image'] = $result;
-        } else
-            if (isset($inputs['currentImage']) && !empty($productCategory->image)) {
-                $image = $productCategory->image;
-                $image['currentImage'] = $inputs['currentImage'];
-                $inputs['image'] = $image;
-            }
-        $productCategory->slug = null;
-        $productCategory->update($inputs);
-        return redirect()->route('admin.market.category')->with('swal-success', 'دسته بندی جدید شما با موفقیت ثبت شد');
-    }
+        public function update(ProductCategoryRequest $request, ProductCategory $productCategory, ImageService $imageService)
+        {
+            $inputs = $request->all();
+            if ($request->hasFile('image')) {
+                if (!empty($productCategory->image))
+                    $imageService->deleteDirectoryAndFiles($productCategory->image['directory']);
+                $imageService->setExclusiveDirectory('images' . DIRECTORY_SEPARATOR . 'product-category');
+                $result = $imageService->createIndexAndSave($request->file('image'));
+                if ($result === false)
+                    return redirect()->route('admin.market.category')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
+                $inputs['image'] = $result;
+            } else
+                if (isset($inputs['currentImage']) && !empty($productCategory->image)) {
+                    $image = $productCategory->image;
+                    $image['currentImage'] = $inputs['currentImage'];
+                    $inputs['image'] = $image;
+                }
+            $productCategory->slug = null;
+            $productCategory->update($inputs);
+            return redirect()->route('admin.market.category')->with('swal-success', 'دسته بندی جدید شما با موفقیت ثبت شد');
+        }
 
     /**
      * Remove the specified resource from storage.

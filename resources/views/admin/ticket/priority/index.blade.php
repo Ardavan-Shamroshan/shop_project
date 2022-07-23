@@ -109,7 +109,7 @@
 
             function successToast(message){
 
-                var successToastTag = '<section class="toast" data-delay="5000">\n' +
+                var successToastTag = '<section class="toast" data-delay="2000">\n' +
                     '<section class="toast-body py-3 d-flex bg-success text-white">\n' +
                         '<strong class="ml-auto">' + message + '</strong>\n' +
                         '<button type="button" class="mr-2 close" data-dismiss="toast" aria-label="Close">\n' +
@@ -126,7 +126,7 @@
 
             function errorToast(message){
 
-                var errorToastTag = '<section class="toast" data-delay="5000">\n' +
+                var errorToastTag = '<section class="toast" data-delay="2000">\n' +
                     '<section class="toast-body py-3 d-flex bg-danger text-white">\n' +
                         '<strong class="ml-auto">' + message + '</strong>\n' +
                         '<button type="button" class="mr-2 close" data-dismiss="toast" aria-label="Close">\n' +

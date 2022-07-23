@@ -99,6 +99,7 @@ class LoginRegisterController extends Controller
         return redirect()->route('auth.customer.loginConfirmForm', $token);
     }
 
+
     public function loginConfirmForm($token) {
         $otp = Otp::query()->where('token', $token)->first();
         if (empty($otp))
