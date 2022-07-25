@@ -82,11 +82,19 @@ class Product extends Model
         return $this->morphMany(Comment::class, 'commentable');
     }
 
-    public function amazingSales() {
+    public function amazingSales()
+    {
         return $this->hasMany(AmazingSale::class);
     }
 
-    public function guarantees() {
-        return $this->hasMany(Guarantee::Class);
+    public function guarantees()
+    {
+        return $this->hasMany(Guarantee::class);
     }
+
+    public function activeAmazingSales()
+    {
+        return $this->amazingSales()->where('start_date', '<', now())->where('end_date', '>', now())->first();
+    }
+
 }

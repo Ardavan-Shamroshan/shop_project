@@ -64,8 +64,8 @@ function convertEnglishToPersian($number) {
 }
 
 function priceFormat($price) {
-    $price = number_format($price, 0, '/', '.');
-    $price = convertPersianToEnglish($price);
+    $price = number_format($price, 0, '/', ',');
+    $price = convertEnglishToPersian($price);
     $price .= ' تومان';
     return $price;
 }

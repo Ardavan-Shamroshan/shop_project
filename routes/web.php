@@ -41,6 +41,7 @@ use App\Http\Controllers\Admin\Ticket\TicketPriorityController;
 use App\Http\Controllers\Admin\Ticket\TicketAdminController;
 use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Auth\Customer\LoginRegisterController;
+use App\Http\Controllers\Customer\Market\ProductController as MarketProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -333,13 +334,13 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
         });
 
         Route::prefix('banner')->group(function () {
-            Route::get('/', [BannerController::Class, 'index'])->name('admin.content.banner');
-            Route::get('/create', [BannerController::Class, 'create'])->name('admin.content.banner.create');
-            Route::post('/store', [BannerController::Class, 'store'])->name('admin.content.banner.store');
-            Route::get('/edit/{banner}', [BannerController::Class, 'edit'])->name('admin.content.banner.edit');
-            Route::put('/update/{banner}', [BannerController::Class, 'update'])->name('admin.content.banner.update');
-            Route::delete('/destroy/{banner}', [BannerController::Class, 'destroy'])->name('admin.content.banner.destroy');
-            Route::get('/status/{banner}', [BannerController::Class, 'status'])->name('admin.content.banner.status');
+            Route::get('/', [BannerController::class, 'index'])->name('admin.content.banner');
+            Route::get('/create', [BannerController::class, 'create'])->name('admin.content.banner.create');
+            Route::post('/store', [BannerController::class, 'store'])->name('admin.content.banner.store');
+            Route::get('/edit/{banner}', [BannerController::class, 'edit'])->name('admin.content.banner.edit');
+            Route::put('/update/{banner}', [BannerController::class, 'update'])->name('admin.content.banner.update');
+            Route::delete('/destroy/{banner}', [BannerController::class, 'destroy'])->name('admin.content.banner.destroy');
+            Route::get('/status/{banner}', [BannerController::class, 'status'])->name('admin.content.banner.status');
         });
     });
     /*
@@ -510,6 +511,14 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::get('/', [HomeController::class, 'home'])->name('customer.home');
+
+Route::namespace('Market')->group(function () {
+    Route::get('/product/{product:slug}', [MarketProductController::class, 'product'])->name('customer.market.product');
+    Route::post('/add-comment/product/{product:slug}', [MarketProductController::class, 'addComment'])->name('customer.market.add-comment');
+
+
+});
+
 
 /*
 |--------------------------------------------------------------------------

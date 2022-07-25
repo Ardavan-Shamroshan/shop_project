@@ -78,6 +78,7 @@ class StoreRoomController extends Controller
     public function update(StoreRequest $request, Product $product)
     {
         $inputs = $request->all();
+        $inputs['marketable_number'] -= ($inputs['sold_number'] + $inputs['frozen_number']);
         $product->update($inputs);
         return redirect()->route('admin.market.storeroom')->with('swal-success', 'موجودی جدید با موفقیت ویرایش شد');
     }

@@ -19,9 +19,9 @@ return [
 
     // index size
     'index-images-size' => [
-        'large' => ['width' => 735, 'height' => 410],
-        'medium' => ['width' => 400, 'height' => 320],
-        'small' => ['width' => 300, 'height' => 160],
+        'large' => ['width' => 1024, 'height' => 766],
+        'medium' => ['width' => 350, 'height' => 350],
+        'small' => ['width' => 768, 'height' => 1024],
     ],
 
     'default-current-index-image' => 'medium',
