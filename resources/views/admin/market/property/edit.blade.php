@@ -61,9 +61,11 @@
                             @enderror
                             <select name="category_id" id="category_id"
                                     class="form-control form-control-sm @error('category_id') border border-danger @enderror">
-                                @foreach($categories as $category)
+
+                            @foreach($categories as $category)
                                     <option value="{{ $category->id }}"
-                                            @if(old('category_id', $attribute->id) == $category->id) selected @endif>{{ $category->name }}</option>
+                                            @if(old('category_id', $attribute->category_id) == $category->id) selected @endif>{{ $category->name }}
+                                    </option>
                                 @endforeach
                             </select>
                         </div>

@@ -41,7 +41,7 @@
                     <tr>
                         <th>{{ $loop->iteration }}</th>
                         <td>{{ $attribute->name }}</td>
-                        <td>{{ $value->product->original_name }}</td>
+                        <td>{{ $value->product->name }}</td>
                         <td>{{ json_decode($value->value)->value }}</td>
                         <td>{{ json_decode($value->value)->price_increase }}+ تومان</td>
                         <td>{{ $value->type == 0 ?'ساده' : 'انتخابی' }}</td>

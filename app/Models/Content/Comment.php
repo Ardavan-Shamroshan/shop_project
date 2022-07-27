@@ -25,10 +25,6 @@ class Comment extends Model {
         return $this->belongsTo(User::class, 'author_id');
     }
 
-    public function author() {
-        return $this->user->first_name . ' ' . $this->user->last_name;
-    }
-
     public function commentable() {
         return $this->morphTo();
     }

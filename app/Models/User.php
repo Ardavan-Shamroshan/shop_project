@@ -6,6 +6,7 @@ use App\Models\Ticket\Ticket;
 use App\Models\Ticket\TicketAdmin;
 use App\Models\User\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -14,7 +15,8 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable {
+class User extends Authenticatable
+{
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
@@ -69,8 +71,10 @@ class User extends Authenticatable {
         'profile_photo_url',
     ];
 
-    public function getFullNameAttribute() {
-        return "{$this->first_name} {$this->last_name}";
+    public function fullName(): Attribute {
+        return Attribute::make(
+            get: fn() => ($this->first_name !== null) ? $this->first_name . ' ' . $this->last_name : 'ناشناس',
+        );
     }
 
     public function ticketAdmin() {

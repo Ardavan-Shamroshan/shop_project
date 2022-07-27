@@ -16,8 +16,7 @@ class PropertyValueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(CategoryAttribute $attribute)
-    {
+    public function index(CategoryAttribute $attribute) {
         return view('admin.market.property.value.index', compact('attribute'));
     }
 
@@ -26,8 +25,7 @@ class PropertyValueController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(CategoryAttribute $attribute)
-    {
+    public function create(CategoryAttribute $attribute) {
         return view('admin.market.property.value.create', compact('attribute'));
     }
 
@@ -37,8 +35,7 @@ class PropertyValueController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryValueRequest $request, CategoryAttribute $attribute)
-    {
+    public function store(CategoryValueRequest $request, CategoryAttribute $attribute) {
         $inputs = $request->all();
         $inputs['value'] = json_encode([
             'value' => $request->value,
@@ -55,8 +52,7 @@ class PropertyValueController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         //
     }
 
@@ -66,8 +62,7 @@ class PropertyValueController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(CategoryAttribute $attribute, CategoryValue $value)
-    {
+    public function edit(CategoryAttribute $attribute, CategoryValue $value) {
         return view('admin.market.property.value.edit', compact('attribute', 'value'));
     }
 
@@ -78,8 +73,7 @@ class PropertyValueController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryValueRequest $request, CategoryAttribute $attribute, CategoryValue $value)
-    {
+    public function update(CategoryValueRequest $request, CategoryAttribute $attribute, CategoryValue $value) {
         $inputs = $request->all();
         $inputs['value'] = json_encode([
             'value' => $request->value,
@@ -97,8 +91,7 @@ class PropertyValueController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CategoryAttribute $attribute, CategoryValue $value)
-    {
+    public function destroy(CategoryAttribute $attribute, CategoryValue $value) {
         $value->delete();
         return redirect()->route('admin.market.property.value', $attribute->id)->with('swal-success', 'مقدار فرم کالای شما با موفقیت حذف شد');
     }
