@@ -32,7 +32,7 @@ class UserRequest extends FormRequest
             'mobile' => ['required', 'digits:11', 'unique:users'],
             'email' => ['required', 'string', 'email', 'unique:users'],
             'national_code' => ['nullable', 'digits:10', 'unique:users'],
-            'password' => ['required', 'unique:users', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(), 'confirmed'],
+            'password' => ['required', Password::min(8)->letters()->mixedCase()->numbers()->symbols()->uncompromised(), 'confirmed'],
             'profile_photo_path' => 'nullable|image|mimes:png,jpg,jpeg,gif',
             'activation' => ['required', 'numeric', Rule::in(['0', '1'])],
         ];

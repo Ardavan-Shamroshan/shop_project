@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Admin\Market\GuaranteeController;
 use App\Http\Controllers\Customer\HomeController;
+use App\Http\Controllers\Customer\SaleProcess\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\Market\CategoryController as MarketCategoryController;
@@ -512,11 +513,18 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 */
 Route::get('/', [HomeController::class, 'home'])->name('customer.home');
 
-Route::namespace('Market')->group(function () {
-    Route::get('/product/{product:slug}', [MarketProductController::class, 'product'])->name('customer.market.product');
-    Route::post('/add-comment/product/{product:slug}', [MarketProductController::class, 'addComment'])->name('customer.market.add-comment');
 
+Route::controller(CartController::class)->prefix('cart')->group(function () {
+    Route::get('/', 'cart')->name('customer.cart');
+    Route::post('/', 'updateCart')->name('customer.cart.update-cart');
+    Route::post('/add-to-cart/{product:slug}', 'addToCart')->name('customer.cart.add-to-cart');
+    Route::post('/remove-from-cart/{cartItem}', 'removeFromCart')->name('customer.cart.remove-from-cart');
+});
 
+Route::controller(MarketProductController::class)->prefix('product')->group(function () {
+    Route::get('/{product:slug}/', 'product')->name('customer.market.product');
+    Route::post('/{product:slug}/add-comment', 'addComment')->name('customer.market.product.add-comment');
+    Route::get('/{product:slug}/add-to-favorite', 'addToFavorite')->name('customer.market.product.add-to-favorite');
 });
 
 

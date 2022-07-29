@@ -90,8 +90,25 @@
                                             <span>کالا ناموجود</span></p>
                                     @endif
 
-                                    <p>
-                                        <a class="btn btn-light  btn-sm text-decoration-none" href="#"><i class="fa fa-heart text-danger"></i> افزودن به علاقه مندی</a>
+                                    <p class="product-add-to-favorite product-add-to-favorite-disable-styles">
+                                        @guest
+                                            <button class="btn btn-light btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
+                                                <i class="fa fa-heart"></i>
+                                                <span>افزودن به علاقه مندی</span>
+                                            </button>
+                                        @endguest
+                                        @auth
+                                            @if($product->users->contains(auth()->user()->id))
+                                                <button class="btn btn-light  btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
+                                                    <i class="fa fa-heart text-danger"></i> <span>حذف از علاقه مندی</span>
+                                                </button>
+                                            @else
+                                                <button class="btn btn-light btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
+                                                    <i class="fa fa-heart"></i>  <span>افزودن به علاقه مندی</span>
+                                                </button>
+                                            @endif
+
+                                        @endauth
                                     </p>
 
                                     <section>
@@ -119,25 +136,27 @@
                                         <p class="text-muted">قیمت کالا</p>
                                         <p class="text-muted @if(!empty($amazingSale)) text-decoration-line-through @endif" id="product_price" data-product-original-price="{{ $product->price }}">{{ priceFormat($product->price) }} </p>
                                     </section>
-                                @endif
 
+                                    @if (!empty($amazingSale))
+                                        <section class="d-flex justify-content-between align-items-center">
+                                            <p class="text-muted">تخفیف کالا</p>
+                                            <p class="text-light badge bg-danger rounded-pill" id="product_discount_price" data-product-discount-price="{{ $amazingSale->percentage }}">{{ discountFormat($amazingSale->percentage) }}</p>
+                                        </section>
 
+                                        <section class="border-bottom mb-3"></section>
 
-                                @if (!empty($amazingSale))
-                                    <section class="d-flex justify-content-between align-items-center">
-                                        <p class="text-muted">تخفیف کالا</p>
-                                        <p class="text-light badge bg-danger rounded-pill" id="product_discount_price" data-product-discount-price="{{ $amazingSale->percentage }}">{{ convertEnglishToPersian($amazingSale->percentage) }}٪</p>
-                                    </section>
+                                        <section class="d-flex justify-content-end align-items-center">
+                                            <p class="fw-bolder" id="final_price">{{ priceFormat($product->price - $amazingSaleProductPrice) }}</p>
+                                        </section>
 
-                                    <section class="border-bottom mb-3"></section>
-
-                                    <section class="d-flex justify-content-end align-items-center">
-                                        <p class="fw-bolder" id="final_price">{{ priceFormat($product->price - $amazingSaleProductPrice) }}</p>
-                                    </section>
-
-                                    <section class="">
-                                        <a id="next-level" href="#" class="btn btn-danger d-block">افزودن به سبد</a>
-                                    </section>
+                                        <section class="">
+                                            <a id="next-level" href="#" class="btn btn-danger d-block">افزودن به سبد</a>
+                                        </section>
+                                    @else
+                                        <section class="">
+                                            <a id="next-level" href="#" class="btn btn-danger d-block">افزودن به سبد</a>
+                                        </section>
+                                    @endif
                                 @else
                                     <section class="d-flex justify-content-between align-items-center">
                                         <h3 class="text-muted fw-bold">ناموجود</h3>
@@ -193,9 +212,27 @@
                                                 <section class="product-add-to-cart">
                                                     <a href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="افزودن به سبد خرید"><i class="fa fa-cart-plus"></i></a>
                                                 </section>
-                                                <section class="product-add-to-favorite">
-                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="افزودن به علاقه مندی"><i class="fa fa-heart"></i></a>
-                                                </section>
+
+                                                @auth
+                                                    @if($relatedProduct->users->contains(auth()->user()->id))
+                                                        <section class="product-add-to-favorite">
+                                                            <button data-bs-toggle="tooltip" data-bs-placement="left" title="حذف از علاقه مندی" data-url="{{ route('customer.market.product.add-to-favorite', $relatedProduct) }}">
+                                                                <i class="fa fa-heart text-danger"></i></button>
+                                                        </section>
+                                                    @else
+                                                        <section class="product-add-to-favorite">
+                                                            <button data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه از علاقه مندی" data-url="{{ route('customer.market.product.add-to-favorite', $relatedProduct) }}">
+                                                                <i class="fa fa-heart"></i></button>
+                                                        </section>
+                                                    @endif
+                                                @endauth
+                                                @guest
+                                                    <section class="product-add-to-favorite">
+                                                        <button data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه از علاقه مندی" data-url="{{ route('customer.market.product.add-to-favorite', $relatedProduct) }}">
+                                                            <i class="fa fa-heart"></i></button>
+                                                    </section>
+                                                @endguest
+
                                                 <a class="product-link" href="{{ route('customer.market.product', $relatedProduct) }}">
 
                                                     <section class="product-image">
@@ -208,12 +245,12 @@
 
                                                     @if (!empty($relatedProduct->activeAmazingSales()))
                                                         @php
-                                                            $amazingSaleProductPrice = ($relatedProduct->price * $amazingSale->percentage) / 100;
+                                                            $amazingSaleProductPrice = ($relatedProduct->price * $relatedProduct->activeAmazingSales()->percentage) / 100;
                                                         @endphp
                                                         <section class="product-price-wrapper">
                                                             <section class="product-discount">
                                                                 <span class="product-old-price text-decoration-line-through">{{ priceFormat($relatedProduct->price) }} </span>
-                                                                <span class="product-discount-amount">{{ convertEnglishToPersian($relatedProduct->activeAmazingSales()->percentage) }}٪</span>
+                                                                <span class="product-discount-amount">{{ discountFormat($relatedProduct->activeAmazingSales()->percentage) }}</span>
                                                             </section>
                                                             <section class="product-price">{{ priceFormat($relatedProduct->price - $amazingSaleProductPrice) }}</section>
                                                         </section>
@@ -340,7 +377,7 @@
                                                 @auth
 
                                                     <section class="modal-body">
-                                                        <form class="row" action="{{ route('customer.market.add-comment', $product) }}" method="post">
+                                                        <form class="row" action="{{ route('customer.market.product.add-comment', $product) }}" method="post">
                                                             @csrf
                                                             <section class="col-12 mb-2">
                                                                 <label for="comment" class="form-label mb-1">دیدگاه شما</label>
@@ -410,8 +447,53 @@
     </section>
     <!-- end description, features and comments -->
 
+    <!-- toast -->
+    <div aria-live="polite" aria-atomic="true" class="position-fixed p-4 flex-row-reverse" style="z-index: 1000; left: 0; top: 3rem; width: 26rem; max-width: 80%">
+        <div class="toast shadow-sm" style="position: absolute; top: 0; right: 0;" data-delay="10000" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header d-flex justify-content-between">
+                <img src="{{ asset('customer-assets/assets/images/logo/8.png') }}" class="rounded mr-2" alt="فروشگاه آمازون">
+                <strong class="mr-auto">فروشگاه آمازون</strong>
+                <small>{{ jalaliDate('now - 1 minutes', true) }}</small>
+                <button type="button" class="btn btn-sm ml-2 mb-1 close border-none rounded-pill" data-dismiss="toast" aria-label="Close">
+                    <strong aria-hidden="true">&times;</strong>
+                </button>
+            </div>
+            <div class="toast-body d-flex justify-content-between">
+                <span>  برای افزودن کالا به علاقه مندی باید ابتدا وارد حساب کاربری خود شوید</span>
+                <a href="{{ route('auth.customer.loginRegisterForm') }}" class="text-danger text-decoration-none fw-bold">ورورد / ثبت نام</a>
+            </div>
+        </div>
+    </div>
+
 @endsection
+
 @section('script')
+    <script>
+        $(document).ready(function () {
+            $('.product-add-to-favorite > button').click(function () {
+                var url = $(this).attr('data-url');
+                var element = $(this);
+                var elementChildren = $('.product-add-to-favorite > button[data-url="' + url + '"]').children();
+
+
+                $.ajax({
+                    url: url,
+                    success: function (result) {
+                        if (result.status === 1) {
+                            $(elementChildren).addClass('text-danger');
+                            $(element).attr('data-bs-original-title', 'حذف از علاقه مندی');
+                        } else if (result.status === 2) {
+                            $(elementChildren).removeClass('text-danger');
+                            $(element).attr('data-bs-original-title', 'افزودن به علاقه مندی');
+                        } else if (result.status === 3) {
+                            $('.toast').toast('show')
+                        }
+                    }
+                });
+            })
+        })
+    </script>
+
     <script>
         $(document).ready(function () {
             bill();

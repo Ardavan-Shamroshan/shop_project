@@ -14,8 +14,11 @@ use Morilog\Jalali\Jalalian;
  * Jalalian::forge('today')->format('%A, %d %B %y'); // جمعه، 23 اسفند 97
  *
  */
-function jalaliDate($date = 'today', $format = '%A, %d %B %Y') {
-    return Jalalian::forge($date)->format($format);
+function jalaliDate($date = 'today', $format = '%A, %d %B %Y', $ago = false) {
+    if ($ago = true)
+        return Jalalian::forge($date)->ago();
+    else
+        return Jalalian::forge($date)->format($format);
 }
 
 function convertPersianToEnglish($number) {
@@ -68,6 +71,12 @@ function priceFormat($price) {
     $price = convertEnglishToPersian($price);
     $price .= ' تومان';
     return $price;
+}
+
+function discountFormat($percentage) {
+    $percentage = convertEnglishToPersian($percentage);
+    $percentage .= '٪';
+    return $percentage;
 }
 
 

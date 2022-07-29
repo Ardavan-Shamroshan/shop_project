@@ -46,7 +46,8 @@ body {
     border-bottom: 1px solid #efefef;
 }
 
-.top-nav {}
+.top-nav {
+}
 
 
 /* start search*/
@@ -168,9 +169,9 @@ body {
 }
 
 .custom-drop-down {
-    box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.1)!important;
-    border-radius: 0.25rem!important;
-    border: none!important;
+    box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.1) !important;
+    border-radius: 0.25rem !important;
+    border: none !important;
 }
 
 .custom-drop-down .dropdown-item {
@@ -224,7 +225,8 @@ body {
     font-size: 0.8rem;
 }
 
-.header-cart {}
+.header-cart {
+}
 
 .header-cart:hover .header-cart-dropdown {
     visibility: visible;
@@ -288,7 +290,7 @@ body {
     box-shadow: 0rem 0.1rem 0.2rem 0.1rem rgba(0, 0, 0, 0.1);
 }
 
-.super-navbar-item:hover>.sublist-wrapper {
+.super-navbar-item:hover > .sublist-wrapper {
     visibility: visible;
     top: 100%;
     transition: 0.4s;
@@ -310,7 +312,7 @@ body {
     transition: 0.4s;
 }
 
-.sublist-item-active>.sublist-item-toggle {
+.sublist-item-active > .sublist-item-toggle {
     color: #EF4056;
     background-color: rgba(255, 255, 255, 1);
     border-right: 2px solid #EF4056;
@@ -318,12 +320,12 @@ body {
     transition: 0.4s;
 }
 
-.sublist-item:first-of-type>.sublist-item-toggle {
+.sublist-item:first-of-type > .sublist-item-toggle {
     margin-top: 1rem;
     border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-.sublist-item:last-of-type>.sublist-item-toggle {
+.sublist-item:last-of-type > .sublist-item-toggle {
     margin-bottom: 1rem;
 }
 
@@ -341,13 +343,15 @@ body {
     border-radius: 0.25rem;
 }
 
-.sublist-item-active>.sublist-item-sublist {
+.sublist-item-active > .sublist-item-sublist {
     visibility: visible;
 }
 
-.sublist-item-sublist-wrapper {}
+.sublist-item-sublist-wrapper {
+}
 
-.sublist-column {}
+.sublist-column {
+}
 
 .sub-category {
     display: block;
@@ -390,7 +394,7 @@ body {
     font-size: 0.8rem;
 }
 
-.navbar-item>a {
+.navbar-item > a {
     color: #333;
     text-decoration: none;
     padding: 0.8rem 0.6rem 0.6rem 0.6rem;
@@ -399,7 +403,7 @@ body {
     font-weight: bold;
 }
 
-.navbar-item>a:hover {
+.navbar-item > a:hover {
     cursor: pointer;
     border-bottom: 2px solid #EF4056;
     transition: 0.4s;
@@ -452,10 +456,10 @@ body {
     width: 2rem;
     height: 4rem;
     text-align: center;
-    font-size: 3rem!important;
-    background-color: rgba(255, 255, 255, .6)!important;
-    color: #000000!important;
-    box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.2)!important;
+    font-size: 3rem !important;
+    background-color: rgba(255, 255, 255, .6) !important;
+    color: #000000 !important;
+    box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.2) !important;
     margin: 0 auto;
     transition: 0.4s;
 }
@@ -467,18 +471,18 @@ body {
     width: 2rem;
     height: 4rem;
     text-align: center;
-    font-size: 3rem!important;
-    background-color: rgba(255, 255, 255, .6)!important;
-    color: #000000!important;
-    box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.2)!important;
+    font-size: 3rem !important;
+    background-color: rgba(255, 255, 255, .6) !important;
+    color: #000000 !important;
+    box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.2) !important;
     margin: 0 auto;
     transition: 0.4s;
 }
 
 .light-owl-nav .owl-nav .owl-prev:hover,
 .light-owl-nav .owl-nav .owl-next:hover {
-    background-color: rgba(255, 255, 255, 0.95)!important;
-    box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.4)!important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.4) !important;
 }
 
 .dark-owl-nav .owl-nav .owl-prev {
@@ -488,10 +492,10 @@ body {
     width: 2rem;
     height: 4rem;
     text-align: center;
-    font-size: 3rem!important;
-    background-color: rgba(0, 0, 0, .4)!important;
-    color: #FFFFFF!important;
-    box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.2)!important;
+    font-size: 3rem !important;
+    background-color: rgba(0, 0, 0, .4) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.2) !important;
     margin: 0 auto;
     transition: 0.4s;
 }
@@ -503,17 +507,17 @@ body {
     width: 2rem;
     height: 4rem;
     text-align: center;
-    font-size: 3rem!important;
-    background-color: rgba(0, 0, 0, .4)!important;
-    color: #FFFFFF!important;
-    box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.2)!important;
+    font-size: 3rem !important;
+    background-color: rgba(0, 0, 0, .4) !important;
+    color: #FFFFFF !important;
+    box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.2) !important;
     margin: 0 auto;
     transition: 0.4s;
 }
 
 .dark-owl-nav .owl-nav .owl-prev:hover,
 .dark-owl-nav .owl-nav .owl-next:hover {
-    background-color: rgba(0, 0, 0, 0.95)!important;
+    background-color: rgba(0, 0, 0, 0.95) !important;
     box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.4) !important;
     transition: 0.4s;
 }
@@ -522,7 +526,8 @@ body {
     box-shadow: 0rem 0rem 0.2rem 0.1rem rgba(0, 0, 0, 0.1);
 }
 
-.lazyload-wrapper {}
+.lazyload-wrapper {
+}
 
 .lazyload {
     padding: 1rem 0rem 0rem 0rem;
@@ -530,7 +535,7 @@ body {
 
 .lazyload-item-wrapper {
     padding: 1rem;
-    height: 100%!important;
+    height: 100% !important;
 }
 
 
@@ -550,7 +555,7 @@ body {
 }
 
 .brand-item img {
-    max-width: 8rem!important;
+    max-width: 8rem !important;
 }
 
 
@@ -597,7 +602,8 @@ body {
  *----------------------------------------------------------------------------------------------------------------------
  */
 
-.product-wrapper {}
+.product-wrapper {
+}
 
 .filters span {
     font-size: 0.8rem;
@@ -608,7 +614,8 @@ body {
     padding-top: 0.4rem;
 }
 
-.sort {}
+.sort {
+}
 
 .sort .btn {
     font-size: 0.8rem;
@@ -618,7 +625,7 @@ body {
     font-size: 0.8rem;
 }
 
-.main-product-wrapper>section {
+.main-product-wrapper > section {
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
     border-bottom: 1px solid #efefef;
@@ -626,7 +633,8 @@ body {
     border: 1px solid #efefef;
 }
 
-.main-product-wrapper .pagination {}
+.main-product-wrapper .pagination {
+}
 
 .main-product-wrapper .page-item {
     margin: auto 0.4rem;
@@ -740,7 +748,7 @@ body {
     background-color: #EF4056;
     padding: 0 0.4rem;
     margin: 0rem 0.4rem 0rem 0rem;
-    border-radius: 50rem!important;
+    border-radius: 50rem !important;
 }
 
 .product-old-price {
@@ -769,8 +777,8 @@ body {
 
 .product-add-to-cart-active,
 .product-add-to-cart a:hover {
-    background-color: rgba(255, 255, 255, 1)!important;
-    color: #EF4056!important;
+    background-color: rgba(255, 255, 255, 1) !important;
+    color: #EF4056 !important;
     text-decoration: none;
     transition: 0.4s;
 }
@@ -782,7 +790,7 @@ body {
     padding: 0.2rem;
 }
 
-.product-add-to-favorite a {
+.product-add-to-favorite a, .product-add-to-favorite button {
     text-decoration: none;
     background-color: rgba(255, 255, 255, 0.2);
     padding: 0.2rem 0.4rem 0rem 0.4rem;
@@ -790,22 +798,40 @@ body {
     box-shadow: 0rem 0rem 0.4rem 0.1rem rgba(0, 0, 0, 0.1);
     border-radius: 0.25rem;
     transition: 0.4s;
+    border: none;
 }
 
 .product-add-to-favorite-active,
-.product-add-to-favorite a:hover {
-    background-color: rgba(255, 255, 255, 1)!important;
-    color: #EF4056!important;
+.product-add-to-favorite a:hover, .product-add-to-favorite button:hover {
+    background-color: rgba(255, 255, 255, 1) !important;
+    color: #EF4056 !important;
     text-decoration: none;
     transition: 0.4s;
 }
 
+.product-add-to-favorite-disable-styles {
+    position: inherit;
+    padding: 0;
+
+}
+
+.product-add-to-favorite-disable-styles button {
+    background-color: #f8f9fa;
+    box-shadow: 0 0;
+    padding: 0.25rem 0.5rem;
+    outline: none;
+}
+
+.product-add-to-favorite-disable-styles button:focus {
+    box-shadow: 0 0;
+}
+
 
 /*
- *----------------------------------------------------------------------------------------------------------------------
- * footer
- *----------------------------------------------------------------------------------------------------------------------
- */
+*----------------------------------------------------------------------------------------------------------------------
+* footer
+*----------------------------------------------------------------------------------------------------------------------
+*/
 
 .footer {
     border-top: 1px solid #dedede;

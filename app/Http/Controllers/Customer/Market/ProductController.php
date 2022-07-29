@@ -26,7 +26,7 @@ class ProductController extends Controller
             $amazingSaleProductPrice = ($product->price * $amazingSale->percentage) / 100;
             return view('customer.market.product.product', compact('product', 'relatedProducts', 'productImages', 'productColors', 'productGuaranties', 'amazingSale', 'amazingSaleProductPrice', 'comments'));
         }
-        return view('customer.market.product.product', compact('product', 'relatedProducts', 'productImages', 'productColors', 'productGuaranties', 'amazingSale', 'comments'));
+        return view('customer.market.product.product', compact('product', 'relatedProducts', 'productImages', 'productColors', 'productGuaranties', 'comments'));
     }
 
     public function addComment(Product $product, Request $request) {
@@ -40,5 +40,16 @@ class ProductController extends Controller
         $inputs['commentable_type'] = Product::class;
         Comment::query()->create($inputs);
         return redirect()->route('customer.market.product', $product)->with('swal-success', 'نظر شما با موفقیت تایید شد');
+    }
+
+    public function addToFavorite(Product $product) {
+        if (Auth::check()) {
+            $product->users()->toggle([Auth::user()->id]);
+            if ($product->users->contains(Auth::user()->id))
+                return response()->json(['status' => 1]);
+            else
+                return response()->json(['status' => 2]);
+        } else return response()->json(['status' => 3]);
+
     }
 }

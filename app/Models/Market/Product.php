@@ -4,6 +4,7 @@ namespace App\Models\Market;
 
 use App\Models\Content\Comment;
 use App\Models\Content\Post;
+use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -99,5 +100,9 @@ class Product extends Model
 
     public function approvedComments() {
         return $this->comments()->where('approved', 1)->whereNull('parent_id')->get();
+    }
+
+    public function users() {
+        return $this->belongsToMany(User::class);
     }
 }
