@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Market\GuaranteeController;
 use App\Http\Controllers\Customer\HomeController;
 use App\Http\Controllers\Customer\SalesProcess\AddressController;
 use App\Http\Controllers\Customer\SalesProcess\CartController;
+use App\Http\Controllers\Customer\SalesProcess\ProfileCompletionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\Market\CategoryController as MarketCategoryController;
@@ -55,6 +56,31 @@ use App\Http\Controllers\Customer\Market\ProductController as MarketProductContr
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+/*
+|--------------------------------------------------------------------------
+| Jetstream
+|--------------------------------------------------------------------------
+*/
+//Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/dashboard', function () {
+//    return view('dashboard');
+//})->name('dashboard');
+
+/*
+|--------------------------------------------------------------------------
+| Auth
+|--------------------------------------------------------------------------
+*/
+Route::namespace('Auth')->group(function () {
+    Route::get('login-register', [LoginRegisterController::class, 'loginRegisterForm'])->name('auth.customer.loginRegisterForm');
+    Route::middleware('throttle:customer-login-register-limiter')->post('login-register', [LoginRegisterController::class, 'loginRegister'])->name('auth.customer.loginRegister');
+    Route::get('login-confirm/{token}', [LoginRegisterController::class, 'loginConfirmForm'])->name('auth.customer.loginConfirmForm');
+    Route::middleware('throttle:customer-login-confirm-limiter')->post('login-confirm/{token}', [LoginRegisterController::class, 'loginConfirm'])->name('auth.customer.loginConfirm');
+    Route::middleware('throttle:customer-login-resend-otp-limiter')->get('login-resend-otp/{token}', [LoginRegisterController::class, 'loginResendOtp'])->name('auth.customer.loginResendOtp');
+    Route::get('logout', [LoginRegisterController::class, 'logout'])->name('auth.customer.logout');
+});
+
 
 /*
 |--------------------------------------------------------------------------
@@ -514,8 +540,15 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 */
 Route::get('/', [HomeController::class, 'home'])->name('customer.home');
 
+// Product
+Route::controller(MarketProductController::class)->prefix('product')->group(function () {
+    Route::get('/{product:slug}/', 'product')->name('customer.market.product');
+    Route::post('/{product:slug}/add-comment', 'addComment')->name('customer.market.product.add-comment');
+    Route::get('/{product:slug}/add-to-favorite', 'addToFavorite')->name('customer.market.product.add-to-favorite');
+});
 
 Route::prefix('sales-process')->group(function () {
+    // Cart
     Route::controller(CartController::class)->prefix('cart')->group(function () {
         Route::get('/', 'cart')->name('customer.sales-process.cart');
         Route::post('/', 'updateCart')->name('customer.sales-process.cart.update-cart');
@@ -523,42 +556,19 @@ Route::prefix('sales-process')->group(function () {
         Route::get('/remove-from-cart/{cartItem}', 'removeFromCart')->name('customer.sales-process.cart.remove-from-cart');
     });
 
+    // Address and Delivery
     Route::controller(AddressController::class)->prefix('address-and-delivery')->group(function () {
         Route::get('/', 'addressAndDelivery')->name('customer.sales-process.address-and-delivery');
         Route::post('/add-address', 'addAddress')->name('customer.sales-process.addAddress');
     });
+
+    // Profile Completion
+    Route::controller(ProfileCompletionController::class)->prefix('profile-completion')->group(function () {
+        Route::get('/', 'profileCompletion')->name('customer.sales-process.profile-completion');
+        Route::post('/', 'completion')->name('customer.sales-process.profile-completion.completion');
+    });
 });
 
-
-Route::controller(MarketProductController::class)->prefix('product')->group(function () {
-    Route::get('/{product:slug}/', 'product')->name('customer.market.product');
-    Route::post('/{product:slug}/add-comment', 'addComment')->name('customer.market.product.add-comment');
-    Route::get('/{product:slug}/add-to-favorite', 'addToFavorite')->name('customer.market.product.add-to-favorite');
-});
-
-
-/*
-|--------------------------------------------------------------------------
-| Jetstream
-|--------------------------------------------------------------------------
-*/
-//Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/dashboard', function () {
-//    return view('dashboard');
-//})->name('dashboard');
-
-/*
-|--------------------------------------------------------------------------
-| Auth
-|--------------------------------------------------------------------------
-*/
-Route::namespace('Auth')->group(function () {
-    Route::get('login-register', [LoginRegisterController::class, 'loginRegisterForm'])->name('auth.customer.loginRegisterForm');
-    Route::middleware('throttle:customer-login-register-limiter')->post('login-register', [LoginRegisterController::class, 'loginRegister'])->name('auth.customer.loginRegister');
-    Route::get('login-confirm/{token}', [LoginRegisterController::class, 'loginConfirmForm'])->name('auth.customer.loginConfirmForm');
-    Route::middleware('throttle:customer-login-confirm-limiter')->post('login-confirm/{token}', [LoginRegisterController::class, 'loginConfirm'])->name('auth.customer.loginConfirm');
-    Route::middleware('throttle:customer-login-resend-otp-limiter')->get('login-resend-otp/{token}', [LoginRegisterController::class, 'loginResendOtp'])->name('auth.customer.loginResendOtp');
-    Route::get('logout', [LoginRegisterController::class, 'logout'])->name('auth.customer.logout');
-});
 
 /*
 |--------------------------------------------------------------------------
