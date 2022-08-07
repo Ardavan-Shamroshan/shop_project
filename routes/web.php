@@ -3,7 +3,8 @@
 
 use App\Http\Controllers\Admin\Market\GuaranteeController;
 use App\Http\Controllers\Customer\HomeController;
-use App\Http\Controllers\Customer\SaleProcess\CartController;
+use App\Http\Controllers\Customer\SalesProcess\AddressController;
+use App\Http\Controllers\Customer\SalesProcess\CartController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\Market\CategoryController as MarketCategoryController;
@@ -514,12 +515,20 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 Route::get('/', [HomeController::class, 'home'])->name('customer.home');
 
 
-Route::controller(CartController::class)->prefix('cart')->group(function () {
-    Route::get('/', 'cart')->name('customer.cart');
-    Route::post('/', 'updateCart')->name('customer.cart.update-cart');
-    Route::post('/add-to-cart/{product:slug}', 'addToCart')->name('customer.cart.add-to-cart');
-    Route::post('/remove-from-cart/{cartItem}', 'removeFromCart')->name('customer.cart.remove-from-cart');
+Route::prefix('sales-process')->group(function () {
+    Route::controller(CartController::class)->prefix('cart')->group(function () {
+        Route::get('/', 'cart')->name('customer.sales-process.cart');
+        Route::post('/', 'updateCart')->name('customer.sales-process.cart.update-cart');
+        Route::post('/add-to-cart/{product:slug}', 'addToCart')->name('customer.sales-process.cart.add-to-cart');
+        Route::get('/remove-from-cart/{cartItem}', 'removeFromCart')->name('customer.sales-process.cart.remove-from-cart');
+    });
+
+    Route::controller(AddressController::class)->prefix('address-and-delivery')->group(function () {
+        Route::get('/', 'addressAndDelivery')->name('customer.sales-process.address-and-delivery');
+        Route::post('/add-address', 'addAddress')->name('customer.sales-process.addAddress');
+    });
 });
+
 
 Route::controller(MarketProductController::class)->prefix('product')->group(function () {
     Route::get('/{product:slug}/', 'product')->name('customer.market.product');

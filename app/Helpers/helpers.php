@@ -52,8 +52,9 @@ function convertArabicToEnglish($number) {
 }
 
 function convertEnglishToPersian($number) {
+
     $number = str_replace('0', '۰', $number);
-    $number = str_replace('1', '١', $number);
+    $number = str_replace('1', '۱', $number);
     $number = str_replace('2', '۲', $number);
     $number = str_replace('3', '۳', $number);
     $number = str_replace('4', '۴', $number);

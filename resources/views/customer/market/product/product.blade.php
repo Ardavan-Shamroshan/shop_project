@@ -20,163 +20,174 @@
                         </section>
                     </section>
 
-                    <section class="row mt-4">
-                        <!-- start image gallery -->
-                        <section class="col-md-4">
-                            <section class="content-wrapper bg-white p-3 rounded-2 mb-4">
-                                <section class="product-gallery">
+                    <!-- start add to cart form -->
+                    <form action="{{ route('customer.sales-process.cart.add-to-cart', $product) }}" id="add_to_cart" method="post">
+                        @csrf
 
-                                    <section class="product-gallery-selected-image mb-3">
-                                        <img src="{{ asset($productImages->first()['indexArray']['medium']) }}" alt="">
-                                    </section>
-                                    <section class="product-gallery-thumbs">
-                                        @foreach ($productImages as $key => $gallery)
-                                            <img class="product-gallery-thumb" src="{{ asset($gallery['indexArray']['medium']) }}" alt="{{ $product->name . '-' . ($key + 1) }}" data-input="{{ asset($gallery['indexArray']['medium']) }}">
-                                        @endforeach
-                                    </section>
+                        <section class="row mt-4">
+                            <!-- start image gallery -->
+                            <section class="col-md-4">
+                                <section class="content-wrapper bg-white p-3 rounded-2 mb-4">
+                                    <section class="product-gallery">
 
-                                </section>
-                            </section>
-                        </section>
-                        <!-- end image gallery -->
-
-                        <!-- start product info -->
-                        <section class="col-md-5">
-
-                            <section class="content-wrapper bg-white p-3 rounded-2 mb-4">
-
-                                <!-- start vontent header -->
-                                <section class="content-header mb-3">
-                                    <section class="d-flex justify-content-between align-items-center">
-                                        <h2 class="content-header-title content-header-title-small">
-                                            {{ $product->name }}
-                                        </h2>
-                                        <section class="content-header-link">
-                                            <!--<a href="#">مشاهده همه</a>-->
+                                        <section class="product-gallery-selected-image mb-3">
+                                            <img src="{{ asset($productImages->first()['indexArray']['medium']) }}" alt="">
                                         </section>
-                                    </section>
-                                </section>
-                                <section class="product-info">
-                                    @if ($productColors->isNotEmpty())
-                                        <p>
-                                            <span>رنگ انتخاب شده : <span id="selected_color_name">{{ $productColors->first()->color_name }}</span></span>
-                                        </p>
-                                        <p>
-                                            @foreach ($productColors as $key => $color)
-                                                <label for="{{ "color_$color->id" }}" style="background-color: {{ $color->color ?? '#fff' }};" class="product-info-colors me-1 border border-4 border-light p-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title={{ $color->color_name }}></label>
-                                                <input type="radio" name="color" id="{{ "color_$color->id" }}" class="d-none" value="{{ $color->id }}" data-color-name="{{ $color->color_name }}" data-color-price="{{ $color->price_increase }}" @checked($key === 0)>
+                                        <section class="product-gallery-thumbs">
+                                            @foreach ($productImages as $key => $gallery)
+                                                <img class="product-gallery-thumb" src="{{ asset($gallery['indexArray']['medium']) }}" alt="{{ $product->name . '-' . ($key + 1) }}" data-input="{{ asset($gallery['indexArray']['medium']) }}">
                                             @endforeach
-                                        </p>
-                                    @endif
+                                        </section>
 
-                                    @if (count($productGuaranties) != 0)
-                                        <p>
-                                            <i class="fa fa-shield-alt cart-product-selected-warranty me-1"></i>
-                                            گارانتی :
-                                            <select name="guaranty" id="guaranty" class="p-1 border rounded-pill">
-                                                @foreach ($productGuaranties as $key => $guaranty)
-                                                    <option value="{{ $guaranty->id }}" data-guaranty-price="{{ $guaranty->price_increase }}" @selected($key === 0)>{{ $guaranty->name }}</option>
-                                                @endforeach
+                                    </section>
+                                </section>
+                            </section>
+                            <!-- end image gallery -->
 
-                                            </select>
-                                        </p>
-                                    @endif
+                            <!-- start product info -->
+                            <section class="col-md-5">
 
-                                    @if ($product->marketable_number > 0)
-                                        <p><i class="fa fa-store-alt cart-product-selected-store me-1"></i>
-                                            <span>کالا موجود در انبار</span></p>
-                                    @else
-                                        <p><i class="fa fa-store-alt cart-product-selected-store me-1"></i>
-                                            <span>کالا ناموجود</span></p>
-                                    @endif
+                                <section class="content-wrapper bg-white p-3 rounded-2 mb-4">
 
-                                    <p class="product-add-to-favorite product-add-to-favorite-disable-styles">
-                                        @guest
-                                            <button class="btn btn-light btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
-                                                <i class="fa fa-heart"></i>
-                                                <span>افزودن به علاقه مندی</span>
-                                            </button>
-                                        @endguest
-                                        @auth
-                                            @if($product->users->contains(auth()->user()->id))
-                                                <button class="btn btn-light  btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
-                                                    <i class="fa fa-heart text-danger"></i> <span>حذف از علاقه مندی</span>
-                                                </button>
-                                            @else
-                                                <button class="btn btn-light btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
-                                                    <i class="fa fa-heart"></i>  <span>افزودن به علاقه مندی</span>
-                                                </button>
-                                            @endif
-
-                                        @endauth
-                                    </p>
-
-                                    <section>
-                                        <section class="cart-product-number d-inline-block ">
-                                            <button class="cart-number cart-number-down" type="button">-</button>
-                                            <input type="number" id="number" name="number" min="1" max="5" step="1" value="1" readonly="readonly">
-                                            <button class="cart-number cart-number-up" type="button">+</button>
+                                    <!-- start vontent header -->
+                                    <section class="content-header mb-3">
+                                        <section class="d-flex justify-content-between align-items-center">
+                                            <h2 class="content-header-title content-header-title-small">
+                                                {{ $product->name }}
+                                            </h2>
+                                            <section class="content-header-link">
+                                                <!--<a href="#">مشاهده همه</a>-->
+                                            </section>
                                         </section>
                                     </section>
 
-                                    <p class="mb-3 mt-5">
-                                        <i class="fa fa-info-circle me-1"></i>کاربر گرامی خرید شما هنوز نهایی نشده است. برای ثبت سفارش و تکمیل خرید باید ابتدا آدرس خود را انتخاب کنید و سپس نحوه ارسال را انتخاب کنید. نحوه ارسال انتخابی شما محاسبه و به این مبلغ اضافه شده خواهد شد. و در نهایت پرداخت این
-                                        سفارش صورت میگیرد. پس از ثبت سفارش کالا بر اساس نحوه ارسال که شما انتخاب کرده اید کالا برای شما در مدت زمان مذکور ارسال می گردد.
-                                    </p>
-                                </section>
-                            </section>
+                                    <section class="product-info">
 
-                        </section>
-                        <!-- end product info -->
+                                        @if ($productColors->isNotEmpty())
+                                            <p>
+                                                <span>رنگ انتخاب شده : <span id="selected_color_name">{{ $productColors->first()->color_name }}</span></span>
+                                            </p>
+                                            <p>
+                                                @foreach ($productColors as $key => $color)
+                                                    <label for="{{ "color_$color->id" }}" style="background-color: {{ $color->color ?? '#fff' }};" class="product-info-colors me-1 border border-4 border-light p-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title={{ $color->color_name }}></label>
+                                                    <input type="radio" name="color" id="{{ "color_$color->id" }}" class="d-none" value="{{ $color->id }}" data-color-name="{{ $color->color_name }}" data-color-price="{{ $color->price_increase }}" @checked($key === 0)>
+                                                @endforeach
+                                            </p>
+                                        @endif
 
-                        <section class="col-md-3">
-                            <section class="content-wrapper bg-white p-3 rounded-2 cart-total-price">
-                                @if ($product->marketable_number > 0)
-                                    <section class="d-flex justify-content-between align-items-center">
-                                        <p class="text-muted">قیمت کالا</p>
-                                        <p class="text-muted @if(!empty($amazingSale)) text-decoration-line-through @endif" id="product_price" data-product-original-price="{{ $product->price }}">{{ priceFormat($product->price) }} </p>
+                                        @if (count($productGuaranties) != 0)
+                                            <p>
+                                                <i class="fa fa-shield-alt cart-product-selected-warranty me-1"></i>
+                                                گارانتی :
+                                                <select name="guaranty" id="guaranty" class="p-1 border rounded-pill">
+                                                    @foreach ($productGuaranties as $key => $guaranty)
+                                                        <option value="{{ $guaranty->id }}" data-guaranty-price="{{ $guaranty->price_increase }}" @selected($key === 0)>{{ $guaranty->name }}</option>
+                                                    @endforeach
+
+                                                </select>
+                                            </p>
+                                        @endif
+
+                                        @if ($product->marketable_number > 0)
+                                            <p><i class="fa fa-store-alt cart-product-selected-store me-1"></i>
+                                                <span>کالا موجود در انبار</span></p>
+                                        @else
+                                            <p><i class="fa fa-store-alt cart-product-selected-store me-1"></i>
+                                                <span>کالا ناموجود</span></p>
+                                        @endif
+
+                                        <p class="product-add-to-favorite product-add-to-favorite-disable-styles">
+                                            @guest
+                                                <button type="button" class="btn btn-light btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
+                                                    <i class="fa fa-heart"></i>
+                                                    <span>افزودن به علاقه مندی</span>
+                                                </button>
+                                            @endguest
+                                            @auth
+                                                @if($product->users->contains(auth()->user()->id))
+                                                    <button type="button" class="btn btn-light  btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
+                                                        <i class="fa fa-heart text-danger"></i>
+                                                        <span>حذف از علاقه مندی</span>
+                                                    </button>
+                                                @else
+                                                    <button type="button" class="btn btn-light btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
+                                                        <i class="fa fa-heart"></i> <span>افزودن به علاقه مندی</span>
+                                                    </button>
+                                                @endif
+
+                                            @endauth
+                                        </p>
+
+                                        <section>
+                                            <section class="cart-product-number d-inline-block ">
+                                                <button class="cart-number cart-number-down" type="button">-</button>
+                                                <input type="number" id="number" name="number" min="1" max="5" step="1" value="1" readonly="readonly">
+                                                <button class="cart-number cart-number-up" type="button">+</button>
+                                            </section>
+                                        </section>
+
+                                        <p class="mb-3 mt-5">
+                                            <i class="fa fa-info-circle me-1"></i>کاربر گرامی خرید شما هنوز نهایی نشده است. برای ثبت سفارش و تکمیل خرید باید ابتدا آدرس خود را انتخاب کنید و سپس نحوه ارسال را انتخاب کنید. نحوه ارسال انتخابی شما محاسبه و به این مبلغ اضافه شده خواهد شد. و در نهایت پرداخت این
+                                            سفارش صورت میگیرد. پس از ثبت سفارش کالا بر اساس نحوه ارسال که شما انتخاب کرده اید کالا برای شما در مدت زمان مذکور ارسال می گردد.
+                                        </p>
                                     </section>
 
-                                    @if (!empty($amazingSale))
+                                </section>
+
+                            </section>
+                            <!-- end product info -->
+
+                            <section class="col-md-3">
+                                <section class="content-wrapper bg-white p-3 rounded-2 cart-total-price">
+                                    @if ($product->marketable_number > 0)
                                         <section class="d-flex justify-content-between align-items-center">
-                                            <p class="text-muted">تخفیف کالا</p>
-                                            <p class="text-light badge bg-danger rounded-pill" id="product_discount_price" data-product-discount-price="{{ $amazingSale->percentage }}">{{ discountFormat($amazingSale->percentage) }}</p>
+                                            <p class="text-muted">قیمت کالا</p>
+                                            <p class="text-muted @if(!empty($amazingSale)) text-decoration-line-through @endif" id="product_price" data-product-original-price="{{ $product->price }}">{{ priceFormat($product->price) }} </p>
+                                        </section>
+
+                                        @if (!empty($amazingSale))
+                                            <section class="d-flex justify-content-between align-items-center">
+                                                <p class="text-muted">تخفیف کالا</p>
+                                                <p class="text-light badge bg-danger rounded-pill" id="product_discount_price" data-product-discount-price="{{ $amazingSale->percentage }}">{{ discountFormat($amazingSale->percentage) }}</p>
+                                            </section>
+
+                                            <section class="border-bottom mb-3"></section>
+
+                                            <section class="d-flex justify-content-end align-items-center">
+                                                <p class="fw-bolder" id="final_price">{{ priceFormat($product->price - $amazingSaleProductPrice) }}</p>
+                                            </section>
+
+                                            <section class="">
+                                                <button id="next-level" type="submit" class="btn btn-danger d-block w-100" onclick="document.getElementById('add_to_cart').submit();">افزودن به سبد</button>
+                                            </section>
+                                        @else
+                                            <section class="">
+                                                <button id="next-level" type="submit" class="btn btn-danger d-block w-100">افزودن به سبد</button>
+                                            </section>
+                                        @endif
+                                    @else
+                                        <section class="d-flex justify-content-between align-items-center">
+                                            <h3 class="text-muted fw-bold">ناموجود</h3>
+                                        </section>
+
+                                        <section class="d-flex justify-content-between align-items-center">
+                                            <p class="text-muted text-justify">این کالا فعلا موجود نیست اما می‌توانید زنگوله را بزنید تا به محض موجود شدن، به شما خبر دهیم </p>
                                         </section>
 
                                         <section class="border-bottom mb-3"></section>
 
-                                        <section class="d-flex justify-content-end align-items-center">
-                                            <p class="fw-bolder" id="final_price">{{ priceFormat($product->price - $amazingSaleProductPrice) }}</p>
-                                        </section>
-
                                         <section class="">
-                                            <a id="next-level" href="#" class="btn btn-danger d-block">افزودن به سبد</a>
-                                        </section>
-                                    @else
-                                        <section class="">
-                                            <a id="next-level" href="#" class="btn btn-danger d-block">افزودن به سبد</a>
+                                            <a id="next-level" href="#" class="btn btn-danger d-block"><i class="far fa-bell"></i> خبرم کنید
+                                            </a>
                                         </section>
                                     @endif
-                                @else
-                                    <section class="d-flex justify-content-between align-items-center">
-                                        <h3 class="text-muted fw-bold">ناموجود</h3>
-                                    </section>
-
-                                    <section class="d-flex justify-content-between align-items-center">
-                                        <p class="text-muted text-justify">این کالا فعلا موجود نیست اما می‌توانید زنگوله را بزنید تا به محض موجود شدن، به شما خبر دهیم </p>
-                                    </section>
-
-                                    <section class="border-bottom mb-3"></section>
-
-
-                                    <section class="">
-                                        <a id="next-level" href="#" class="btn btn-danger d-block"><i class="far fa-bell"></i> خبرم کنید
-                                        </a>
-                                    </section>
-                                @endif
+                                </section>
                             </section>
                         </section>
-                    </section>
+
+                    </form>
+                    <!-- end add to cart form -->
+
                 </section>
             </section>
 
@@ -190,7 +201,7 @@
             <section class="row">
                 <section class="col">
                     <section class="content-wrapper bg-white p-3 rounded-2">
-                        <!-- start vontent header -->
+                        <!-- start content header -->
                         <section class="content-header">
                             <section class="d-flex justify-content-between align-items-center">
                                 <h2 class="content-header-title">
@@ -201,7 +212,7 @@
                                 </section>
                             </section>
                         </section>
-                        <!-- start vontent header -->
+                        <!-- start content header -->
                         <section class="lazyload-wrapper">
                             <section class="lazyload light-owl-nav owl-carousel owl-theme">
 
@@ -557,16 +568,25 @@
             // $('#product_price').html(productPrice);
             $('#final_price').html(toFarsiNumber(finalPrice) + ' تومان ');
         }
+    </script>
+    <script>
 
-        function toFarsiNumber(number) {
-            const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+        //start product introduction, features and comment
+        $(document).ready(function () {
+            var s = $("#introduction-features-comments");
+            var pos = s.position();
+            $(window).scroll(function () {
+                var windowpos = $(window).scrollTop();
 
-            // add comma
-            number = new Intl.NumberFormat().format(number);
+                if (windowpos >= pos.top) {
+                    s.addClass("stick");
+                } else {
+                    s.removeClass("stick");
+                }
+            });
+        });
+        //end product introduction, features and comment
 
-            // convert to persian
-            return number.toString().replace(/\d/g, x => farsiDigits[x]);
-        }
     </script>
 
 @endsection

@@ -11,8 +11,15 @@
         @yield('customer.layouts.sidebar')
     </section>
 
+    <!-- start alert section -->
+    @include('customer.alerts.alert-section.success')
+    @include('customer.alerts.alert-section.error')
+    @include('customer.alerts.alert-section.info')
+    <!-- end alert section -->
+
     <!-- start main one col -->
     <main id="main-body-one-col" class="main-body">
+
         @yield('content')
     </main>
     <!-- end main one col -->

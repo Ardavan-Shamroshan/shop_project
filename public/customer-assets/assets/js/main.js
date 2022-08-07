@@ -247,18 +247,12 @@ $(document).ready(function() {
 
 
 
-//start product introduction, features and comment
-$(document).ready(function() {
-    var s = $("#introduction-features-comments");
-    var pos = s.position();
-    $(window).scroll(function() {
-        var windowpos = $(window).scrollTop();
+function toFarsiNumber(number) {
+    const farsiDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
 
-        if (windowpos >= pos.top) {
-            s.addClass("stick");
-        } else {
-            s.removeClass("stick");
-        }
-    });
-});
-//end product introduction, features and comment
+    // add comma
+    number = new Intl.NumberFormat().format(number);
+
+    // convert to persian
+    return number.toString().replace(/\d/g, x => farsiDigits[x]);
+}
