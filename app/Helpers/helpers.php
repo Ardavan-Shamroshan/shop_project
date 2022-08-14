@@ -80,6 +80,48 @@ function discountFormat($percentage) {
     return $percentage;
 }
 
+function validateNationalCode($nationalCode) {
+    $nationalCode = trim($nationalCode, ' .');
+    $nationalCode = convertArabicToEnglish($nationalCode);
+    $nationalCode = convertPersianToEnglish($nationalCode);
+    $bannedArray = [
+        '0000000000', '1111111111', '2222222222',
+        '3333333333', '4444444444', '5555555555',
+        '6666666666', '7777777777', '8888888888',
+        '9999999999'
+    ];
+
+    if (empty($nationalCode))
+        return false;
+
+    elseif (count(str_split($nationalCode)) != 10)
+        return false;
+
+    elseif (in_array($nationalCode, $bannedArray, true))
+        return false;
+
+    else {
+        $sum = 0;
+
+        for ($i = 0; $i < 9; $i++)
+            $sum += (int)$nationalCode[$i] * (10 - $i);
+
+        $divideRemaining = $sum % 11;
+
+        if ($divideRemaining < 2)
+            $lastDigit = $divideRemaining;
+
+        else
+            $lastDigit = 11 - ($divideRemaining);
+
+        if ((int)$nationalCode[9] == $lastDigit)
+            return true;
+        else
+            return false;
+    }
+
+}
+
 
 
 

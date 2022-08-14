@@ -108,10 +108,17 @@
                                     @endforeach
 
                                 </section>
+
+                                @php
+                                    $totalPrice = 0;
+                                        foreach($cartItems as $cartItem) {
+                                            $totalPrice += $cartItem->cartItemFinalPrice();
+                                        }
+                                @endphp
                                 <section class="header-cart-dropdown-footer border-top d-flex justify-content-between align-items-center p-2">
                                     <section class="">
                                         <section>مبلغ قابل پرداخت</section>
-                                        <section>{{ priceFormat($cartItem->cartItemFinalPrice() )}}</section>
+                                        <section>{{ priceFormat($totalPrice)}}</section>
                                     </section>
                                     <section class="">
                                         <a class="btn btn-danger btn-sm d-block" href="cart.html">ثبت سفارش</a>

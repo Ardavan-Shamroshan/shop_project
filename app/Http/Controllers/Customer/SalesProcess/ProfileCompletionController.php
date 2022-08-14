@@ -3,32 +3,61 @@
 namespace App\Http\Controllers\Customer\SalesProcess;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Market\SalesProcess\ProfileCompletionRequest;
 use App\Models\Market\CartItem;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class ProfileCompletionController extends Controller
 {
-    public function profileCompletion() {
+    public function profileCompletion()
+    {
         $user = Auth::user();
         $cartItems = CartItem::query()->where('user_id', $user->id)->get();
         return view('customer.sales-process.profile-completion', compact('user', 'cartItems'));
     }
 
-    public function completion(Request $request) {
+    public function completion(ProfileCompletionRequest $request)
+    {
         $user = Auth::user();
-        $validated = $request->validate([
-            'first_name' => ['sometimes', 'required'],
-            'last_name' => ['sometimes', 'required'],
-            'email' => ['sometimes', 'required', 'email', Rule::unique('users')->ignore($user)],
-            'mobile' => ['sometimes', 'required', 'min:10', 'max:13', Rule::unique('users')->ignore($user)],
-            'national_code' => ['sometimes', 'required', Rule::unique('users')->ignore($user)],
-        ]);
+        $inputs = [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'national_code' => $request->national_code,
+        ];
 
-        $inputs = $request->all();
-        $user->update($inputs);
+        // mobile check
+        if (isset($request->mobile) && empty($user->mobile)) {
+            $mobile = convertArabicToEnglish($request->mobile);
+            $mobile = convertPersianToEnglish($mobile);
+
+            if (preg_match('/^(\+98|98|0)9\d{9}$/', $mobile)) {
+                // mobile
+                $type = 0;
+                // all mobile numbers are in format 9** *** ***
+                $mobile = ltrim($mobile, '0');
+                $mobile = str_starts_with($mobile, '98') ? substr($mobile, 2) : $mobile;
+                $mobile = str_replace('+98', '', $mobile);
+                $inputs['mobile'] = $mobile;
+            } else {
+                $errorText = 'فرمت شماره موبایل صحیح نیست';
+                return redirect()->back()->withErrors('mobile', $errorText);
+            }
+        }
+
+
+        // email check
+        if (isset($request->email) && empty($user->email)) {
+            $email = convertArabicToEnglish($request->$email);
+            $email = convertPersianToEnglish($email);
+            $inputs['$email'] = $email;
+        }
+
+        // remove empty indexes of array
+        $inputs = array_filter($inputs);
+        if (!empty($inputs))
+            $user->update($inputs);
+
+
         return redirect()->route('customer.sales-process.address-and-delivery');
     }
 }

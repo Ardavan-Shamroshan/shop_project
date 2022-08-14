@@ -2,33 +2,26 @@
 
 namespace App\Http\Controllers\Customer\SalesProcess;
 
-use App\Http\Controllers\Controller;
-use App\Models\Market\CartItem;
 use Illuminate\Http\Request;
+use App\Models\Market\CartItem;
+use App\Models\Market\Province;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class AddressController extends Controller
 {
     public function addressAndDelivery() {
-        // check profile
         $user = Auth::user();
-
-        if (
-            empty($user->mobile) ||
-            empty($user->first_name) ||
-            empty($user->last_name) ||
-            empty($user->email) ||
-            empty($user->national_code)
-        )
-            return redirect()->route('customer.sales-process.profile-completion');
+        $cartItems = CartItem::query()->where('user_id', $user->id)->get();
+        $addresses = $user->addresses;
+        $provinces = Province::all();
 
         // check cart
         $cartItem = CartItem::query()->where('user_id', $user->id)->count();
         if(empty($cartItem))
             return redirect()->route('customer.sales-process.cart');
 
-
-        return view('customer.sales-process.address-and-delivery');
+        return view('customer.sales-process.address-and-delivery', compact('cartItems', 'addresses', 'provinces'));
     }
 
     public function addAddress() {

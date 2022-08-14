@@ -6,11 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Models\Content\Banner;
 use App\Models\Market\Brand;
 use App\Models\Market\Product;
+use App\Models\User;
 
 class HomeController extends Controller
 {
     public function home() {
-        \Auth::loginUsingId(2);
+       $user = User::find(2);
+       \Auth::login($user);
 //        \Auth::logout();
         $slideShowImages = Banner::query()->where('position', 0)->where('status', 1)->get();
         $topBanners = Banner::query()->where('position', 1)->where('status', 1)->take(2)->get();

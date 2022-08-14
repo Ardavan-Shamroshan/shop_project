@@ -11,7 +11,7 @@
         <section class="container-xxl">
             <section class="row">
                 <section class="col">
-                    <!-- start vontent header -->
+                    <!-- start content header -->
                     <section class="content-header">
                         <section class="d-flex justify-content-between align-items-center">
                             <h2 class="content-header-title">
@@ -44,7 +44,6 @@
                                            </section>
                                         @endforeach
                                     </section>
-
                                 @endif
 
                                 <section class="row pb-3">
@@ -111,8 +110,8 @@
 
                                 @foreach($cartItems as $cartItem)
                                     @php
-                                        $totalProductPrice += $cartItem->cartItemProductPrice();
-                                        $totalDiscount += $cartItem->cartItemProductDiscount();
+                                        $totalProductPrice += $cartItem->cartItemProductPrice() * $cartItem->number;
+                                        $totalDiscount += $cartItem->cartItemProductDiscount() * $cartItem->number;
                                     @endphp
                                 @endforeach
 
