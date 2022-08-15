@@ -2,15 +2,16 @@
 
 namespace App\Models\Market;
 
+use App\Models\City;
 use App\Models\Address;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Province extends Model
 {
     use HasFactory;
 
-    public function city()
+    public function cities()
     {
         return $this->hasMany(City::class);
     }

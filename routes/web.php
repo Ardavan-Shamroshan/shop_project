@@ -560,6 +560,8 @@ Route::prefix('sales-process')->group(function () {
     Route::middleware('profile.completion')->controller(AddressController::class)->prefix('address-and-delivery')->group(function () {
         Route::get('/', 'addressAndDelivery')->name('customer.sales-process.address-and-delivery');
         Route::post('/add-address', 'addAddress')->name('customer.sales-process.addAddress');
+        Route::get('/get-cities/{province}', 'getCities')->name('customer.sales-process.getCities');
+
     });
 
     // Profile Completion

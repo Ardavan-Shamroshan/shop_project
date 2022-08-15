@@ -51,7 +51,7 @@
                                             <label for="a{{ $address->id }}" class="address-wrapper mb-2 p-2">
                                                 <section class="mb-2">
                                                     <i class="fa fa-map-marker-alt mx-1"></i>
-                                                    آدرس : استان{{ $address->city->province->name ?? '-'}}، شهر {{ $address->city->name }}، {{ $address->address ?? '-' }} پلاک {{ $address->no ?? '-' }} واحد {{ $address->unit ?? '-' }}
+                                                    آدرس : استان{{ $address->city->province->name ?? '-' }}، شهر {{ $address->city->name }}، {{ $address->address ?? '-' }} پلاک {{ $address->no ?? '-' }} واحد {{ $address->unit ?? '-' }}
                                                 </section>
                                                 <section class="mb-2">
                                                     <i class="fa fa-user-tag mx-1"></i>
@@ -59,7 +59,7 @@
                                                 </section>
                                                 <section class="mb-2">
                                                     <i class="fa fa-mobile-alt mx-1"></i>
-                                                    موبایل گیرنده : {{  $address->mobile }}
+                                                    موبایل گیرنده : {{ $address->mobile }}
                                                 </section>
                                                 <a class="" href="#"><i class="fa fa-edit"></i> ویرایش آدرس</a>
                                                 <span class="address-selected">کالاها به این آدرس ارسال می شوند</span>
@@ -83,7 +83,7 @@
                                                                 <select class="form-select form-select-sm" id="province">
                                                                     <option selected>استان را انتخاب کنید</option>
                                                                     @foreach ($provinces as $province)
-                                                                    <option value="{{  $province->id }}">{{  $province->name }}</option>
+                                                                        <option value="{{ $province->id }}" data-url="{{ route('customer.sales-process.getCities', $province) }}">{{ $province->name }}</option>
                                                                     @endforeach
                                                                 </select>
                                                             </section>
@@ -158,8 +158,6 @@
 
                                 </section>
                             </section>
-
-
                             <section class="content-wrapper bg-white p-3 rounded-2 mb-4">
 
                                 <!-- start vontent header -->
@@ -207,8 +205,6 @@
                                     </label>
                                 </section>
                             </section>
-
-
                         </section>
                         <section class="col-md-3">
                             <section class="content-wrapper bg-white p-3 rounded-2 cart-total-price">
@@ -268,5 +264,35 @@
 @endsection
 
 @section('script')
-    <script></script>
+    <script>
+        $(document).ready(function() {
+            $('#province').change(function() {
+                var province = $('#province option:selected');
+                var url = province.attr('data-url');
+                $.ajax({
+                    type: "GET",
+                    url: url,
+                    success: function(response) {
+                        if (response.status = true) {
+                            let cities = response.cities;
+                            $('#city').empty();
+                            cities.map((city) => {
+                                $('#city').append($('<option/>').val(city.id).text(city.name));
+                            })
+                        } else
+                            errorToast('خطا پیش آمده است')
+                    },
+                    error: function() {
+                        errorToast('خطا پیش آمده است')
+                    },
+                });
+
+
+
+            });
+
+
+
+        });
+    </script>
 @endsection
