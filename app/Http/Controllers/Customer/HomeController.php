@@ -11,8 +11,7 @@ use App\Models\User;
 class HomeController extends Controller
 {
     public function home() {
-       $user = User::find(2);
-       \Auth::login($user);
+       \Auth::login(User::find(2));
 //        \Auth::logout();
         $slideShowImages = Banner::query()->where('position', 0)->where('status', 1)->get();
         $topBanners = Banner::query()->where('position', 1)->where('status', 1)->take(2)->get();

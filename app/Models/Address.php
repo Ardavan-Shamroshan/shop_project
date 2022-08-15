@@ -14,6 +14,8 @@ class Address extends Model
 
     protected $table = 'addresses';
 
+    protected $guarded = ['id'];
+
     public function city() {
         return $this->belongsTo(City::class);
     }
@@ -25,7 +27,7 @@ class Address extends Model
 
     public function recipient(): Attribute {
         return Attribute::make(
-            get: fn() => ($this->recipient_first_name == null) ?: $this->recipient_first_name . ' ' . $this->recipient_last_name,
+            get: fn() => ($this->recipient_first_name !== null) ? $this->recipient_first_name . ' ' . $this->recipient_last_name : '-',
         );
     }
 

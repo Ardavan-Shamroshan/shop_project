@@ -45,6 +45,7 @@ use App\Http\Controllers\Admin\Ticket\TicketAdminController;
 use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Auth\Customer\LoginRegisterController;
 use App\Http\Controllers\Customer\Market\ProductController as MarketProductController;
+use App\Http\Controllers\Customer\SalesProcess\PaymentController as CustomerPaymentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,7 @@ use App\Http\Controllers\Customer\Market\ProductController as MarketProductContr
 | Auth
 |--------------------------------------------------------------------------
 */
+
 Route::namespace('Auth')->group(function () {
     Route::get('login-register', [LoginRegisterController::class, 'loginRegisterForm'])->name('auth.customer.loginRegisterForm');
     Route::middleware('throttle:customer-login-register-limiter')->post('login-register', [LoginRegisterController::class, 'loginRegister'])->name('auth.customer.loginRegister');
@@ -557,11 +559,18 @@ Route::prefix('sales-process')->group(function () {
     });
 
     // Address and Delivery
-    Route::middleware('profile.completion')->controller(AddressController::class)->prefix('address-and-delivery')->group(function () {
-        Route::get('/', 'addressAndDelivery')->name('customer.sales-process.address-and-delivery');
-        Route::post('/add-address', 'addAddress')->name('customer.sales-process.addAddress');
-        Route::get('/get-cities/{province}', 'getCities')->name('customer.sales-process.getCities');
+    Route::middleware('profile.completion')->group(function () {
+        Route::controller(AddressController::class)->prefix('address-and-delivery')->group(function () {
+            Route::get('/', 'addressAndDelivery')->name('customer.sales-process.address-and-delivery');
+            Route::post('/add-address', 'addAddress')->name('customer.sales-process.addAddress');
+            Route::put('/update-address/{address}', 'updateAddress')->name('customer.sales-process.updateAddress');
+            Route::get('/get-cities/{province}', 'getCities')->name('customer.sales-process.getCities');
+        });
 
+        // Payment
+        Route::controller(CustomerPaymentController::class)->prefix('payment')->group(function () {
+            Route::get('/', 'payment')->name('customer.sales-process.payment');
+        });
     });
 
     // Profile Completion
