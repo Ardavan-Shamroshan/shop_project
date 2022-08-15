@@ -12,6 +12,8 @@ class Order extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $guarded = ['id'];
+
     public function payment()
     {
         return $this->belongsTo(Payment::class);
@@ -75,10 +77,10 @@ class Order extends Model
     }
     public function getOrderStatusValueAttribute() {
         switch ($this->order_status){
-            case 1: $result = ' در انتظار تایید'; break;
-            case 2: $result = 'تایید شده'; break;
-            case 3: $result = 'تایید نشده'; break;
-            case 4: $result = 'باطل شده'; break;
+            case 0: $result = 'در انتظار تایید'; break;
+            case 1: $result = 'تایید شده'; break;
+            case 2: $result = 'تایید نشده'; break;
+            case 3: $result = 'باطل شده'; break;
             default: $result = 'مرجوع شده';
         }
         return $result;

@@ -10,6 +10,8 @@ use App\Models\Market\Province;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Market\SalesProcess\AddressRequest;
+use App\Http\Requests\Market\SalesProcess\ChooseAddressAndDeliveryRequest;
+use App\Models\Market\Order;
 
 class AddressController extends Controller
 {
@@ -51,6 +53,18 @@ class AddressController extends Controller
         return redirect()->back()->with('alert-section-success', 'آدرس شما با موفقیت ویرایش شد');
     }
 
+    public function chooseAddressAndDelivery(ChooseAddressAndDeliveryRequest $request)
+    {
+        $user = Auth::user();
+        $inputs = $request->all();
+        $inputs['user_id'] = $user->id;
+        $order = Order::query()->updateOrCreate([
+            'user_id' => $user->id, 'order_status' => 0
+        ], $inputs);
+        return redirect()->route('customer.sales-process.payment');
+    }
+
+    // method for fetch cities from db for ajax
     public function getCities(Province $province)
     {
         $cities = $province->cities;

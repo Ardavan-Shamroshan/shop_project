@@ -12,7 +12,7 @@
                     <section class="content-header">
                         <section class="d-flex justify-content-between align-items-center">
                             <h2 class="content-header-title">
-                                <span>تکمیل اطلاعات حساب کاربری</span>
+                                <span>تکمیل اطلاعات آدرس گیرنده و نحوه ارسال</span>
                             </h2>
                             <section class="content-header-link">
                                 <!--<a href="#">مشاهده همه</a>-->
@@ -277,7 +277,7 @@
                                     </section>
 
                                     @foreach ($deliveryMethods as $deliveryMethod)
-                                        <input type="radio" name="delivery_id" value="{{  $deliveryMethod->id }}" id="d{{ $deliveryMethod->id }}" form="submit_form"/>
+                                        <input type="radio" name="delivery_id" value="{{ $deliveryMethod->id }}" id="d{{ $deliveryMethod->id }}" form="submit_form" />
                                         <label for="d{{ $deliveryMethod->id }}" class="col-12 col-md-4 delivery-wrapper mb-2 pt-2">
                                             <section class="mb-2">
                                                 <i class="fa fa-shipping-fast mx-1"></i>
@@ -285,7 +285,7 @@
                                             </section>
                                             <section class="mb-2">
                                                 <i class="fa fa-calendar-alt mx-1"></i>
-                                                تامین کالا از {{  $deliveryMethod->delivery_time }} {{  $deliveryMethod->delivery_time_unit }} آینده
+                                                تامین کالا از {{ $deliveryMethod->delivery_time }} {{ $deliveryMethod->delivery_time_unit }} آینده
                                             </section>
                                         </label>
                                     @endforeach
@@ -338,8 +338,13 @@
                                     صورت میگیرد.
                                 </p>
 
-                                <section class="">
-                                    <button type="button" onclick="document.getElementById('profile_completion').submit();" class="btn btn-danger d-block w-100">تکمیل فرآیند خرید</button>
+
+                                <!-- this form submits tow main inputs (address and delivery method choose) using html5 feature (form:id, input:form attr) -->
+                                <form action="{{ route('customer.sales-process.choose-address-and-delivery') }}" method="post" id="submit_form">
+                                    @csrf
+                                </form>
+                                <section>
+                                    <button type="button" onclick="document.getElementById('submit_form').submit();" class="btn btn-danger d-block w-100">تکمیل فرآیند خرید</button>
                                 </section>
 
                             </section>
@@ -351,12 +356,6 @@
         </section>
     </section>
     <!-- end cart -->
-
-
-  <!-- this form submits tow main inputs (address and delivery method choose) using html5 feature (form:id, input:form attr) -->
-    <form action="{{  route('customer.sales-process.payment') }}" method="post" id="submit_form">
-
-    </form>
 @endsection
 
 @section('script')
