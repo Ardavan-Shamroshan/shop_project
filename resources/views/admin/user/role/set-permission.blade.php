@@ -51,7 +51,7 @@
                                         </span>
                                     @enderror
 
-                                    <div class="form-check shadow-sm p-2 border rounded-pill @error('permissions.' . $key) border-danger @enderror">
+                                    <div class="form-check shadow-sm p-2 border rounded-pill btn-sm @error('permissions.' . $key) border-danger @enderror">
                                         <input type="checkbox" class="form-check-input" name="permissions[]" id="{{ $permission->id }}" value="{{ $permission->id }}" @if(in_array($permission->id, $rolePermissionsArray)) checked @endif>
                                         <label for="{{ $permission->id }}" class="form-check-label mr-3 mt-1">{{ $permission->name }}</label>
                                     </div>

@@ -13,7 +13,7 @@ class CommonDiscount extends Model
     protected $fillable = [
         'title',
         'percentage',
-        'discount_selling',
+        'discount_ceiling',
         'minimal_order_amount',
         'start_date',
         'end_date',

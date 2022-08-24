@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>کوپن های تخفیف</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.discount.coupon.create') }}" class="btn btn-info btn-sm border rounded-pill btn-hover color-8">ایجاد
+            <a href="{{ route('admin.market.discount.coupon.create') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">ایجاد
                 کوپن تخفیف</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
@@ -44,16 +44,16 @@
                         <td>{{ $coupon->code }}</td>
                         <td>{{ $coupon->amount }}{{$coupon->amount_type == 0 ? '%' : ' تومان'}}</td>
                         <td>{{ $coupon->amount_type == 0 ? '%' : 'واحد پول' }}</td>
-                        <td>{{ $coupon->discount_selling ?? '-' }}</td>
+                        <td>{{ $coupon->discount_ceiling ?? '-' }}</td>
                         <td>{{ $coupon->type == 0 ? 'عمومی' : 'خصوصی  - ' . $coupon->user->fullname}}</td>
                         <td>{{ jalaliDate($coupon->start_date) }}</td>
                         <td>{{ jalaliDate($coupon->end_date) }}</td>
                         <td class="width-16-rem text-left">
-                            <a href="{{ route('admin.market.discount.coupon.edit', $coupon->id) }}" class="btn btn-primary btn-sm border rounded-pill btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
+                            <a href="{{ route('admin.market.discount.coupon.edit', $coupon->id) }}" class="btn btn-primary btn-sm border rounded-pill btn-sm btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
                             <form class="d-inline" action="{{ route('admin.market.discount.coupon.destroy', $coupon->id) }}" method="post">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-danger btn-sm delete border rounded-pill btn-hover color-11">
+                                <button type="submit" class="btn btn-danger btn-sm delete border rounded-pill btn-sm btn-hover color-11">
                                     <i class="fa fa-times rounded-pill"></i> حذف
                                 </button>
                             </form>

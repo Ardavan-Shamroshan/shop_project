@@ -18,7 +18,7 @@ class CreateCouponsTable extends Migration
             $table->string('code');
             $table->string('amount');
             $table->tinyInteger('amount_type')->default(0)->comment('0 => percentage, 1 => price unit');
-            $table->unsignedBigInteger('discount_selling')->nullable();
+            $table->unsignedBigInteger('discount_ceiling')->nullable();
             $table->tinyInteger('type')->default(0)->comment('0 => common (for all users and disposable), 1 => private (for one user and disposable)');
             $table->tinyInteger('status')->default(0);
             $table->timestamp('start_date')->useCurrent();

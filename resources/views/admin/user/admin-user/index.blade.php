@@ -66,11 +66,11 @@
 
                         <td class="width-16-rem text-left">
                             <a href="" class="btn btn-warning btn-sm btn-hover rounded-pill border color-4"><i class="fa fa-user-cog"></i> نقش</a>
-                            <a href="{{ route('admin.user.admin-user.edit', $admin->id) }}" class="btn btn-primary btn-sm btn-hover border rounded-pill color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
+                            <a href="{{ route('admin.user.admin-user.edit', $admin->id) }}" class="btn btn-primary btn-sm btn-hover border rounded-pill btn-sm color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
                             <form action="{{ route('admin.user.admin-user.destroy', $admin->id) }}" class="d-inline" method="post">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-danger btn-sm btn-hover color-11 delete border rounded-pill">
+                                <button type="submit" class="btn btn-danger btn-sm btn-hover color-11 delete border rounded-pill btn-sm">
                                     <i class="fa fa-times"></i> حذف
                                 </button>
                             </form>

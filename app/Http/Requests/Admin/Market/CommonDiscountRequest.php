@@ -27,7 +27,7 @@ class CommonDiscountRequest extends FormRequest
         return [
             'title' => 'required|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,!?؟ ]+$/u',
             'percentage' => 'required|max:100|min:1|numeric',
-            'discount_selling' => 'required|max:100000000000000000|min:1|numeric',
+            'discount_ceiling' => 'required|max:100000000000000000|min:1|numeric',
             'minimal_order_amount' => 'required|max:10000000000000000|min:1|numeric',
             'status' => ['required', 'numeric', Rule::in(['0', '1'])],
             'start_date' => ['required', 'numeric'],

@@ -25,15 +25,11 @@ class CartController extends Controller
                 'guaranty' => 'nullable|exists:guarantees,id',
                 'number' => 'numeric|min:1|max:5'
             ]);
-
             $cartItems = CartItem::query()->where('product_id', $product->id)->where('user_id', auth()->user()->id)->get();
-
             if (!isset($request->color))
                 $request->color = null;
-
             if (!isset($request->guaranty))
                 $request->guaranty = null;
-
             foreach ($cartItems as $cartItem) {
                 if ($cartItem->color_id == $request->color && $cartItem->guarantee_id == $request->guaranty) {
                     if ($cartItem->number != $request->number) {
@@ -43,15 +39,12 @@ class CartController extends Controller
                     return back()->with('alert-section-success', 'این محصول در سبد خرید شما وجود دارد');
                 }
             }
-
             $inputs = [];
             $inputs['color_id'] = $request->color;
             $inputs['guarantee_id'] = $request->guaranty;
             $inputs['user_id'] = auth()->user()->id;
             $inputs['product_id'] = $product->id;
-
             CartItem::query()->create($inputs);
-
             return back()->with('alert-section-success', 'محصول مورد نظر با موفقیت به سبد خرید اضافه شد');
         } else
             return redirect()->route('auth.customer.loginRegisterForm');

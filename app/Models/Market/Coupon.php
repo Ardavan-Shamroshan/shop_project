@@ -15,7 +15,7 @@ class Coupon extends Model
         'code',
         'amount',
         'amount_type',
-        'discount_selling',
+        'discount_ceiling',
         'type',
         'status',
         'user_id',

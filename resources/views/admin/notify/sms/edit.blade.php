@@ -17,7 +17,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>ویرایش اطلاعیه پیامکی</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.notify.sms') }}" class="btn btn-info btn-sm border rounded-pill btn-hover color-8">« بازگشت</a>
+            <a href="{{ route('admin.notify.sms') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">« بازگشت</a>
         </section>
 
         <section>

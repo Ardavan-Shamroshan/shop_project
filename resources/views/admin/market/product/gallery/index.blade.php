@@ -40,7 +40,7 @@
                     </div>
                 </section>
                 <section class="py-4">
-                    <button class="btn btn-primary border rounded-pill btn-hover color-9">ثبت</button>
+                    <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
                 </section>
             </section>
         </form>
@@ -66,7 +66,7 @@
                                     <form class="d-inline" action="{{ route('admin.market.product.gallery.destroy', ['product' => $product->id, 'gallery' => $image->id]) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger btn-sm delete border rounded-pill btn-hover color-11"><i class="fa fa-times rounded-pill"></i> حذف</button>
+                                        <button type="submit" class="btn btn-danger btn-sm delete border rounded-pill btn-sm btn-hover color-11"><i class="fa fa-times rounded-pill"></i> حذف</button>
                                     </form>
                                 </td>
                             </tr>

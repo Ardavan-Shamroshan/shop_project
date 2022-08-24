@@ -17,7 +17,7 @@ class CreateCommonDiscountsTable extends Migration
             $table->id();
             $table->string('title');
             $table->integer('percentage');
-            $table->unsignedBigInteger('discount_selling')->nullable();
+            $table->unsignedBigInteger('discount_ceiling')->nullable();
             $table->unsignedBigInteger('minimal_order_amount')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamp('start_date')->useCurrent();

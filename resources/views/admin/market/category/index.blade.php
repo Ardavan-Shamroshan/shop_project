@@ -16,7 +16,7 @@
         <section class="main-body-container-header"><h4>دسته بندی ها</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
             <a href="{{ route('admin.market.category.create') }}"
-               class="btn btn-info btn-sm border rounded-pill btn-hover color-8">ایجاد دسته بندی</a>
+               class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">ایجاد دسته بندی</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -69,13 +69,13 @@
 
                         <td class="width-16-rem text-left">
                             <a href="{{ route('admin.market.category.edit', $productCategory->id) }}"
-                               class="btn btn-primary btn-sm border rounded-pill btn-hover color-9"><i
+                               class="btn btn-primary btn-sm border rounded-pill btn-sm btn-hover color-9"><i
                                     class="fa fa-pen font-size-12"></i> ویرایش </a>
                             <form class="d-inline" action="{{ route('admin.market.category.destroy', $productCategory->id) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit"
-                                        class="btn btn-danger btn-sm delete border rounded-pill btn-hover color-11">
+                                        class="btn btn-danger btn-sm delete border rounded-pill btn-sm btn-hover color-11">
                                     <i class="fa fa-times rounded-pill"></i> حذف
                                 </button>
                             </form>

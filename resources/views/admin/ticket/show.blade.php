@@ -89,7 +89,7 @@
                                 </div>
                             </section>
                             <section class="col-12">
-                                <button class="btn btn-primary border rounded-pill btn-hover color-9">ثبت</button>
+                                <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
                             </section>
                         </section>
                     </form>

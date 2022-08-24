@@ -190,7 +190,7 @@ return [
         "deliverer"                 => "تحویل دهنده",
         "marketable_number"         => "تعداد",
         "percentage"                => "درصد",
-        "discount_selling"          => "سقف تخفیف",
+        "discount_ceiling"          => "سقف تخفیف",
         "minimal_order_amount"      => "حداقل مبلغ",
         "start_date"                => "تاریخ شروع",
         "end_date"                  => "تاریخ پایان",

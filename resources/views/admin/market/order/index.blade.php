@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>سفارشات</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="#" class="btn btn-info btn-sm border rounded-pill btn-hover color-8 disabled">ایجاد سفارش جدید</a>
+            <a href="#" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8 disabled">ایجاد سفارش جدید</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>

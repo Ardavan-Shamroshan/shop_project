@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>نظرات</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="" class="btn btn-info btn-sm disabled border rounded-pill btn-hover color-8">ایجاد نظر جدید</a>
+            <a href="" class="btn btn-info btn-sm disabled border rounded-pill btn-sm btn-hover color-8">ایجاد نظر جدید</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -54,9 +54,9 @@
                             </label>
                         </td>
                         <td class="width-16-rem text-left">
-                            <a href="{{ route('admin.market.comment.show', $comment->id) }}" class="btn btn-info btn-sm border rounded-pill btn-hover color-9"><i class="fa fa-eye font-size-12"></i> نمایش </a>
+                            <a href="{{ route('admin.market.comment.show', $comment->id) }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-9"><i class="fa fa-eye font-size-12"></i> نمایش </a>
                             @if($comment->approved == 1)
-                                <a href="{{ route('admin.market.comment.approved', $comment->id)}}" class="btn btn-success btn-sm btn-hover color-5 text-white border rounded-pill" type="submit"><i class="fa fa-check"></i> تایید </a>
+                                <a href="{{ route('admin.market.comment.approved', $comment->id)}}" class="btn btn-success btn-sm btn-hover color-5 text-white border rounded-pill btn-sm" type="submit"><i class="fa fa-check"></i> تایید </a>
                             @else
                                 <a href="{{ route('admin.market.comment.approved', $comment->id)}}" class="btn btn-warning btn-sm border btn-hover color-4 rounded-pill" type="submit"><i class="fa fa-check"></i> درانتظار تایید </a>
                             @endif

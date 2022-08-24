@@ -69,14 +69,14 @@
 
                         <td class="width-16-rem text-left">
                             <a href="{{ route('admin.user.edit', $user->id) }}"
-                               class="btn btn-primary btn-sm btn-hover border rounded-pill color-9"><i
+                               class="btn btn-primary btn-sm btn-hover border rounded-pill btn-sm color-9"><i
                                         class="fa fa-pen font-size-12"></i> ویرایش</a>
                             <form action="{{ route('admin.user.destroy', $user->id) }}" class="d-inline"
                                   method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit"
-                                        class="btn btn-danger btn-sm btn-hover color-11 delete border rounded-pill">
+                                        class="btn btn-danger btn-sm btn-hover color-11 delete border rounded-pill btn-sm">
                                     <i class="fa fa-times"></i> حذف
                                 </button>
                             </form>

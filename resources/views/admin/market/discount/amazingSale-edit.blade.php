@@ -16,7 +16,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>افزودن به لیست فروش شگفت انگیز </h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.discount.amazingSale') }}" class="btn btn-info btn-sm border rounded-pill btn-hover color-8">«
+            <a href="{{ route('admin.market.discount.amazingSale') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">«
                 بازگشت</a>
         </section>
         <section>
@@ -48,8 +48,8 @@
                                     </small>
                                 </span>
                             @enderror
-                            <input type="text" name="start_date" id="start_date" class="form-control form-control-sm d-none">
-                            <input type="text" id="start_date_view" class="form-control form-control-sm @error('start_date') border border-danger @enderror">
+                            <input type="text" name="start_date" id="start_date" class="form-control form-control-sm d-none" value="{{ old('start_date', $amazingSale->start_date) }}">
+                            <input type="text" id="start_date_view" class="form-control form-control-sm @error('start_date') border border-danger @enderror" value="{{ old('start_date', $amazingSale->start_date) }}">
                         </div>
                     </section>
                     <section class="col-12 col-md-3">
@@ -62,8 +62,8 @@
                                     </small>
                                 </span>
                             @enderror
-                            <input type="text" name="end_date" id="end_date" class="form-control form-control-sm d-none">
-                            <input type="text" id="end_date_view" class="form-control form-control-sm @error('end_date') border border-danger @enderror">
+                            <input type="text" name="end_date" id="end_date" class="form-control form-control-sm d-none" value="{{ old('end_date', $amazingSale->end_date) }}">
+                            <input type="text" id="end_date_view" class="form-control form-control-sm @error('end_date') border border-danger @enderror" value="{{ old('end_date', $amazingSale->end_date) }}">
                         </div>
                     </section>
 
@@ -102,7 +102,7 @@
                         </div>
                     </section>
                     <section class="col-12 col-md-12">
-                        <button class="btn btn-primary border rounded-pill btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
                     </section>
                 </section>
             </form>

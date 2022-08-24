@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>ویرایش لینک سریع</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.content.quickLink') }}" class="btn btn-info btn-sm border rounded-pill btn-hover color-8">« بازگشت</a>
+            <a href="{{ route('admin.content.quickLink') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">« بازگشت</a>
         </section>
         <section>
             <form action="{{ route('admin.content.quickLink.update', $quickLink->id) }}" method="post" id="form">
@@ -70,7 +70,7 @@
                     </section>
 
                     <section class="col-12 col-md-6">
-                        <button class="btn btn-primary border rounded-pill btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
                     </section>
                 </section>
             </form>

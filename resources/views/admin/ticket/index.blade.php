@@ -22,7 +22,7 @@
             </section>
 
             <section class="d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-                <a href="#" class="btn btn-info btn-sm disabled border rounded-pill btn-hover color-8">ایجاد تیکت </a>
+                <a href="#" class="btn btn-info btn-sm disabled border rounded-pill btn-sm btn-hover color-8">ایجاد تیکت </a>
                 <div class="max-width-16-rem">
                     <input type="text" class="form-control form-control-sm form-text" placeholder="جستجو">
                 </div>
@@ -53,8 +53,8 @@
                             <td>{{ $ticket->admin->user->fullname }}</td>
                             <td>{{ $ticket->parent->subject ?? '-' }}</td>
                             <td class="width-16-rem text-left">
-                                <a href="{{ route('admin.ticket.show', $ticket->id) }}" class="btn btn-info btn-sm border rounded-pill btn-hover color-9"><i class="fa fa-eye font-size-12"></i> مشاهده</a>
-                                <a href="{{ route('admin.ticket.change', $ticket->id) }}" class="btn btn-info btn-sm border rounded-pill btn-hover {{ $ticket->status == 1 ? 'color-5' : 'color-11' }}"><i class="fa {{ $ticket->status == 1 ? 'fa-check-circle' : 'fa-times-circle' }} "></i>
+                                <a href="{{ route('admin.ticket.show', $ticket->id) }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-9"><i class="fa fa-eye font-size-12"></i> مشاهده</a>
+                                <a href="{{ route('admin.ticket.change', $ticket->id) }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover {{ $ticket->status == 1 ? 'color-5' : 'color-11' }}"><i class="fa {{ $ticket->status == 1 ? 'fa-check-circle' : 'fa-times-circle' }} "></i>
                                 {{ $ticket->status == 1 ? 'باز کردن' : 'بستن'}}
                                 </a>
                             </td>

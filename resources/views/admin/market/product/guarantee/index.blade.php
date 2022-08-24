@@ -20,7 +20,7 @@
                 </section>
 
                 <section class="d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-                    <a href="{{ route('admin.market.product.guarantee.create', $product->id) }}" class="btn btn-info btn-sm border rounded-pill btn-hover color-8">ایجاد گارانتی جدید </a>
+                    <a href="{{ route('admin.market.product.guarantee.create', $product->id) }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">ایجاد گارانتی جدید </a>
                     <div class="max-width-16-rem">
                         <input type="text" class="form-control form-control-sm form-text" placeholder="جستجو">
                     </div>
@@ -49,7 +49,7 @@
                                     <form class="d-inline" action="{{ route('admin.market.product.guarantee.destroy', ['product' => $product->id , 'guarantee' => $guarantee->id] ) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger btn-sm delete border rounded-pill btn-hover color-11">
+                                        <button type="submit" class="btn btn-danger btn-sm delete border rounded-pill btn-sm btn-hover color-11">
                                             <i class="fa fa-times rounded-pill"></i> حذف
                                         </button>
                                     </form>

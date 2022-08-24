@@ -14,7 +14,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>تخفیف های عمومی</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.discount.commonDiscount.create') }}" class="btn btn-info btn-sm border rounded-pill btn-hover color-8">ایجاد تخفیف عمومی</a>
+            <a href="{{ route('admin.market.discount.commonDiscount.create') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">ایجاد تخفیف عمومی</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -39,16 +39,16 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $commonDiscount->percentage }}%</td>
-                    <td>{{ $commonDiscount->discount_selling }}تومان </td>
+                    <td>{{ $commonDiscount->discount_ceiling }}تومان </td>
                     <td>{{ $commonDiscount->title }}</td>
                     <td>{{ jalaliDate($commonDiscount->start_date) }}</td>
                     <td>{{ jalaliDate($commonDiscount->end_date) }}</td>
                     <td class="width-16-rem text-left">
-                        <a href="{{ route('admin.market.discount.commonDiscount.edit', $commonDiscount->id) }}" class="btn btn-primary btn-sm border rounded-pill btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش </a>
+                        <a href="{{ route('admin.market.discount.commonDiscount.edit', $commonDiscount->id) }}" class="btn btn-primary btn-sm border rounded-pill btn-sm btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش </a>
                         <form class="d-inline" action="{{ route('admin.market.discount.commonDiscount.destroy', $commonDiscount->id) }}" method="post">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm delete border rounded-pill btn-hover color-11"><i class="fa fa-times rounded-pill"></i> حذف</button>
+                            <button type="submit" class="btn btn-danger btn-sm delete border rounded-pill btn-sm btn-hover color-11"><i class="fa fa-times rounded-pill"></i> حذف</button>
                         </form>
                     </td>
                 </tr>

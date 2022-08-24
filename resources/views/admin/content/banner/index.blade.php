@@ -22,7 +22,7 @@
             </section>
 
             <section class="d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-                <a href="{{ route('admin.content.banner.create') }}" class="btn btn-info btn-sm border rounded-pill btn-hover color-8">ایجاد بنر </a>
+                <a href="{{ route('admin.content.banner.create') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">ایجاد بنر </a>
                 <div class="max-width-16-rem">
                     <input type="text" class="form-control form-control-sm form-text" placeholder="جستجو">
                 </div>
@@ -59,11 +59,11 @@
                             <td>{{ $positions[$banner->position] }}</td>
                             <td class="width-16-rem text-left">
                                 <a href="{{ route('admin.content.banner.edit', $banner->id) }}"
-                                   class="btn btn-primary btn-sm border rounded-pill btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش </a>
+                                   class="btn btn-primary btn-sm border rounded-pill btn-sm btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش </a>
                                 <form class="d-inline" action="{{ route('admin.content.banner.destroy', $banner->id) }}" method="post">
                                     @csrf
                                     @method('delete')
-                                <button class="btn btn-danger btn-sm delete border rounded-pill btn-hover color-11" type="submit"><i class="fa fa-times"></i> حذف</button>
+                                <button class="btn btn-danger btn-sm delete border rounded-pill btn-sm btn-hover color-11" type="submit"><i class="fa fa-times"></i> حذف</button>
                             </form>
                             </td>
                         </tr>

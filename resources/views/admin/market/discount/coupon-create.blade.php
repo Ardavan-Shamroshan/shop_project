@@ -17,7 +17,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>ایجاد کوپن تخفیف جدید</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.discount.coupon') }}" class="btn btn-info btn-sm border rounded-pill btn-hover color-8">«
+            <a href="{{ route('admin.market.discount.coupon') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">«
                 بازگشت</a>
         </section>
         <section>
@@ -114,15 +114,15 @@
                     </section>
                     <section class="col-12 col-md-6">
                         <div class="form-group">
-                            <label for="discount_selling" class="font-weight-bold">سقف تخفیف</label>
-                            @error('discount_selling')
+                            <label for="discount_ceiling" class="font-weight-bold">سقف تخفیف</label>
+                            @error('discount_ceiling')
                             <span class="alert_required text-danger" role="alert">
                                     <small>
                                         <b>{{ $message }}</b>
                                     </small>
                                 </span>
                             @enderror
-                            <input type="text" class="form-control form-control-sm @error('discount_selling') border border-danger @enderror" name="discount_selling" id="discount_selling" value="{{ old('discount_selling') }}">
+                            <input type="text" class="form-control form-control-sm @error('discount_ceiling') border border-danger @enderror" name="discount_ceiling" id="discount_ceiling" value="{{ old('discount_ceiling') }}">
                         </div>
                     </section>
 
@@ -162,7 +162,7 @@
 
 
                     <section class="col-12 col-md-12">
-                        <button class="btn btn-primary border rounded-pill btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
                     </section>
                 </section>
             </form>

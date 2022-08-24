@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Market\SalesProcess\AddressRequest;
 use App\Http\Requests\Market\SalesProcess\ChooseAddressAndDeliveryRequest;
+use App\Models\Market\CommonDiscount;
 use App\Models\Market\Order;
 
 class AddressController extends Controller
@@ -57,9 +58,51 @@ class AddressController extends Controller
     {
         $user = Auth::user();
         $inputs = $request->all();
+
+        // calc price with amazing sales
+        $cartItems = CartItem::query()->where('user_id', $user->id)->get();
+        $totalProductPrice = 0;
+        $totalDiscountPrice = 0;
+        $totalFinalPrice = 0;
+        $totalFinalDiscountPriceWithNumbers = 0;
+        foreach ($cartItems as $cartItem) {
+            $totalProductPrice += $cartItem->cartItemProductPrice();
+            $totalDiscountPrice += $cartItem->cartItemProductDiscount();
+            $totalFinalPrice += $cartItem->cartItemFinalPrice();
+            $totalFinalDiscountPriceWithNumbers += $cartItem->cartItemFinalDiscount();
+        }
+
+        // common discount
+        $commonDiscount = CommonDiscount::query()->where('status', 1)->where('end_date', '>=', now())->where('start_date', '<=', now())->first();
+        if ($commonDiscount) {
+            $inputs['common_discount_id'] = $commonDiscount->id;
+            $commonPercentageDiscountAmount = $totalFinalPrice * ($commonDiscount->percentage / 100);
+
+            // check maximum discountable amount
+            if ($commonPercentageDiscountAmount > $commonDiscount->discount_ceiling)
+                $commonPercentageDiscountAmount = $commonDiscount->discount_ceiling;
+
+            // check minimum order amount
+            if ($commonDiscount != null && $totalFinalPrice >= $commonDiscount->minimal_order_amount)
+                $finalPrice = $totalFinalPrice - $commonPercentageDiscountAmount;
+            else
+                $finalPrice = $totalFinalPrice;
+        } else {
+            $finalPrice = $totalFinalPrice;
+            $commonPercentageDiscountAmount = null;
+        }
+
+
         $inputs['user_id'] = $user->id;
+        $inputs['order_final_amount'] = $finalPrice;
+        $inputs['order_discount_amount'] = $totalFinalDiscountPriceWithNumbers;
+        $inputs['order_common_discount_amount'] = $commonPercentageDiscountAmount;
+        $inputs['order_total_product_discount_amount'] = $inputs['order_discount_amount'] + $inputs['order_common_discount_amount'];
+
+        // register order
         $order = Order::query()->updateOrCreate([
-            'user_id' => $user->id, 'order_status' => 0
+            'user_id' => $user->id,
+            'order_status' => 0 // not paid
         ], $inputs);
         return redirect()->route('customer.sales-process.payment');
     }

@@ -125,7 +125,7 @@
                                 </p>
 
                                 <section class="">
-                                    <a href="#" onclick="document.getElementById('cart_items').submit();" class="btn btn-danger d-block">تکمیل فرآیند خرید</a>
+                                    <a onclick="document.getElementById('cart_items').submit();" class="btn btn-danger d-block">تکمیل فرآیند خرید</a>
                                 </section>
 
                             </section>

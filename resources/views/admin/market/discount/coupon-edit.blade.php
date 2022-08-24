@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>ویرایش کوپن تخفیف جدید</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.discount.coupon') }}" class="btn btn-info btn-sm border rounded-pill btn-hover color-8">« بازگشت</a>
+            <a href="{{ route('admin.market.discount.coupon') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">« بازگشت</a>
         </section>
         <section>
             <form action="{{ route('admin.market.discount.coupon.update', $coupon->id) }}" method="post" enctype="multipart/form-data" id="form">
@@ -46,8 +46,8 @@
                                     </small>
                                 </span>
                             @enderror
-                            <input type="text" name="start_date" id="start_date" class="form-control form-control-sm d-none">
-                            <input type="text" id="start_date_view" class="form-control form-control-sm @error('start_date') border border-danger @enderror">
+                            <input type="text" name="start_date" id="start_date" class="form-control form-control-sm d-none" value="{{ old('start_date', $coupon->start_date) }}">
+                            <input type="text" id="start_date_view" class="form-control form-control-sm @error('start_date') border border-danger @enderror" value="{{ old('start_date', $coupon->start_date) }}">
                         </div>
                     </section>
                     <section class="col-12 col-md-3">
@@ -60,8 +60,8 @@
                                     </small>
                                 </span>
                             @enderror
-                            <input type="text" name="end_date" id="end_date" class="form-control form-control-sm d-none">
-                            <input type="text" id="end_date_view" class="form-control form-control-sm @error('end_date') border border-danger @enderror">
+                            <input type="text" name="end_date" id="end_date" class="form-control form-control-sm d-none" value="{{ old('end_date', $coupon->end_date) }}">
+                            <input type="text" id="end_date_view" class="form-control form-control-sm @error('end_date') border border-danger @enderror" value="{{ old('end_date', $coupon->end_date) }}">
                         </div>
                     </section>
                     <section class="col-12 col-md-6">
@@ -112,15 +112,15 @@
                     </section>
                     <section class="col-12 col-md-6">
                         <div class="form-group">
-                            <label for="discount_selling" class="font-weight-bold">سقف تخفیف</label>
-                            @error('discount_selling')
+                            <label for="discount_ceiling" class="font-weight-bold">سقف تخفیف</label>
+                            @error('discount_ceiling')
                             <span class="alert_required text-danger" role="alert">
                                     <small>
                                         <b>{{ $message }}</b>
                                     </small>
                                 </span>
                             @enderror
-                            <input type="text" class="form-control form-control-sm @error('discount_selling') border border-danger @enderror" name="discount_selling" id="discount_selling" value="{{ old('discount_selling', $coupon->discount_selling) }}">
+                            <input type="text" class="form-control form-control-sm @error('discount_ceiling') border border-danger @enderror" name="discount_ceiling" id="discount_ceiling" value="{{ old('discount_ceiling', $coupon->discount_ceiling) }}">
                         </div>
                     </section>
 
@@ -159,7 +159,7 @@
                     </section>
 
                     <section class="col-12 col-md-12">
-                        <button class="btn btn-primary border rounded-pill btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
                     </section>
                 </section>
             </form>

@@ -18,7 +18,7 @@
         <section class="main-body-container-header"><h4>ایجاد کالا</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
             <a href="{{ route('admin.market.product') }}"
-               class="btn btn-info btn-sm border rounded-pill btn-hover color-8">«
+               class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">«
                 بازگشت</a>
         </section>
         <section>
@@ -285,14 +285,14 @@
                         </section>
 
                         <section>
-                            <button type="button" class="btn border rounded-pill btn-hover color-5" id="btn-copy">
+                            <button type="button" class="btn border rounded-pill btn-sm btn-hover color-5" id="btn-copy">
                                 <i class="fa fa-plus font-size-12"></i> افزودن
                             </button>
                         </section>
                     </section>
 
                     <section class="col-12">
-                        <button class="btn btn-primary border rounded-pill btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
                     </section>
                 </section>
             </form>

@@ -57,7 +57,6 @@ class ProfileCompletionController extends Controller
         if (!empty($inputs))
             $user->update($inputs);
 
-
         return redirect()->route('customer.sales-process.address-and-delivery');
     }
 }

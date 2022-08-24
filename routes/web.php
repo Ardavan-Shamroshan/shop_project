@@ -571,6 +571,7 @@ Route::prefix('sales-process')->group(function () {
         // Payment
         Route::controller(CustomerPaymentController::class)->prefix('payment')->group(function () {
             Route::get('/', 'payment')->name('customer.sales-process.payment');
+            Route::post('/coupon-discount', 'couponDiscount')->name('customer.sales-process.coupon-discount');
         });
     });
 
