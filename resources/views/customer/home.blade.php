@@ -4,6 +4,9 @@
     <!-- start slideshow -->
     <section class="container-xxl my-4">
         <section class="row">
+
+            @include('customer.alerts.alert-section.success')
+
             <section class="col-md-8 pe-md-1 ">
                 <section id="slideshow" class="owl-carousel owl-theme">
                     @foreach ($slideShowImages as $slideShowImage)
@@ -320,7 +323,7 @@
                 var url = $(this).attr('data-url');
                 var element = $(this);
 
-                var elementChildren = $('.product-add-to-favorite > button[data-url="' +  url + '"]').children();
+                var elementChildren = $('.product-add-to-favorite > button[data-url="' + url + '"]').children();
 
                 $.ajax({
                     url: url,

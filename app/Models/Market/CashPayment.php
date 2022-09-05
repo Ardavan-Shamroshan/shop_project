@@ -10,8 +10,10 @@ class CashPayment extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public function payments()
-    {
+    protected $guarded = ['id'];
+
+
+    public function payments() {
         return $this->hasMany(Payment::class, 'paymentable');
     }
 }

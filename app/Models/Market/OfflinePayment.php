@@ -10,6 +10,9 @@ class OfflinePayment extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $guarded = ['id'];
+
+
     protected $fillable = [
         'amount',
         'user_id',

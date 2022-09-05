@@ -198,6 +198,7 @@ return [
         "user_id"                   => "کاربر",
         "amount"                    => "میزان تخفیف",
         "otp"                       => "رمز یکبار مصرف",
-        'national_code'             => 'کد ملی'
+        'national_code'             => 'کد ملی',
+        'payment_type'             => 'نوع پرداخت',
     ],
 ];

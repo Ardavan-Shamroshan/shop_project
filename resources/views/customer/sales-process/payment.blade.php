@@ -20,7 +20,6 @@
                         </section>
                     </section>
 
-
                     <section class="row mt-4">
                         <section class="col-md-9">
                             <section class="content-wrapper bg-white p-3 rounded-2 mb-4">
@@ -64,10 +63,8 @@
                                         </form>
                                     </section>
 
-
                                 </section>
                             </section>
-
 
                             <section class="content-wrapper bg-white p-3 rounded-2 mb-4">
 
@@ -75,8 +72,7 @@
                                 <section class="content-header mb-3">
                                     <section class="d-flex justify-content-between align-items-center">
                                         <h2 class="content-header-title content-header-title-small">
-                                            انتخاب نوع پرداخت
-                                        </h2>
+                                            انتخاب نوع پرداخت </h2>
                                         <section class="content-header-link">
                                             <!--<a href="#">مشاهده همه</a>-->
                                         </section>
@@ -91,52 +87,53 @@
                                         </section>
                                     </section>
 
-                                    <input type="radio" name="payment_type" value="1" id="d1">
-                                    <label for="d1" class="col-12 col-md-4 payment-wrapper mb-2 pt-2">
-                                        <section class="mb-2">
-                                            <i class="fa fa-credit-card mx-1"></i>
-                                            پرداخت آنلاین
-                                        </section>
-                                        <section class="mb-2">
-                                            <i class="fa fa-calendar-alt mx-1"></i>
-                                            درگاه پرداخت زرین پال
-                                        </section>
-                                    </label>
+                                    <form action="{{ route('customer.sales-process.payment-submit') }}" method="post" id="payment_submit">
+                                        @csrf
 
-                                    <section class="mb-2"></section>
+                                        <input type="radio" name="payment_type" value="1" id="d1">
+                                        <label for="d1" class="col-12 col-md-4 payment-wrapper mb-2 pt-2">
+                                            <section class="mb-2">
+                                                <i class="fa fa-credit-card mx-1"></i>
+                                                پرداخت آنلاین
+                                            </section>
+                                            <section class="mb-2">
+                                                <i class="fa fa-calendar-alt mx-1"></i>
+                                                درگاه پرداخت زرین پال
+                                            </section>
+                                        </label>
 
-                                    <input type="radio" name="payment_type" value="2" id="d2">
-                                    <label for="d2" class="col-12 col-md-4 payment-wrapper mb-2 pt-2">
-                                        <section class="mb-2">
-                                            <i class="fa fa-id-card-alt mx-1"></i>
-                                            پرداخت آفلاین
-                                        </section>
-                                        <section class="mb-2">
-                                            <i class="fa fa-calendar-alt mx-1"></i>
-                                            حداکثر در 2 روز کاری بررسی می شود
-                                        </section>
-                                    </label>
+                                        <section class="mb-2"></section>
 
-                                    <section class="mb-2"></section>
+                                        <input type="radio" name="payment_type" value="2" id="d2">
+                                        <label for="d2" class="col-12 col-md-4 payment-wrapper mb-2 pt-2">
+                                            <section class="mb-2">
+                                                <i class="fa fa-id-card-alt mx-1"></i>
+                                                پرداخت آفلاین
+                                            </section>
+                                            <section class="mb-2">
+                                                <i class="fa fa-calendar-alt mx-1"></i>
+                                                حداکثر در 2 روز کاری بررسی می شود
+                                            </section>
+                                        </label>
 
-                                    <input type="radio" name="payment_type" value="3" id="d3">
-                                    <label for="d3" class="col-12 col-md-4 payment-wrapper mb-2 pt-2">
-                                        <section class="mb-2">
-                                            <i class="fa fa-money-check mx-1"></i>
-                                            پرداخت در محل
-                                        </section>
-                                        <section class="mb-2">
-                                            <i class="fa fa-calendar-alt mx-1"></i>
-                                            پرداخت به پیک هنگام دریافت کالا
-                                        </section>
-                                    </label>
+                                        <section class="mb-2"></section>
 
+                                        <input type="radio" name="payment_type" value="3" id="cash_payment">
+                                        <label for="cash_payment" class="col-12 col-md-4 payment-wrapper mb-2 pt-2">
+                                            <section class="mb-2">
+                                                <i class="fa fa-money-check mx-1"></i>
+                                                پرداخت در محل
+                                            </section>
+                                            <section class="mb-2">
+                                                <i class="fa fa-calendar-alt mx-1"></i>
+                                                پرداخت به پیک هنگام دریافت کالا
+                                            </section>
+                                        </label>
+
+                                    </form>
 
                                 </section>
                             </section>
-
-
-
 
                         </section>
                         <section class="col-md-3">
@@ -177,20 +174,19 @@
                                             <span id="total_discount">{{ discountFormat($order->commonDiscount->percentage) }}</span>
                                         </p>
                                     </section>
-                                     <section class="d-flex justify-content-between align-items-center">
+                                    <section class="d-flex justify-content-between align-items-center">
                                         <p class="text-muted"> حداکثر تخفیف عمومی کالاها</p>
                                         <p class="text-danger fw-bolder">
                                             <span id="total_discount">{{ priceFormat($order->commonDiscount->discount_ceiling) }}</span>
                                         </p>
-                                    </section> <section class="d-flex justify-content-between align-items-center">
+                                    </section>
+                                    <section class="d-flex justify-content-between align-items-center">
                                         <p class="text-muted"> حداقل موجودی سبد</p>
                                         <p class="text-danger fw-bolder">
                                             <span id="total_discount">{{ priceFormat($order->commonDiscount->minimal_order_amount) }}</span>
                                         </p>
                                     </section>
                                 @endif
-
-
 
                                 <section class="border-bottom mb-3"></section>
                                 <section class="d-flex justify-content-between align-items-center">
@@ -202,16 +198,10 @@
 
                                 <p class="my-3">
                                     <i class="fa fa-info-circle me-1"></i>کاربر گرامی خرید شما هنوز نهایی نشده است. برای ثبت سفارش و تکمیل خرید باید ابتدا آدرس خود را انتخاب کنید و سپس نحوه ارسال را انتخاب کنید. نحوه ارسال انتخابی شما محاسبه و به این مبلغ اضافه شده خواهد شد. و در نهایت پرداخت این سفارش
-                                    صورت میگیرد.
-                                </p>
+                                    صورت میگیرد. </p>
 
-
-                                <!-- this form submits tow main inputs (address and delivery method choose) using html5 feature (form:id, input:form attr) -->
-                                <form action="{{ route('customer.sales-process.choose-address-and-delivery') }}" method="post" id="submit_form">
-                                    @csrf
-                                </form>
                                 <section>
-                                    <button type="button" onclick="document.getElementById('submit_form').submit();" class="btn btn-danger d-block w-100">تکمیل فرآیند خرید</button>
+                                    <button type="button" onclick="document.getElementById('payment_submit').submit();" class="btn btn-danger d-block w-100">تکمیل فرآیند خرید</button>
                                 </section>
 
                             </section>
@@ -223,7 +213,29 @@
         </section>
     </section>
     <!-- end cart -->
+
 @endsection
 
 @section('script')
+    <script>
+        $(function () {
+            $('#cash_payment').click(function () {
+                var newDiv = document.createElement('div');
+                newDiv.classList = 'col-4';
+                newDiv.innerHTML = `
+                <section class="input-group input-group-sm">
+                    <input type="text" name="cash_receiver" class="form-control" form="payment_submit" placeholder="نام و نام خانوادگی دریافت کننده">
+                </section>
+                `;
+
+                document.getElementsByClassName('content-wrapper')[1].appendChild(newDiv);
+
+
+            });
+
+
+        });
+
+    </script>
+
 @endsection
