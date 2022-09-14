@@ -573,6 +573,8 @@ Route::prefix('sales-process')->group(function () {
             Route::get('/', 'payment')->name('customer.sales-process.payment');
             Route::post('/coupon-discount', 'couponDiscount')->name('customer.sales-process.coupon-discount');
             Route::post('/payment-submit', 'paymentSubmit')->name('customer.sales-process.payment-submit');
+            // zarinpal callback url
+            Route::any('/payment-callback/{order}/{onlinePayment}', 'paymentCallback')->name('customer.sales-process.payment-callback');
         });
     });
 

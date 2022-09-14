@@ -17,26 +17,12 @@ class PaymentService
      * |
      */
 
-    // Is redirected when payment is succeeded or failed
-    public function paymentCallBack() {
-        // paymentable amount
-        $amount = 0;
-        // Takes the amount and checks whether the user has paid exactly the same amount or not
-        $result = $this->zarinpalVarify();
-
-
-        // if payment succeeded
-        if ($result['success'])
-            return 'OK';
-    }
-
-
-    public function zarinpalVarify($amount) {
+    public function zarinpalVerify($amount, $onlinePayment) {
         $authority = $_GET['Authority'];
         $data = [
             'merchant_id' => Config::get('payment.zarinpal_api_key'),
             'authority' => $authority,
-            'amount' => (int)$amount,
+            'amount' => (int)$amount * 10,
         ];
 
         // cast data to json
@@ -59,7 +45,6 @@ class PaymentService
         $result = json_decode($result, true);
 
         // update online payment
-        $onlinePayment = OnlinePayment::first();
         $onlinePayment->update([
             'bank_second_response' => $result
         ]);
@@ -74,6 +59,39 @@ class PaymentService
             else return ['success' => false];
         // if there is an error
         else return ['success' => false];
+    }
+
+
+    public function zarinpal($amount, $order, $onlinePayment) {
+        $merchantID = Config::get('payment.zarinpal_api_key');
+        $sandbox = false;
+        $zarinpalGate = false;
+        $client = new GuzzleClient($sandbox);
+        $zarinpalGatePSP = '';
+        $lang = 'fa';
+
+        $zarinpal = new Zarinpal($merchantID, $client, $lang, $sandbox, $zarinpalGate, $zarinpalGatePSP);
+
+        $payment = [
+            'callback_url'  => route('customer.sales-process.payment-callback', [$order, $onlinePayment]),
+            'amount'        => (int)$amount * 10,
+            'description'   => 'Order',
+        ];
+
+        try {
+            $response = $zarinpal->request($payment);
+            $code = $response['data']['code'];
+            $message = $zarinpal->getCodeMessage($code);
+            if ($code == 100) :
+                $onlinePayment->update([
+                    'bank_first_response' => $response
+                ]);
+                $authority = $response['date']['authority'];
+                return $zarinpal->redirect($authority);
+            endif;
+        } catch (RequestException $exception) {
+            return false;
+        }
     }
 
     /**
@@ -174,36 +192,4 @@ class PaymentService
         }
     }
 
-
-    public function zarinpal() {
-        $amount = 0;
-        $merchantID = Config::get('payment.zarinpal_api_key');
-        $sandbox = false;
-        $zarinpalGate = false;
-        $client = new GuzzleClient($sandbox);
-        $zarinpalGatePSP = '';
-        $lang = 'fa';
-        $zarinpal = new Zarinpal($merchantID, $client, $lang, $sandbox, $zarinpalGate, $zarinpalGatePSP);
-        $payment = [
-            'callback_url' => route('payment-call-back'),
-            'amount' => $amount,
-            'description' => 'Order',
-        ];
-
-        try {
-            $response = $zarinpal->request($payment);
-            $onlinePayment = OnlinePayment::first();
-            $code = $response['data']['code'];
-            $message = $zarinpal->getCodeMessage($code);
-            if ($code == 100) :
-                $onlinePayment->update([
-                    'bank_first_response' => $response
-                ]);
-                $authority = $response['date']['authority'];
-                return $zarinpal->redirect($authority);
-            endif;
-        } catch (RequestException $exception) {
-            return false;
-        }
-    }
 }

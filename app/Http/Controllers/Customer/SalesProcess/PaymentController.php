@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Customer\SalesProcess;
 
+use App\Http\Services\Payment\PaymentService;
 use App\Models\Market\CashPayment;
 use App\Models\Market\OfflinePayment;
 use App\Models\Market\OnlinePayment;
@@ -95,12 +96,11 @@ class PaymentController extends Controller
             ]);
 
             return redirect()->back()->with('alert-section-success', 'کد تخفیف با موفقیت اعمال شد');
-        } else {
+        } else
             return redirect()->back()->with('alert-section-error', 'کد تخفیف قبلا استفاده شده است');
-        }
     }
 
-    public function paymentSubmit(Request $request) {
+    public function paymentSubmit(Request $request, PaymentService $paymentService) {
         // payment method should be selected
         $request->validate([
             'payment_type' => 'required',
@@ -144,7 +144,16 @@ class PaymentController extends Controller
             'status' => 1,
         ]);
 
+        // if payment type is online payment
+        if($request->payment_type == 1) {
+            $paymentService->zarinpal($order->order_final_amount, $order, $paymented);
 
+        }
+
+
+        /**
+         * if payment succeeded
+         */
         // payment also should be inserted into payment table
         $payment = Payment::query()->create([
             'amount' => $order->order_final_amount,
@@ -166,6 +175,23 @@ class PaymentController extends Controller
             $cartItem->delete();
 
         return redirect()->route('customer.home')->with('alert-section-success', 'سفارش شما با موفقیت ثبت شد');
+    }
 
+
+
+    // Is redirected when payment is succeeded or failed
+    public function paymentCallBack(Order $order, OnlinePayment $onlinePayment, PaymentService $paymentService) {
+        // paymentable amount
+        $amount = $onlinePayment->amount * 10;
+
+        // Takes the amount and checks whether the user has paid exactly the same amount or not
+        $result = $paymentService->zarinpalVerify($amount, $onlinePayment);
+
+
+        // if payment succeeded
+        if ($result['success'])
+            return 'OK';
+        else
+            return redirect()->route('customer.home')->with('alert-section-error', 'پرداخت شما با خطا مواجه شد');
     }
 }
