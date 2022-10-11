@@ -15,7 +15,7 @@ use Morilog\Jalali\Jalalian;
  *
  */
 function jalaliDate($date = 'today', $format = '%A, %d %B %Y', $ago = false) {
-    if ($ago = true)
+    if ($ago == true)
         return Jalalian::forge($date)->ago();
     else
         return Jalalian::forge($date)->format($format);

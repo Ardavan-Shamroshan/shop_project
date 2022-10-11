@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\Market\Coupon;
 use App\Models\Market\CartItem;
 use App\Http\Controllers\Controller;
+use App\Models\Market\OrderItem;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -171,8 +172,25 @@ class PaymentController extends Controller
         ]);
 
         // empty cart items
-        foreach ($cartItems as $cartItem)
+        foreach ($cartItems as $cartItem) {
+            // save all cart items into order_items table before deleting cart items
+            OrderItem::query()->create([
+                'order_id' => $order->id,
+                'product_id' => $cartItem->product_id,
+                'product' => $cartItem->product,
+                'amazing_sale_id' => $cartItem->product->activeAmazingSales()->id ?? null,
+                'amazing_sale_object' => $cartItem->product->activeAmazingSales(),
+                'amazing_sale_discount_amount' => empty($cartItem->product->activeAmazingSales()) ? 0 : $cartItem->cartItemProductPrice() * ($cartItem->product->activeAmazingSales()->percentage / 100),
+                'number' => $cartItem->number,
+                'final_product_price' => ($cartItem->product->price) - (empty($cartItem->product->activeAmazingSales()) ? 0 : $cartItem->cartItemProductPrice() * ($cartItem->product->activeAmazingSales()->percentage / 100)),
+                'final_total_price' => ($cartItem->product->price) - (empty($cartItem->product->activeAmazingSales()) ? 0 : $cartItem->cartItemProductPrice() * ($cartItem->product->activeAmazingSales()->percentage / 100)) * ($cartItem->number),
+                'color_id' => $cartItem->color_id,
+                'guarantee_id' => $cartItem->guarantee_id,
+            ]);
+
+
             $cartItem->delete();
+        }
 
         return redirect()->route('customer.home')->with('alert-section-success', 'سفارش شما با موفقیت ثبت شد');
     }
@@ -210,8 +228,6 @@ class PaymentController extends Controller
                 return redirect()->route('customer.home')->with('alert-section-error', 'پرداخت لغو شد');
             }
         });
-
-
 
 
     }

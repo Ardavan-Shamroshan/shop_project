@@ -6,7 +6,7 @@
             <section class="d-md-flex justify-content-md-between align-items-md-center py-3">
 
                 <section class="d-flex justify-content-between align-items-center d-md-block">
-                    <a class="text-decoration-none" href="index.html"><img src="{{ asset('customer-assets/assets/images/logo/8.png') }}" alt="logo"></a>
+                    <a class="text-decoration-none" href="{{ route('customer.home') }}"><img src="{{ asset('customer-assets/assets/images/logo/8.png') }}" alt="logo"></a>
                     <button class="btn btn-link text-dark d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
                         <i class="fa fa-bars me-1"></i>
                     </button>
@@ -52,15 +52,17 @@
                     <section class="mt-3 mt-md-auto text-end">
                         @auth
                             <section class="d-inline">
+                                <small>     {{ auth()->user()->email ?? auth()->user()->mobile }}  </small>
                                 <button class="btn btn-link text-decoration-none text-dark dropdown-toggle profile-button" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fa fa-user"></i>
+                                <i class="fa fa-user"></i>
                                 </button>
+
                                 <section class="dropdown-menu dropdown-menu-end custom-drop-down" aria-labelledby="dropdownMenuButton1">
                                     <section>
                                         <a class="dropdown-item" href="my-profile.html"><i class="fa fa-user-circle"></i>پروفایل کاربری</a>
                                     </section>
                                     <section>
-                                        <a class="dropdown-item" href="my-orders.html"><i class="fa fa-newspaper"></i>سفارشات</a>
+                                        <a class="dropdown-item" href="{{ route('customer.profile.orders') }}"><i class="fa fa-newspaper"></i>سفارشات</a>
                                     </section>
                                     <section>
                                         <a class="dropdown-item" href="my-favorites.html"><i class="fa fa-heart"></i>لیست علاقه مندی</a>
