@@ -5,7 +5,11 @@
     <section class="container-xxl my-4">
         <section class="row">
 
+            <!-- alerts -->
             @include('customer.alerts.alert-section.success')
+            @include('customer.alerts.alert-section.error')
+            @include('customer.alerts.alert-section.info')
+            <!-- end alerts -->
 
             <section class="col-md-8 pe-md-1 ">
                 <section id="slideshow" class="owl-carousel owl-theme">

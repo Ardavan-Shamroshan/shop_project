@@ -22,7 +22,7 @@ class PaymentService
         $data = [
             'merchant_id' => Config::get('payment.zarinpal_api_key'),
             'authority' => $authority,
-            'amount' => (int)$amount * 10,
+            'amount' => (int)$amount,
         ];
 
         // cast data to json
@@ -30,6 +30,11 @@ class PaymentService
 
         // Zarinpal necessary data to verify
         $ch = curl_init('https://api.zarinpal.com/pg/v4/payment/verify.json');
+
+        // zarinpal sandbox
+        // $ch = curl_init('https://sandbox.zarinpal.com/pg/v4/payment/verify.json');
+        // end zarinpal sandbox
+
         curl_setopt($ch, CURLOPT_USERAGENT, 'ZarinPal Rest Api v4');
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'POST');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonData);
@@ -63,7 +68,9 @@ class PaymentService
 
 
     public function zarinpal($amount, $order, $onlinePayment) {
+
         $merchantID = Config::get('payment.zarinpal_api_key');
+
         $sandbox = false;
         $zarinpalGate = false;
         $client = new GuzzleClient($sandbox);
@@ -73,15 +80,18 @@ class PaymentService
         $zarinpal = new Zarinpal($merchantID, $client, $lang, $sandbox, $zarinpalGate, $zarinpalGatePSP);
 
         $payment = [
-            'callback_url'  => route('customer.sales-process.payment-callback', [$order, $onlinePayment]),
-            'amount'        => (int)$amount * 10,
-            'description'   => 'Order',
+            'callback_url' => route('customer.sales-process.payment-callback', [$order, $onlinePayment]),
+            'amount' => (int)$amount * 10,
+            'description' => 'Order',
         ];
 
         try {
+
             $response = $zarinpal->request($payment);
+
             $code = $response['data']['code'];
             $message = $zarinpal->getCodeMessage($code);
+
             if ($code == 100) :
                 $onlinePayment->update([
                     'bank_first_response' => $response
@@ -90,6 +100,7 @@ class PaymentService
                 return $zarinpal->redirect($authority);
             endif;
         } catch (RequestException $exception) {
+
             return false;
         }
     }

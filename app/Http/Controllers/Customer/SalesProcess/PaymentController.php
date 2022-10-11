@@ -13,6 +13,7 @@ use App\Models\Market\Coupon;
 use App\Models\Market\CartItem;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class PaymentController extends Controller
 {
@@ -135,6 +136,7 @@ class PaymentController extends Controller
                 ]);
         }
 
+
         // payment type has defined and should be inserted to it's table (offline payment, online payment, cash payment)
         $paymented = $targetModel::query()->create([
             'amount' => $order->order_final_amount,
@@ -145,11 +147,9 @@ class PaymentController extends Controller
         ]);
 
         // if payment type is online payment
-        if($request->payment_type == 1) {
+        if ($request->payment_type == 1) {
             $paymentService->zarinpal($order->order_final_amount, $order, $paymented);
-
         }
-
 
         /**
          * if payment succeeded
@@ -178,7 +178,6 @@ class PaymentController extends Controller
     }
 
 
-
     // Is redirected when payment is succeeded or failed
     public function paymentCallBack(Order $order, OnlinePayment $onlinePayment, PaymentService $paymentService) {
         // paymentable amount
@@ -187,11 +186,33 @@ class PaymentController extends Controller
         // Takes the amount and checks whether the user has paid exactly the same amount or not
         $result = $paymentService->zarinpalVerify($amount, $onlinePayment);
 
+        // get the user cart items
+        $cartItems = CartItem::query()->where('user_id', Auth::id())->get();
 
-        // if payment succeeded
-        if ($result['success'])
-            return 'OK';
-        else
-            return redirect()->route('customer.home')->with('alert-section-error', 'پرداخت شما با خطا مواجه شد');
+        DB::transaction(function () use ($cartItems, $result, $order) {
+            // empty cart items
+            foreach ($cartItems as $cartItem)
+                $cartItem->delete();
+
+            // if payment succeeded
+            if ($result['success']) {
+                // update order status to 1 => accepted
+                $order->update([
+                    'order_status' => 1,
+                ]);
+
+                return redirect()->route('customer.home')->with('alert-section-success', 'پرداخت شما با موفقیت انجام شد');
+            } else {
+                // update order status to 2 => unaccepted
+                $order->update([
+                    'order_status' => 2,
+                ]);
+                return redirect()->route('customer.home')->with('alert-section-error', 'پرداخت لغو شد');
+            }
+        });
+
+
+
+
     }
 }

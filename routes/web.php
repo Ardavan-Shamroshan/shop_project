@@ -46,6 +46,7 @@ use App\Http\Controllers\Admin\Setting\SettingController;
 use App\Http\Controllers\Auth\Customer\LoginRegisterController;
 use App\Http\Controllers\Customer\Market\ProductController as MarketProductController;
 use App\Http\Controllers\Customer\SalesProcess\PaymentController as CustomerPaymentController;
+use App\Http\Controllers\Customer\Profile\OrderController as ProfileOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -582,6 +583,13 @@ Route::prefix('sales-process')->group(function () {
     Route::controller(ProfileCompletionController::class)->prefix('profile-completion')->group(function () {
         Route::get('/', 'profileCompletion')->name('customer.sales-process.profile-completion');
         Route::post('/', 'completion')->name('customer.sales-process.profile-completion.completion');
+    });
+});
+
+// Profile
+Route::prefix('profile')->group(function () {
+    Route::controller(ProfileOrderController::class)->prefix('orders')->group(function () {
+        Route::get('/', 'index')->name('customer.profile.orders');
     });
 });
 
