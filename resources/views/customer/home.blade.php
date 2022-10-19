@@ -300,7 +300,7 @@
 
 
     <!-- toast -->
-    <div aria-live="polite" aria-atomic="true" class="position-fixed p-4 flex-row-reverse" style="z-index: 1000; left: 0; top: 3rem; width: 26rem; max-width: 80%">
+    <div aria-live="polite" aria-atomic="true" class="position-fixed p-4 flex-row-reverse" style="z-index: 1000; right: 0; top: 3rem; width: 26rem; max-width: 80%">
         <div class="toast shadow-sm" style="position: absolute; top: 0; right: 0;" data-delay="10000" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header d-flex justify-content-between">
                 <img src="{{ asset('customer-assets/assets/images/logo/8.png') }}" class="rounded mr-2" alt="فروشگاه آمازون">

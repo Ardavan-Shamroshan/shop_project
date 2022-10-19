@@ -47,6 +47,7 @@ use App\Http\Controllers\Auth\Customer\LoginRegisterController;
 use App\Http\Controllers\Customer\Market\ProductController as MarketProductController;
 use App\Http\Controllers\Customer\SalesProcess\PaymentController as CustomerPaymentController;
 use App\Http\Controllers\Customer\Profile\OrderController as ProfileOrderController;
+use App\Http\Controllers\Customer\Profile\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -590,6 +591,10 @@ Route::prefix('sales-process')->group(function () {
 Route::prefix('profile')->group(function () {
     Route::controller(ProfileOrderController::class)->prefix('orders')->group(function () {
         Route::get('/', 'index')->name('customer.profile.orders');
+    });
+    Route::controller(FavoriteController::class)->prefix('my-favorites')->group(function () {
+        Route::get('/', 'index')->name('customer.profile.my-favorites');
+        Route::get('/remove/{product}', 'remove')->name('customer.profile.my-favorites.remove');
     });
 });
 

@@ -65,7 +65,7 @@
                                         <a class="dropdown-item" href="{{ route('customer.profile.orders') }}"><i class="fa fa-newspaper"></i>سفارشات</a>
                                     </section>
                                     <section>
-                                        <a class="dropdown-item" href="my-favorites.html"><i class="fa fa-heart"></i>لیست علاقه مندی</a>
+                                        <a class="dropdown-item" href="{{ route('customer.profile.my-favorites') }}"><i class="fa fa-heart"></i>لیست علاقه مندی</a>
                                     </section>
                                     <section>
                                         <hr class="dropdown-divider">
