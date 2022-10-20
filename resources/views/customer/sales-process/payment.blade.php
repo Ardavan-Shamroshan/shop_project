@@ -24,7 +24,7 @@
                         <section class="col-md-9">
                             <section class="content-wrapper bg-white p-3 rounded-2 mb-4">
 
-                                <!-- start vontent header -->
+                                <!-- start content header -->
                                 <section class="content-header mb-3">
                                     <section class="d-flex justify-content-between align-items-center">
                                         <h2 class="content-header-title content-header-title-small"> کد تخفیف </h2>
@@ -68,7 +68,7 @@
 
                             <section class="content-wrapper bg-white p-3 rounded-2 mb-4">
 
-                                <!-- start vontent header -->
+                                <!-- start content header -->
                                 <section class="content-header mb-3">
                                     <section class="d-flex justify-content-between align-items-center">
                                         <h2 class="content-header-title content-header-title-small">

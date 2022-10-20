@@ -1,6 +1,6 @@
 @extends('customer.layouts.master-twin-col')
 @section('head-tag')
-    <title>سفارشات شما </title>
+    <title>لیست علاقه مندی های شما </title>
 @endsection
 @section('content')
 
@@ -15,7 +15,7 @@
                 <main id="main-body" class="main-body col-md-9">
                     <section class="content-wrapper bg-white p-3 rounded-2 mb-2">
 
-                        <!-- start vontent header -->
+                        <!-- start content header -->
                         <section class="content-header mb-4">
                             <section class="d-flex justify-content-between align-items-center">
                                 <h2 class="content-header-title">
@@ -26,7 +26,7 @@
                                 </section>
                             </section>
                         </section>
-                        <!-- end vontent header -->
+                        <!-- end content header -->
 
                         @forelse(auth()->user()->products as $product)
                             <section class="cart-item d-flex py-3">

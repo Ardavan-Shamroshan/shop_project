@@ -74,8 +74,7 @@ return [
     |
     */
 
-    // 'prefix' => '',
-    'prefix' => '_ssr_management',
+     'prefix' => '',
 
     'domain' => null,
 

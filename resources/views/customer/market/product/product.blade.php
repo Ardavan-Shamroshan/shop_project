@@ -8,7 +8,7 @@
         <section class="container-xxl">
             <section class="row">
                 <section class="col">
-                    <!-- start vontent header -->
+                    <!-- start content header -->
                     <section class="content-header">
                         <section class="d-flex justify-content-between align-items-center">
                             <h2 class="content-header-title">
@@ -49,7 +49,7 @@
 
                                 <section class="content-wrapper bg-white p-3 rounded-2 mb-4">
 
-                                    <!-- start vontent header -->
+                                    <!-- start content header -->
                                     <section class="content-header mb-3">
                                         <section class="d-flex justify-content-between align-items-center">
                                             <h2 class="content-header-title content-header-title-small">
@@ -318,7 +318,7 @@
 
                         <section class="py-4">
 
-                            <!-- start vontent header -->
+                            <!-- start content header -->
                             <section id="introduction" class="content-header mt-2 mb-4">
                                 <section class="d-flex justify-content-between align-items-center">
                                     <h2 class="content-header-title content-header-title-small">
@@ -332,7 +332,7 @@
                                 {!! $product->introduction !!}
                             </section>
 
-                            <!-- start vontent header -->
+                            <!-- start content header -->
                             <section id="features" class="content-header mt-2 mb-4">
                                 <section class="d-flex justify-content-between align-items-center">
                                     <h2 class="content-header-title content-header-title-small">
@@ -359,7 +359,7 @@
                                 </table>
                             </section>
 
-                            <!-- start vontent header -->
+                            <!-- start content header -->
                             <section id="comments" class="content-header mt-2 mb-4">
                                 <section class="d-flex justify-content-between align-items-center">
                                     <h2 class="content-header-title content-header-title-small">

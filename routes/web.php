@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Admin\Market\GuaranteeController;
 use App\Http\Controllers\Customer\HomeController;
+use App\Http\Controllers\Customer\Profile\ProfileController;
 use App\Http\Controllers\Customer\SalesProcess\AddressController;
 use App\Http\Controllers\Customer\SalesProcess\CartController;
 use App\Http\Controllers\Customer\SalesProcess\ProfileCompletionController;
@@ -48,6 +49,7 @@ use App\Http\Controllers\Customer\Market\ProductController as MarketProductContr
 use App\Http\Controllers\Customer\SalesProcess\PaymentController as CustomerPaymentController;
 use App\Http\Controllers\Customer\Profile\OrderController as ProfileOrderController;
 use App\Http\Controllers\Customer\Profile\FavoriteController;
+use App\Http\Controllers\Customer\Profile\AddressController as ProfileAddressController;
 
 /*
 |--------------------------------------------------------------------------
@@ -588,10 +590,21 @@ Route::prefix('sales-process')->group(function () {
 });
 
 // Profile
-Route::prefix('profile')->group(function () {
+Route::middleware('auth')->prefix('profile')->group(function () {
+    // profile
+    Route::controller(ProfileController::class)->group(function() {
+        Route::get('/', 'index')->name('customer.profile');
+        Route::put('/update', 'update')->name('customer.profile.update');
+    });
+    // orders
+    Route::controller(ProfileAddressController::class)->prefix('my-addresses')->group(function () {
+        Route::get('/', 'index')->name('customer.profile.my-addresses');
+    });
+    // orders
     Route::controller(ProfileOrderController::class)->prefix('orders')->group(function () {
         Route::get('/', 'index')->name('customer.profile.orders');
     });
+    // favorite products
     Route::controller(FavoriteController::class)->prefix('my-favorites')->group(function () {
         Route::get('/', 'index')->name('customer.profile.my-favorites');
         Route::get('/remove/{product}', 'remove')->name('customer.profile.my-favorites.remove');

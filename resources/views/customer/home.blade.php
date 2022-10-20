@@ -43,7 +43,7 @@
             <section class="row">
                 <section class="col">
                     <section class="content-wrapper bg-white p-3 rounded-2">
-                        <!-- start vontent header -->
+                        <!-- start content header -->
                         <section class="content-header">
                             <section class="d-flex justify-content-between align-items-center">
                                 <h2 class="content-header-title">
@@ -54,7 +54,7 @@
                                 </section>
                             </section>
                         </section>
-                        <!-- start vontent header -->
+                        <!-- start content header -->
                         <section class="lazyload-wrapper">
                             <section class="lazyload light-owl-nav owl-carousel owl-theme">
 
@@ -156,7 +156,7 @@
             <section class="row">
                 <section class="col">
                     <section class="content-wrapper bg-white p-3 rounded-2">
-                        <!-- start vontent header -->
+                        <!-- start content header -->
                         <section class="content-header">
                             <section class="d-flex justify-content-between align-items-center">
                                 <h2 class="content-header-title">
@@ -167,7 +167,7 @@
                                 </section>
                             </section>
                         </section>
-                        <!-- start vontent header -->
+                        <!-- start content header -->
                         <section class="lazyload-wrapper">
                             <section class="lazyload light-owl-nav owl-carousel owl-theme">
                                 @foreach ($offerProducts as $offerProduct)
@@ -270,7 +270,7 @@
         <section class="container-xxl">
             <section class="row">
                 <section class="col">
-                    <!-- start vontent header -->
+                    <!-- start content header -->
                     <section class="content-header">
                         <section class="d-flex align-items-center">
                             <h2 class="content-header-title">
@@ -278,7 +278,7 @@
                             </h2>
                         </section>
                     </section>
-                    <!-- start vontent header -->
+                    <!-- start content header -->
                     <section class="brands-wrapper py-4">
                         <section class="brands dark-owl-nav owl-carousel owl-theme">
                             @foreach ($brands as $brand)

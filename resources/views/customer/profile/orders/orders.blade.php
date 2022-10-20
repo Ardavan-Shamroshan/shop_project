@@ -16,7 +16,7 @@
                 <main id="main-body" class="main-body col-md-9">
                     <section class="content-wrapper bg-white p-3 rounded-2 mb-2">
 
-                        <!-- start vontent header -->
+                        <!-- start content header -->
                         <section class="content-header">
                             <section class="d-flex justify-content-between align-items-center">
                                 <h2 class="content-header-title">
@@ -27,7 +27,7 @@
                                 </section>
                             </section>
                         </section>
-                        <!-- end vontent header -->
+                        <!-- end content header -->
 
                         <section class="d-flex justify-content-center my-4">
 
