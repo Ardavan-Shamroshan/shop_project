@@ -7,8 +7,10 @@ use App\Http\Requests\Admin\Content\PostRequest;
 use App\Http\Services\Image\ImageService;
 use App\Models\Content\Post;
 use App\Models\Content\PostCategory;
+use Illuminate\Support\Facades\Gate;
 
-class PostController extends Controller {
+class PostController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -80,6 +82,34 @@ class PostController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(PostRequest $request, Post $post, ImageService $imageService) {
+        // method 1 - The logged-in adin can only update his/her posts
+//        if(!Gate::allows('update-post', $post)) {
+//            abort(403);
+//        }
+
+        // method 2
+//        $response = Gate::inspect('update-post');
+//        if ($response->allowed()):
+//            // authorized ...
+//        else:
+//            dd($response->message());
+//        endif;
+
+        // method 3
+        // check user except current logged-in user
+//        if (Gate::forUser($user)->allows('update-post', $post)):
+//            // pass
+//        endif;
+
+        // method 4
+//        if (Gate::any(['update-post', 'delete-post'])) :
+//            //
+//        endif;
+//        if (Gate::none(['update-post', 'delete-post'])) :
+//            //
+//        endif;
+
+
         $inputs = $request->all();
         $realTimestampStart = substr($request->published_at, 0, 10);
         $inputs['published_at'] = date('Y-m-d H:i:s', (int)$realTimestampStart);
@@ -92,8 +122,7 @@ class PostController extends Controller {
             if ($result === false)
                 return redirect()->route('admin.content.post')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
             $inputs['image'] = $result;
-        }
-        else
+        } else
             if (isset($inputs['currentImage']) && !empty($post->image)) {
                 $image = $post->image;
                 $image['currentImage'] = $inputs['currentImage'];
@@ -129,8 +158,7 @@ class PostController extends Controller {
                     'status' => true,
                     'checked' => true,
                 ]);
-        }
-        else
+        } else
             return response()->json(['status' => false]);
     }
 
@@ -142,8 +170,7 @@ class PostController extends Controller {
                 return response()->json(['commentable' => true, 'checked' => false]);
             else
                 return response()->json(['commentable' => true, 'checked' => true]);
-        }
-        else
+        } else
             return response()->json(['commentable' => false]);
     }
 }
