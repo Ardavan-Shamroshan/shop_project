@@ -34,7 +34,7 @@
                                     @if($cartItems->isEmpty())
                                         <section class="col-12">
                                             <h4 class="text-muted w-100 mx-auto">سبد خرید شما خالی است!</h4>
-                                            <a href="address.html" class="d-block w-25 text-decoration-none text-info">رفتن به صفحه محصولات » </a>
+                                            <a href="{{ route('customer.home') }}" class="d-block w-25 text-decoration-none text-info">رفتن به صفحه محصولات » </a>
                                         </section>
                                     @else
 
@@ -44,22 +44,28 @@
                                                 $totalDiscount += $cartItem->cartItemProductDiscount();
                                             @endphp
 
-                                            <section class="cart-item d-md-flex py-3">
+                                            <section class="cart-item d-md-flex gap-2 py-3">
                                                 <section class="cart-img align-self-start flex-shrink-1">
                                                     <img src="{{ asset($cartItem->product->image['indexArray']['medium']) }}" alt="{{ $cartItem->product->name }}">
                                                 </section>
                                                 <section class="align-self-start w-100">
-                                                    <p class="fw-bold">{{  $cartItem->product->name }}</p>
+                                                    <a href="{{ route('customer.market.product', $cartItem->product) }}" class="fw-bold text-decoration-none text-dark">{{  $cartItem->product->name }}</a>
                                                     @if(!empty($cartItem->color))
-                                                        <p>
+                                                        <p class="d-flex justify-content-between">
+                                                        <span>
                                                             <span style="background-color: {{ $cartItem->color->color }};" class="cart-product-selected-color me-1 border"></span>
                                                             <span>{{ $cartItem->color->color_name }}</span>
+                                                        </span>
+                                                            <small class="text-success">{{ priceFormat($cartItem->color->price_increase) }}+
+                                                              </small>
                                                         </p>
                                                     @endif
                                                     @if(!empty($cartItem->guaranty))
-                                                        <p>
-                                                            <i class="fa fa-shield-alt cart-product-selected-warranty me-1"></i>
-                                                            <span> {{ $cartItem->guaranty->name }}</span>
+                                                        <p class="d-flex justify-content-between">
+                                                            <span><i class="fa fa-shield-alt cart-product-selected-warranty me-1"></i>
+                                                            <span> {{ $cartItem->guaranty->name }}</span></span>
+                                                            <small class="text-success">{{ priceFormat($cartItem->guaranty->price_increase) }}+
+                                                               </small>
                                                         </p>
                                                     @endif
 
@@ -89,8 +95,9 @@
                                                     </section>
                                                 </section>
                                                 <section class="align-self-end flex-shrink-1 border rounded p-3">
-                                                    <section class="text-nowrap text-muted text-decoration-line-through">{{ priceFormat($cartItem->cartItemProductPrice()) }}</section>
                                                     @if(!empty($cartItem->product->activeAmazingSales()))
+
+                                                    <section class="text-nowrap text-muted text-decoration-line-through">{{ priceFormat($cartItem->cartItemProductPrice()) }}</section>
                                                         <section class="cart-item-discount text-danger text-nowrap mb-1">{{ priceFormat($cartItem->cartItemProductDiscount()) }} -</section>
                                                     @endif
                                                     <section class="text-nowrap fw-bold">{{ priceFormat($cartItem->cartItemProductPrice() - $cartItem->cartItemProductDiscount()) }}</section>

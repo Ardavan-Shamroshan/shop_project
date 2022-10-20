@@ -154,7 +154,7 @@
                                             <section class="border-bottom mb-3"></section>
 
                                             <section class="d-flex justify-content-end align-items-center">
-                                                <p class="fw-bolder" id="final_price">{{ priceFormat($product->price - $amazingSaleProductPrice) }}</p>
+                                                <p class="fw-bolder" id="final_price">{{  priceFormat($product->price - $amazingSaleProductPrice) }}</p>
                                             </section>
 
                                             <section class="">

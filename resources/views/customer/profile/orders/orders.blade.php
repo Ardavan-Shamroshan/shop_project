@@ -30,7 +30,6 @@
                         <!-- end content header -->
 
                         <section class="d-flex justify-content-center my-4">
-
                             <a class="btn btn-sm mx-1 btn-outline-primary @if (!isset(request()->all()['type'])) btn-primary text-white @endif" href="{{ route('customer.profile.orders') }}">همه</a>
                             <a class="btn btn-sm mx-1 btn-outline-info @if (isset(request()->all()['type']) && request()->all()['type'] == '0') btn-info text-white @endif" href="{{ route('customer.profile.orders', 'type=0') }}">در انتظار تایید</a>
                             <a class="btn btn-sm mx-1 btn-outline-warning @if (isset(request()->all()['type']) && request()->all()['type'] == '2') btn-warning text-white @endif" href="{{ route('customer.profile.orders', 'type=2') }}">تایید نشده</a>
@@ -42,8 +41,7 @@
                         <!-- start content header -->
                         <section class="content-header mb-3">
                             <section class="d-flex justify-content-between align-items-center">
-                                <h2 class="content-header-title content-header-title-small">
-                                    در انتظار پرداخت </h2>
+                                <h2 class="content-header-title content-header-title-small"> در انتظار پرداخت </h2>
                                 <section class="content-header-link">
                                     <!--<a href="#">مشاهده همه</a>-->
                                 </section>
@@ -63,17 +61,24 @@
                                                 <i class="fa fa-id-card-alt"></i>کد سفارش : {{ $order->id }}</section>
                                             <section class="order-item-status">
                                                 <i class="fa fa-clock"></i> {{ $order->paymentStatusValue }}</section>
+
                                             <section class="order-item-products">
-                                                <a href="#"><img src="" alt=""></a>
+                                                @foreach($order->orderItems as $orderItems)
+                                                <a href="{{ route('customer.market.product', $orderItems->singleProduct) }}">
+                                                    <img src="{{ asset($orderItems->singleProduct->image['indexArray']['small']) }}" alt="{{ $orderItems->singleProduct->name }}">
+                                                </a>
+                                                @endforeach
+
                                             </section>
+
                                         </section>
                                         <section class="order-item-link"><a href="#">پرداخت سفارش</a></section>
                                     </section>
                                 </section>
                             @empty
                                 <section class="order-item">
-                                    <section class="flex justify-content-between">
-                                        <p>سفارشی یافت نشد</p>
+                                    <section class="flex justify-content-between text-muted font-">
+                                        <strong>سفارشی یافت نشد...</strong>
                                     </section>
                                 </section>
                             @endforelse

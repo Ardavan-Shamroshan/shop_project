@@ -12,6 +12,21 @@
     transition: 0.4s;
 }
 
+.nothing-alert {
+    display: block;
+    width: 100%;
+    text-align: center;
+    border-radius: 0.25rem;
+    border: 2px solid #dedede;
+    color: #666666;
+    background-color: #dedede;
+    font-size: 0.8rem;
+    line-height: 4rem;
+    padding-top: 0.3rem;
+    transition: 0.4s;
+    margin: 7px 0;
+}
+
 .address-add-button:hover {
     border: 1px dashed #cdcdcd;
     color: #333333;
@@ -19,6 +34,7 @@
     text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
     transition: 0.4s;
 }
+
 
 .address-add-wrapper .modal{
     z-index: 999999;
