@@ -28,6 +28,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        // Gate
         // method 1
         // acl management - only the author of post can edit the post
 //        Gate::define('update-post', function(User $user, Post $post) {
@@ -53,6 +54,8 @@ class AuthServiceProvider extends ServiceProvider
 //                return true;
 //            }
 //        });
+
+
 
     }
 }

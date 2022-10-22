@@ -109,7 +109,6 @@ class PostController extends Controller
 //            //
 //        endif;
 
-
         $inputs = $request->all();
         $realTimestampStart = substr($request->published_at, 0, 10);
         $inputs['published_at'] = date('Y-m-d H:i:s', (int)$realTimestampStart);
