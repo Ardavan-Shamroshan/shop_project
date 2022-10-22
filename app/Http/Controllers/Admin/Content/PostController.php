@@ -109,6 +109,11 @@ class PostController extends Controller
 //            //
 //        endif;
 
+        // Gate and Policy
+        if(!Gate::allows('update-post', $post)){
+            abort(403);
+        }
+
         $inputs = $request->all();
         $realTimestampStart = substr($request->published_at, 0, 10);
         $inputs['published_at'] = date('Y-m-d H:i:s', (int)$realTimestampStart);
