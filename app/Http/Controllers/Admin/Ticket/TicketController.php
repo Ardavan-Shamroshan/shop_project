@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Ticket\TicketRequest;
 use App\Models\Ticket\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TicketController extends Controller {
     public function newTickets() {
@@ -43,7 +44,7 @@ class TicketController extends Controller {
         $inputs['description'] = $request->description;
         $inputs['seen'] = 1;
         $inputs['reference_id'] = $ticket->reference_id;
-        $inputs['user_id'] = 1;
+        $inputs['user_id'] = Auth::id();
         $inputs['category_id'] = $ticket->category_id;
         $inputs['priority_id'] = $ticket->priority_id;
         $inputs['ticket_id'] = $ticket->id;

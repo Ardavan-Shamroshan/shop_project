@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Content\CommentRequest;
 use App\Models\Content\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller {
     /**
@@ -85,7 +86,7 @@ class CommentController extends Controller {
     public function answer(CommentRequest $request, Comment $comment) {
         if ($comment->parent == null) {
             $inputs = $request->all();
-            $inputs['author_id'] = 1;
+            $inputs['author_id'] = Auth::id();
             $inputs['parent_id'] = $comment->id;
             $inputs['commentable_id'] = $comment->commentable_id;
             $inputs['commentable_type'] = $comment->commentable_type;

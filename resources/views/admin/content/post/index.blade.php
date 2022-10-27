@@ -5,7 +5,8 @@
 @section('content')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item font-size-12"><i class="fa fa-home text-muted"></i><a href="{{ route('admin.home') }}">خانه</a></li>
+            <li class="breadcrumb-item font-size-12">
+                <i class="fa fa-home text-muted"></i><a href="{{ route('admin.home') }}">خانه</a></li>
             <li class="breadcrumb-item font-size-12 p-0"><a href="">بخش محتوی</a></li>
             <li class="breadcrumb-item font-size-12 active" aria-current="page"> بلاگ</li>
         </ol>
@@ -52,27 +53,29 @@
                         <td>{{ jalaliDate($post->published_at, '%A, %d %B %Y ساعت H:i:s') }}</td>
                         <td>
                             <label for="">
-                                <input type="checkbox" id="{{ $post->id }}" onchange="changeStatus({{ $post->id }})"
-                                       data-url="{{ route('admin.content.post.status', $post->id) }}"
-                                       data-value="{{ $post->status }}"
-                                       @if($post->status === 1) checked @endif>
+                                <input type="checkbox" id="{{ $post->id }}" onchange="changeStatus({{ $post->id }})" data-url="{{ route('admin.content.post.status', $post->id) }}" data-value="{{ $post->status }}" @if($post->status === 1) checked @endif>
                             </label>
                         </td>
 
                         <td>
                             <label>
-                                <input type="checkbox" id="{{ $post->id }}-commentable" onchange="commentable({{ $post->id }})"
-                                       data-url="{{ route('admin.content.post.commentable', $post->id) }}"
-                                       @if ($post->commentable === 1)checked @endif>
+                                <input type="checkbox" id="{{ $post->id }}-commentable" onchange="commentable({{ $post->id }})" data-url="{{ route('admin.content.post.commentable', $post->id) }}" @if ($post->commentable === 1)checked @endif>
                             </label>
                         </td>
                         <td class="width-16-rem text-left">
-                            <a href="{{ route('admin.content.post.edit', $post->id) }}"
-                               class="btn btn-primary btn-sm border rounded-pill btn-sm btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
+
+                            @can('update', $post)
+                                <a href="{{ route('admin.content.post.edit', $post->id) }}" class="btn btn-primary btn-sm border rounded-pill btn-sm btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
+                            @else
+                                <small class="btn btn-sm text-primary"> دسترسی ندارید</small>
+                            @endcan
+
                             <form class="d-inline" action="{{ route('admin.content.post.destroy', $post->id) }}" method="post">
                                 @csrf
                                 {{ method_field('delete') }}
-                                <button type="submit" class="btn btn-danger btn-sm delete border rounded-pill btn-sm btn-hover color-11"><i class="fa fa-times"></i> حذف</button>
+                                <button type="submit" class="btn btn-danger btn-sm delete border rounded-pill btn-sm btn-hover color-11">
+                                    <i class="fa fa-times"></i> حذف
+                                </button>
                             </form>
                         </td>
                     </tr>

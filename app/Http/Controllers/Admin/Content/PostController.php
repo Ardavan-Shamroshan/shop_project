@@ -7,17 +7,34 @@ use App\Http\Requests\Admin\Content\PostRequest;
 use App\Http\Services\Image\ImageService;
 use App\Models\Content\Post;
 use App\Models\Content\PostCategory;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
+    /**
+     * Create the controller instance.
+     *
+     * @return void
+     */
+//    public function __construct()
+//    {
+//        /**
+//         * The authorizeResource method accepts the model's class name as its first argument,
+//         * and the name of the route / request parameter
+//         * that will contain the model's ID as its second argument.
+//         */
+//        $this->authorizeResource(Post::class, 'post');
+//    }
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        $posts = Post::query()->orderBy('created_at', 'desc')->simplePaginate(15);
+        $posts = Post::query()->orderBy('created_at', 'desc')->get();
         return view('admin.content.post.index', compact('posts'));
     }
 
@@ -38,6 +55,14 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(PostRequest $request, ImageService $imageService) {
+        // policy
+//        if ($request->user()->cannot('create')) {
+//            abort(403);
+//        }
+
+        // like can/cannot method but returns http response code
+//        $this->authorize('create', Post::class);
+
         $inputs = $request->all();
         $realTimestampStart = substr($request->published_at, 0, 10);
         $inputs['published_at'] = date('Y-m-d H:i:s', (int)$realTimestampStart);
@@ -48,7 +73,7 @@ class PostController extends Controller
                 return redirect()->route('admin.content.post')->with('swal-error', 'آپلود تصویر با خطا مواجه شد');
             $inputs['image'] = $result;
         }
-        $inputs['author_id'] = 1;
+        $inputs['author_id'] = Auth::id();
         Post::query()->create($inputs);
         return redirect(route('admin.content.post'))->with('swal-success', 'پست جدید شما با موفقیت ثبت شد');
     }
@@ -110,14 +135,25 @@ class PostController extends Controller
 //        endif;
 
         // Gate and Policy
-        if(!Gate::allows('update-post', $post)){
-            abort(403);
-        }
+//        if(!Gate::allows('update-post', $post)){
+//            abort(403);
+//        }
+
+        // policy methods
+//        if ($request->user()->can('update', $post)) {
+//            // authorized ...
+//        }
+//        if ($request->user()->cannot('update', $post)) {
+//            abort(403);
+//        }
+
+        // like can/cannot method but returns http response code
+//        $this->authorize('update', $post);
 
         $inputs = $request->all();
         $realTimestampStart = substr($request->published_at, 0, 10);
         $inputs['published_at'] = date('Y-m-d H:i:s', (int)$realTimestampStart);
-        $inputs['author_id'] = 1;
+        $inputs['author_id'] = Auth::id();
         if ($request->hasFile('image')) {
             if (!empty($post->image))
                 $imageService->deleteDirectoryAndFiles($post->image['directory']);

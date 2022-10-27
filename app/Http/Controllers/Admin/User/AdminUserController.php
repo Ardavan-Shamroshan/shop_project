@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\User\AdminUserRequest;
 use App\Http\Services\Image\ImageService;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller {
@@ -45,7 +46,7 @@ class AdminUserController extends Controller {
             $inputs['profile_photo_path'] = $result;
         }
         $inputs['password'] = Hash::make($request->password);
-        $inputs['user_type'] = 1;
+        $inputs['user_type'] = Auth::id();
         User::query()->create($inputs);
         return redirect()->route('admin.user.admin-user')->with('swal-success', 'ادمین جدید با موفقیت ثبت شد');
     }
