@@ -153,10 +153,19 @@
                     </a>
                 </section>
             </section>
-            <a href="{{ route('admin.user.role') }}" class="sidebar-link">
-                <i class="fas fa-user-lock"></i>
-                <span>سطوح دسترسی</span>
-            </a>
+
+
+            <section class="sidebar-group-link">
+                <section class="sidebar-dropdown-toggle">
+                    <i class="fas fa-user-lock"></i>
+                    <span>سطوح دسترسی</span>
+                    <i class="fas fa-angle-left angle"></i>
+                </section>
+                <section class="sidebar-dropdown">
+                    <a href="{{ route('admin.user.role') }}" class="sidebar-link"><i class="fa fa-users-cog"></i><span>مدیریت نقش ها</span></a>
+                    <a href="{{ route('admin.user.permission') }}" class="sidebar-link"><i class="fa fa-user-shield"></i><span>مدیریت دسترسی ها</span></a>
+                </section>
+            </section>
 
             <section class="sidebar-part-title">بخش تیکت ها ______________</section>
             <a href="{{ route('admin.ticket') }}" class="sidebar-link">

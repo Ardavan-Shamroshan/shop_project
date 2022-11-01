@@ -148,7 +148,8 @@ class PostController extends Controller
 //        }
 
         // like can/cannot method but returns http response code
-//        $this->authorize('update', $post);
+        // $this->authorize('update', $post);
+
 
         $inputs = $request->all();
         $realTimestampStart = substr($request->published_at, 0, 10);

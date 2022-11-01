@@ -7,8 +7,10 @@ use App\Http\Requests\Admin\User\RoleRequest;
 use App\Models\User\Permission;
 use App\Models\User\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-class RoleController extends Controller {
+class RoleController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -60,7 +62,8 @@ class RoleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(Role $role) {
-        return view('admin.user.role.edit', compact('role'));
+        $permissions = Permission::all();
+        return view('admin.user.role.edit', compact('role', 'permissions'));
     }
 
     /**
@@ -72,7 +75,11 @@ class RoleController extends Controller {
      */
     public function update(RoleRequest $request, Role $role) {
         $inputs = $request->all();
-        $role->update($inputs);
+        $inputs['permissions'] = $inputs['permissions'] ?? [];
+        DB::transaction(function () use ($role, $inputs) {
+            $role->update($inputs);
+            $role->permissions()->sync($inputs['permissions']);
+        });
         return redirect(route('admin.user.role'))->with('swal-success', 'نقش با موفقیت ویرایش شد');
     }
 

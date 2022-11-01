@@ -52,6 +52,33 @@
                         <button class="btn btn-primary border btn-hover color-9 rounded-pill">ثبت</button>
                     </section>
                 </section>
+
+
+                <section class="col-12">
+                    <section class="row border-top mt-3 py-3">
+                        @foreach($permissions as $key => $permission)
+
+                            <section class="col-md-2">
+
+                                @error('permissions.' . $key)
+                                <span class="alert_required text-danger" role="alert">
+                                            <small>
+                                                <b>{{ $message }}</b>
+                                            </small>
+                                        </span>
+                                @enderror
+
+                                <div class="form-check shadow-sm p-2 border rounded-pill btn-sm @error('permissions.' . $key) border-danger @enderror">
+                                    <input type="checkbox" class="form-check-input" name="permissions[]" id="{{ $permission->id }}" value="{{ $permission->id }}" @checked($role->permissions->contains($permission))>
+                                    <label for="{{ $permission->id }}" class="form-check-label mr-3 mt-1">{{ $permission->name }}</label>
+                                </div>
+                            </section>
+
+                        @endforeach
+
+                    </section>
+                </section>
+
             </form>
         </section>
     </section>
