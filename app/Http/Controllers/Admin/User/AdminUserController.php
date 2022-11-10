@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\AdminUserRequest;
 use App\Http\Services\Image\ImageService;
 use App\Models\User;
+use App\Models\User\Permission;
+use App\Models\User\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class AdminUserController extends Controller {
+class AdminUserController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
@@ -46,7 +49,7 @@ class AdminUserController extends Controller {
             $inputs['profile_photo_path'] = $result;
         }
         $inputs['password'] = Hash::make($request->password);
-        $inputs['user_type'] = Auth::id();
+        $inputs['user_type'] = 1;
         User::query()->create($inputs);
         return redirect()->route('admin.user.admin-user')->with('swal-success', 'ادمین جدید با موفقیت ثبت شد');
     }
@@ -118,8 +121,7 @@ class AdminUserController extends Controller {
                     'status' => true,
                     'checked' => true,
                 ]);
-        }
-        else
+        } else
             return response()->json([
                 'status' => false,
             ]);
@@ -142,10 +144,37 @@ class AdminUserController extends Controller {
                     'activation' => true,
                     'checked' => true,
                 ]);
-        }
-        else
+        } else
             return response()->json([
                 'status' => false,
             ]);
     }
+
+    public function roles(User $admin) {
+        $roles = Role::all();
+        return view('admin.user.admin-user.roles', compact('admin', 'roles'));
+    }
+
+    public function rolesStore(Request $request, User $admin) {
+        $validated = $request->validate([
+            'roles' => ['nullable', 'exists:roles,id', 'array'],
+        ]);
+        $admin->roles()->sync($request->roles);
+        return redirect()->route('admin.user.admin-user')->with('swal-success', 'نقش با موفقیت اختصاص داده شد');
+    }
+
+    public function permissions(User $admin) {
+        $permissions = Permission::all();
+        return view('admin.user.admin-user.permissions', compact('admin', 'permissions'));
+    }
+
+    public function permissionsStore(Request $request, User $admin) {
+        $validated = $request->validate([
+            'permissions' => ['nullable', 'exists:permissions,id', 'array'],
+        ]);
+        $admin->permissions()->sync($request->permissions);
+        return redirect()->route('admin.user.admin-user')->with('swal-success', 'نقش با موفقیت اختصاص داده شد');
+    }
+
+
 }

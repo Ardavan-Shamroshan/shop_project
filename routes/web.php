@@ -401,6 +401,12 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::delete('/destroy/{admin}', [AdminUserController::class, 'destroy'])->name('admin.user.admin-user.destroy');
             Route::get('/status/{admin}', [AdminUserController::class, 'status'])->name('admin.user.admin-user.status');
             Route::get('/activation/{admin}', [AdminUserController::class, 'activation'])->name('admin.user.admin-user.activation');
+            // admin roles
+            Route::get('roles/{admin}', [AdminUserController::class, 'roles'])->name('admin.user.admin-user.roles');
+            Route::post('roles/{admin}/store', [AdminUserController::class, 'rolesStore'])->name('admin.user.admin-user.roles.store');
+            // admin permissions
+            Route::get('permissions/{admin}', [AdminUserController::class, 'permissions'])->name('admin.user.admin-user.permissions');
+            Route::post('permissions/{admin}/store', [AdminUserController::class, 'permissionsStore'])->name('admin.user.admin-user.permissions.store');
         });
 
         // User
@@ -600,7 +606,7 @@ Route::prefix('sales-process')->group(function () {
 // Profile
 Route::middleware('auth')->prefix('profile')->group(function () {
     // profile
-    Route::controller(ProfileController::class)->group(function() {
+    Route::controller(ProfileController::class)->group(function () {
         Route::get('/', 'index')->name('customer.profile');
         Route::put('/update', 'update')->name('customer.profile.update');
     });

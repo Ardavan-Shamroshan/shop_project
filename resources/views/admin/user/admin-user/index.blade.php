@@ -5,7 +5,8 @@
 @section('content')
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item font-size-12"><i class="fa fa-home text-muted"></i><a href="{{ route('admin.home') }}">خانه</a></li>
+            <li class="breadcrumb-item font-size-12">
+                <i class="fa fa-home text-muted"></i><a href="{{ route('admin.home') }}">خانه</a></li>
             <li class="breadcrumb-item font-size-12 p-0"><a href="">بخش کاربران</a></li>
             <li class="breadcrumb-item font-size-12 active" aria-current="page"> کاربران ادمین</li>
         </ol>
@@ -26,11 +27,12 @@
                 <tr>
                     <th>#</th>
                     <th>ایمیل</th>
-                    <th>شماره موبایل</th>
-                    <th>کد ملی</th>
+{{--                    <th>شماره موبایل</th>--}}
+{{--                    <th>کد ملی</th>--}}
                     <th>نام</th>
                     <th>نام خانوادگی</th>
                     <th>نقش</th>
+                    <th>سطوح دسترسی</th>
                     <th>وضعیت</th>
                     <th>حساب کاربری</th>
                     <th class="max-width-16-rem text-center"><i class="fa fa-cogs"></i> تنظیمات</th>
@@ -41,31 +43,41 @@
                     <tr>
                         <th>{{ $key += 1 }}</th>
                         <td>{{ $admin->email }}</td>
-                        <td>{{ $admin->mobile }}</td>
-                        <td>{{ $admin->national_code ?? '-' }}</td>
+{{--                        <td>{{ $admin->mobile }}</td>--}}
+{{--                        <td>{{ $admin->national_code ?? '-' }}</td>--}}
                         <td>{{ $admin->first_name }}</td>
                         <td>{{ $admin->last_name }}</td>
-                        <td>سوپر ادمین</td>
+                        <td>
+                            @forelse($admin->roles as $adminRole)
+                                <span class="alert alert-warning shadow-sm p-0 px-1">{{ $adminRole->name }}</span>
+                                <br><br>
+                            @empty
+                                <span class="alert alert-danger p-0 px-1">نقشی تعریف نشده</span>
+                            @endforelse
+                        </td>
+                        <td>
+                            @forelse($admin->permissions as $adminPermission)
+                                <span class="alert alert-light shadow-sm p-0 px-1">{{ $adminPermission->name }}</span>
+                                <br><br>
+                            @empty
+                                <span class="alert alert-danger p-0 px-1">هیچ دسترسی ندارد</span>
+                            @endforelse
+                        </td>
                         <td>
                             <label for="">
-                                <input type="checkbox" id="{{ $admin->id }}" onchange="changeStatus({{ $admin->id }})"
-                                       data-url="{{ route('admin.user.admin-user.status', $admin->id) }}"
-                                       data-value="{{ $admin->status }}"
-                                       @if($admin->status === 1) checked @endif>
+                                <input type="checkbox" id="{{ $admin->id }}" onchange="changeStatus({{ $admin->id }})" data-url="{{ route('admin.user.admin-user.status', $admin->id) }}" data-value="{{ $admin->status }}" @if($admin->status === 1) checked @endif>
                             </label>
                         </td>
 
                         <td>
                             <label for="">
-                                <input type="checkbox" id="active{{ $admin->id }}" onchange="changeActivation({{ $admin->id }})"
-                                       data-url="{{ route('admin.user.admin-user.activation', $admin->id) }}"
-                                       data-value="{{ $admin->activation }}"
-                                       @if($admin->activation === 1) checked @endif>
+                                <input type="checkbox" id="active{{ $admin->id }}" onchange="changeActivation({{ $admin->id }})" data-url="{{ route('admin.user.admin-user.activation', $admin->id) }}" data-value="{{ $admin->activation }}" @if($admin->activation === 1) checked @endif>
                             </label>
                         </td>
 
                         <td class="width-16-rem text-left">
-                            <a href="" class="btn btn-warning btn-sm btn-hover rounded-pill border color-4"><i class="fa fa-user-cog"></i> نقش</a>
+                            <a href="{{ route('admin.user.admin-user.roles', $admin) }}" class="btn btn-warning btn-sm btn-hover rounded-pill border color-4"><i class="fa fa-user-cog"></i> نقش</a>
+                            <a href="{{ route('admin.user.admin-user.permissions', $admin) }}" class="btn btn-info btn-sm btn-hover rounded-pill border color-5"><i class="fa fa-user-shield"></i> سطوح دسترسی</a>
                             <a href="{{ route('admin.user.admin-user.edit', $admin->id) }}" class="btn btn-primary btn-sm btn-hover border rounded-pill btn-sm color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
                             <form action="{{ route('admin.user.admin-user.destroy', $admin->id) }}" class="d-inline" method="post">
                                 @csrf
