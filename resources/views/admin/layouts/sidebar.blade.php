@@ -84,10 +84,16 @@
                     <a href="{{ route('admin.content.post') }}" class="sidebar-link">
                         <i class="fas fa-newspaper"></i><span>پست ها</span>
                     </a>
+
+                    @role('operator')
                     <a href="{{ route('admin.content.category') }}" class="sidebar-link">
                         <i class="fas fa-list-alt"></i><span>دسته بندی ها</span>
                     </a>
-                    <a href="{{ route('admin.content.comment') }}" class="sidebar-link">
+                    @else
+                    <section class="sidebar-part-title"><i class="fas fa-times"></i> دسته بندی ها </section>
+                    @endrole
+
+                    <a href="{{ route('admin.content.comment') }}" class="sidebar-link disabled">
                         <i class="fas fa-comments"></i><span>نظرات</span>
                     </a>
                 </section>

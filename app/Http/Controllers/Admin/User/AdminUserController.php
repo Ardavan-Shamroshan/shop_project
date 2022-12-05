@@ -175,6 +175,4 @@ class AdminUserController extends Controller
         $admin->permissions()->sync($request->permissions);
         return redirect()->route('admin.user.admin-user')->with('swal-success', 'نقش با موفقیت اختصاص داده شد');
     }
-
-
 }

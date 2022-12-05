@@ -1,5 +1,6 @@
 <?php
 
+
 return [
 
     /*
@@ -178,6 +179,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
         App\Providers\JetstreamServiceProvider::class,
+
+        /*
+         * Custom Service Providers...
+         */
+        App\Providers\PermissionServiceProvider::class,
 
     ],
 

@@ -49,7 +49,7 @@
                         <td>{{ $admin->last_name }}</td>
                         <td>
                             @forelse($admin->roles as $adminRole)
-                                <span class="alert alert-warning shadow-sm p-0 px-1">{{ $adminRole->name }}</span>
+                                <span class="alert alert-warning p-0 px-1">{{ $adminRole->name }}</span>
                                 <br><br>
                             @empty
                                 <span class="alert alert-danger p-0 px-1">نقشی تعریف نشده</span>
@@ -57,7 +57,7 @@
                         </td>
                         <td>
                             @forelse($admin->permissions as $adminPermission)
-                                <span class="alert alert-light shadow-sm p-0 px-1">{{ $adminPermission->name }}</span>
+                                <span class="alert alert-light border p-0 px-1">{{ $adminPermission->name }}</span>
                                 <br><br>
                             @empty
                                 <span class="alert alert-danger p-0 px-1">هیچ دسترسی ندارد</span>

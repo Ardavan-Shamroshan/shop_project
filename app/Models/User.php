@@ -9,6 +9,7 @@ use App\Models\Ticket\Ticket;
 use App\Models\Ticket\TicketAdmin;
 use App\Models\User\Permission;
 use App\Models\User\Role;
+use App\Traits\Permissions\HasPermissionsTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,6 +28,8 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
     use SoftDeletes;
+    // HasPermissionsTraits
+    use HasPermissionsTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -89,14 +92,15 @@ class User extends Authenticatable
         return $this->hasMany(Ticket::class);
     }
 
-    public function roles() {
-        return $this->belongsToMany(Role::class);
-    }
+    // Could be in both User model and HasPermissionsTrait (only one to choose)
+    // public function roles() {
+    //     return $this->belongsToMany(Role::class);
+    // }
 
-    public function permissions() {
-        return $this->belongsToMany(Permission::class);
-
-    }
+    // Cut and pasted to HasPermissionTrait
+    // public function permissions() {
+    //     return $this->belongsToMany(Permission::class);
+    // }
 
     public function payments() {
         return $this->hasMany(Payment::class);

@@ -174,10 +174,10 @@
     <script src="{{ asset('admin-assets/ckeditor/ckeditor.js') }}"></script>
     <script src="{{ asset('admin-assets/jalalidatepicker/persian-date.min.js') }}"></script>
     <script src="{{ asset('admin-assets/jalalidatepicker/persian-datepicker.min.js') }}"></script>
-    <script>
-        CKEDITOR.replace('post_body');
-        CKEDITOR.replace('summary');
-    </script>
+        <script>
+            CKEDITOR.replace('post_body');
+            CKEDITOR.replace('summary');
+        </script>
 
     <script>
         $(document).ready(function () {
@@ -207,7 +207,7 @@
             $('#form').submit(function () {
                 if (select_tags.val() !== null && select_tags.val().length > 0) {
                     var selectedSource = select_tags.val().join(',');
-                    tags_input.val(selectedSource);xxx
+                    tags_input.val(selectedSource);
                 }
             })
         })
