@@ -262,7 +262,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     */
     Route::prefix('content')->namespace('Content')->group(function () {
         // Category
-        Route::prefix('category')->group(function () {
+        Route::prefix('category')->middleware('role:operator')->group(function () {
             Route::get('/', [ContentCategoryController::class, 'index'])->name('admin.content.category');
             Route::get('/create', [ContentCategoryController::class, 'create'])->name('admin.content.category.create');
             Route::post('/store', [ContentCategoryController::class, 'store'])->name('admin.content.category.store');

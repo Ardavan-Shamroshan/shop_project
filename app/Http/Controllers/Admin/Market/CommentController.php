@@ -116,7 +116,7 @@ class CommentController extends Controller
     }
 
 
-    public function answer(CommentRequest $request, Comment $comment)
+    public function answer(Comment  Request $request, Comment $comment)
     {
         if ($comment->parent == null) {
             $inputs = $request->all();
