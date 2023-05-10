@@ -52,8 +52,8 @@
                     </section>
                     <section class="col-12 col-md-3">
                         <div class="form-group">
-                            <label for="">تاریخ شروع</label>
-                            @error('پایان')
+                            <label for="">تاریخ پایان</label>
+                            @error('end_date')
                             <span class="alert_required text-danger" role="alert">
                                     <small>
                                         <b>{{ $message }}</b>

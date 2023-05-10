@@ -21,7 +21,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::query()->orderBy('created_at', 'desc')->simplePaginate(15);
+        // $products = Product::query()->orderBy('created_at', 'asc')->toSql();
+        // dd($products);
+        $products = Product::query()->orderBy('created_at', 'asc')->simplePaginate(15);
+
         return view('admin.market.product.index', compact('products'));
     }
 
@@ -45,6 +48,7 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request, ImageService $imageService)
     {
+
         $inputs = $request->all();
         $realTimestampStart = substr($request->published_at, 0, 10);
         $inputs['published_at'] = date('Y-m-d H:i:s', (int)$realTimestampStart);
@@ -59,6 +63,8 @@ class ProductController extends Controller
         // Rolling back the entire operation if one of $product or $metas failed
         DB::transaction(function () use ($request, $inputs) {
             // Insert the new product into <products> table
+            // $product = Product::query()->create($inputs)->toSql();
+            // dd($product);
             $product = Product::query()->create($inputs);
 
             /*

@@ -110,6 +110,7 @@ class PaymentController extends Controller
 
         // get the user order
         $order = Order::query()->where('user_id', Auth::id())->where('order_status', 0)->first();
+
         // get the user cart items
         $cartItems = CartItem::query()->where('user_id', Auth::id())->get();
         // needed if payment method was cash payment

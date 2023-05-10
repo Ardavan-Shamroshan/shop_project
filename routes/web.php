@@ -50,7 +50,7 @@ use App\Http\Controllers\Customer\SalesProcess\PaymentController as CustomerPaym
 use App\Http\Controllers\Customer\Profile\OrderController as ProfileOrderController;
 use App\Http\Controllers\Customer\Profile\FavoriteController;
 use App\Http\Controllers\Customer\Profile\AddressController as ProfileAddressController;
-
+use App\Http\Controllers\Customer\Profile\TicketController as ProfileTicketController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -262,7 +262,8 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
     */
     Route::prefix('content')->namespace('Content')->group(function () {
         // Category
-        Route::prefix('category')->middleware('role:operator')->group(function () {
+        // Route::prefix('category')->middleware('role:operator')->group(function () {
+        Route::prefix('category')->group(function () {
             Route::get('/', [ContentCategoryController::class, 'index'])->name('admin.content.category');
             Route::get('/create', [ContentCategoryController::class, 'create'])->name('admin.content.category.create');
             Route::post('/store', [ContentCategoryController::class, 'store'])->name('admin.content.category.store');
@@ -590,6 +591,7 @@ Route::prefix('sales-process')->group(function () {
         Route::controller(CustomerPaymentController::class)->prefix('payment')->group(function () {
             Route::get('/', 'payment')->name('customer.sales-process.payment');
             Route::post('/coupon-discount', 'couponDiscount')->name('customer.sales-process.coupon-discount');
+            Route::post('/coupon-discount', 'couponDiscount')->name('customer.sales-process.coupon-discount');
             Route::post('/payment-submit', 'paymentSubmit')->name('customer.sales-process.payment-submit');
             // zarinpal callback url
             Route::any('/payment-callback/{order}/{onlinePayment}', 'paymentCallback')->name('customer.sales-process.payment-callback');
@@ -623,6 +625,17 @@ Route::middleware('auth')->prefix('profile')->group(function () {
         Route::get('/', 'index')->name('customer.profile.my-favorites');
         Route::get('/remove/{product}', 'remove')->name('customer.profile.my-favorites.remove');
     });
+
+    // tickets
+    Route::controller(ProfileTicketController::class)->prefix('my-tickets')->group(function () {
+        Route::get('/', 'index')->name('customer.profile.my-tickets');
+        Route::get('/show/{ticket}', 'show')->name('customer.profile.my-tickets.show');
+        Route::post('/answer/{ticket}', 'answer')->name('customer.profile.my-tickets.answer');
+        Route::get('/change/{ticket}', 'change')->name('customer.profile.my-tickets.change');
+        Route::get('/create', 'create')->name('customer.profile.my-tickets.create');
+        Route::post('/store', 'store')->name('customer.profile.my-tickets.store');
+    });
+
 });
 
 

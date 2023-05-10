@@ -14,15 +14,15 @@ class CreateBrandsTable extends Migration
     public function up()
     {
         Schema::create('brands', function (Blueprint $table) {
-            $table->id();
-            $table->string('persian_name');
-            $table->string('original_name');
-            $table->string('slug')->unique()->nullable();
-            $table->text('logo');
-            $table->tinyInteger('status')->default(0);
-            $table->text('tags');
-            $table->timestamps();
-            $table->softDeletes();
+                $table->id();
+                $table->string('persian_name');
+                $table->string('original_name');
+                $table->string('slug')->unique()->nullable();
+                $table->text('logo');
+                $table->tinyInteger('status')->default(0);
+                $table->text('tags');
+                $table->timestamps();
+                $table->softDeletes();
         });
     }
 

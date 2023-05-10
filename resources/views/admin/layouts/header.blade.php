@@ -9,7 +9,11 @@
     </section>
     <section class="body-header" id="body-header">
         <section class="d-flex justify-content-between">
+
+
             <section>
+                <span class="mr-5"><a href="{{ route('customer.home') }}" class="btn btn-sm btn-link" target="_blank">نمایش وبگاه</a></span>
+
                     <span class="mr-5">
                         <span id="search-area" class="search-area d-none">
                             <i id="search-area-hide" class="fas fa-times pointer text-secondary"></i>
@@ -23,6 +27,7 @@
                         <i id="screen-expand" class="fas fa-expand text-secondary"></i>
                     </span>
             </section>
+
             <section>
                   <span class="ml-2 ml-md-4 position-relative">
                         <span id="header-notification-toggle" class="pointer">
@@ -31,6 +36,7 @@
                                 <sup class="badge bg-simple-c-blue text-dark-blue rounded-circle position-absolute" style="right: 5px;">{{ $notifications->count() }}</sup>
                             @endif
                         </span>
+
                     <section id="header-notification" class="header-notifictation rounded shadow-sm">
                         <section class="d-flex justify-content-between">
                             <span class="px-2">نوتیفیکیشن ها</span>

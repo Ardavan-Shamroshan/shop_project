@@ -16,7 +16,8 @@ use App\Http\Requests\Auth\Customer\LoginRegisterRequest;
 
 class LoginRegisterController extends Controller
 {
-    public function loginRegisterForm() {
+    public function loginRegisterForm()
+    {
         return view('customer.auth.login-register-form');
     }
 
@@ -24,7 +25,8 @@ class LoginRegisterController extends Controller
      * @throws \Exception
      */
 
-    public function loginRegister(LoginRegisterRequest $request) {
+    public function loginRegister(LoginRegisterRequest $request)
+    {
         $inputs = $request->all();
 
         // check id is email or not
@@ -40,7 +42,7 @@ class LoginRegisterController extends Controller
 
             // all mobile numbers are in format 9** *** ***
             $inputs['id'] = ltrim($inputs['id'], '0');
-//            $inputs['id'] = substr($inputs['id'], 0, 2) === '98' ? substr($inputs['id'], 2) : $inputs['id'];
+            //            $inputs['id'] = substr($inputs['id'], 0, 2) === '98' ? substr($inputs['id'], 2) : $inputs['id'];
             $inputs['id'] = str_starts_with($inputs['id'], '98') ? substr($inputs['id'], 2) : $inputs['id'];
             $inputs['id'] = str_replace('+98', '', $inputs['id']);
 
@@ -101,7 +103,8 @@ class LoginRegisterController extends Controller
     }
 
 
-    public function loginConfirmForm($token) {
+    public function loginConfirmForm($token)
+    {
         $otp = Otp::query()->where('token', $token)->first();
         if (empty($otp))
             return redirect()->route('auth.customer.loginRegisterForm')->withErrors([
@@ -111,7 +114,8 @@ class LoginRegisterController extends Controller
         return view('customer.auth.login-confirm-form', compact('token', 'otp'));
     }
 
-    public function loginConfirm($token, LoginRegisterRequest $request) {
+    public function loginConfirm($token, LoginRegisterRequest $request)
+    {
         $inputs = $request->all();
         $otp = Otp::query()->where('token', $token)->where('used', 0)->where('created_at', '>=', Carbon::now()->subMinute(5)->toDateTimeString())->first();
         if (empty($otp))
@@ -142,7 +146,8 @@ class LoginRegisterController extends Controller
     /**
      * @throws \Exception
      */
-    public function loginResendOtp($token) {
+    public function loginResendOtp($token)
+    {
         $otp = Otp::query()->where('token', $token)->where('created_at', '<=', Carbon::now()->subMinutes(5)->toDateTimeString())->first();
         if (empty($otp))
             return redirect()->route('auth.customer.loginRegisterForm', $token)->withErrors(['id' => 'آدرس وارد شده نام معتبر است']);
@@ -190,7 +195,8 @@ class LoginRegisterController extends Controller
         return redirect()->route('auth.customer.loginConfirmForm', $token);
     }
 
-    public function logout() {
+    public function logout()
+    {
         Auth::logout();
         return redirect()->route('customer.home');
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin\Ticket;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TicketRequest extends FormRequest
 {
@@ -24,7 +25,10 @@ class TicketRequest extends FormRequest
     public function rules()
     {
         return [
-            'description' => 'required|max:2048|min:2|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/:;،؛\n\r&?؟!«»" ًّ َ ِ ُ ْ () ]+$/u',
+            'subject'     => 'required|max:2048|min:2',
+            'description' => 'required|max:2048|min:2',
+            'priority_id' => ['required', Rule::exists('ticket_priorities', 'id')],
+            'category_id' => ['required', Rule::exists('ticket_categories', 'id')]
         ];
     }
 }

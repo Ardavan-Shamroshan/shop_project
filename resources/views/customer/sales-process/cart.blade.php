@@ -32,79 +32,80 @@
                                         $totalDiscount = 0;
                                     @endphp
                                     @if($cartItems->isEmpty())
+
                                         <section class="col-12">
                                             <h4 class="text-muted w-100 mx-auto">سبد خرید شما خالی است!</h4>
                                             <a href="{{ route('customer.home') }}" class="d-block w-25 text-decoration-none text-info">رفتن به صفحه محصولات » </a>
                                         </section>
-                                    @else
 
+                                    @else
                                         @foreach($cartItems as $cartItem)
                                             @php
                                                 $totalProductPrice += $cartItem->cartItemProductPrice();
                                                 $totalDiscount += $cartItem->cartItemProductDiscount();
                                             @endphp
 
-                                            <section class="cart-item d-md-flex gap-2 py-3">
-                                                <section class="cart-img align-self-start flex-shrink-1">
-                                                    <img src="{{ asset($cartItem->product->image['indexArray']['medium']) }}" alt="{{ $cartItem->product->name }}">
-                                                </section>
-                                                <section class="align-self-start w-100">
-                                                    <a href="{{ route('customer.market.product', $cartItem->product) }}" class="fw-bold text-decoration-none text-dark">{{  $cartItem->product->name }}</a>
-                                                    @if(!empty($cartItem->color))
-                                                        <p class="d-flex justify-content-between">
-                                                        <span>
-                                                            <span style="background-color: {{ $cartItem->color->color }};" class="cart-product-selected-color me-1 border"></span>
-                                                            <span>{{ $cartItem->color->color_name }}</span>
-                                                        </span>
-                                                            <small class="text-success">{{ priceFormat($cartItem->color->price_increase) }}+
-                                                              </small>
-                                                        </p>
-                                                    @endif
-                                                    @if(!empty($cartItem->guaranty))
-                                                        <p class="d-flex justify-content-between">
-                                                            <span><i class="fa fa-shield-alt cart-product-selected-warranty me-1"></i>
-                                                            <span> {{ $cartItem->guaranty->name }}</span></span>
-                                                            <small class="text-success">{{ priceFormat($cartItem->guaranty->price_increase) }}+
-                                                               </small>
-                                                        </p>
-                                                    @endif
+                                                <section class="cart-item d-md-flex gap-2 py-3">
+                                                    <section class="cart-img align-self-start flex-shrink-1">
+                                                        <img src="{{ asset($cartItem->product->image['indexArray']['medium']) }}" alt="{{ $cartItem->product->name }}">
+                                                    </section>
+                                                    <section class="align-self-start w-100">
+                                                        <a href="{{ route('customer.market.product', $cartItem->product) }}" class="fw-bold text-decoration-none text-dark">{{  $cartItem->product->name }}</a>
+                                                        @if(!empty($cartItem->color))
+                                                            <p class="d-flex justify-content-between">
+                                                            <span>
+                                                                <span style="background-color: {{ $cartItem->color->color }};" class="cart-product-selected-color me-1 border"></span>
+                                                                <span>{{ $cartItem->color->color_name }}</span>
+                                                            </span>
+                                                                <small class="text-success">{{ priceFormat($cartItem->color->price_increase) }}+
+                                                                </small>
+                                                            </p>
+                                                        @endif
+                                                        @if(!empty($cartItem->guaranty))
+                                                            <p class="d-flex justify-content-between">
+                                                                <span><i class="fa fa-shield-alt cart-product-selected-warranty me-1"></i>
+                                                                <span> {{ $cartItem->guaranty->name }}</span></span>
+                                                                <small class="text-success">{{ priceFormat($cartItem->guaranty->price_increase) }}+
+                                                                </small>
+                                                            </p>
+                                                        @endif
 
-                                                    @if($cartItem->product->marketable_number > 2)
-                                                        <p>
-                                                            <i class="fa fa-store-alt cart-product-selected-store me-1"></i>
-                                                            <span>کالا موجود در انبار</span>
-                                                        </p>
-                                                    @elseif($cartItem->product->marketable_number <= 2 && $cartItem->product->marketable_number > 0)
-                                                        <p>
-                                                            <i class="fa fa-store-alt-slash  text-danger cart-product-selected-store me-1"></i>
-                                                            <span class="text-danger fw-bold">تنها {{ $cartItem->product->marketable_number}} عدد در انبار باقی مانده </span>
-                                                        </p>
-                                                    @else
-                                                        <p>
-                                                            <i class="fa fa-store-alt-slash  text-danger cart-product-selected-store me-1"></i>
-                                                            <span class="text-danger fw-bold"> کالا ناموجود است</span>
-                                                        </p>
-                                                    @endif
-                                                    <section>
-                                                        <section class="cart-product-number d-inline-block ">
-                                                            <button class="cart-number cart-number-down" type="button">-</button>
-                                                            <input class="number" name="number[{{$cartItem->id}}]" data-product-price="{{ $cartItem->cartItemProductPrice() }}" data-product-discount="{{ $cartItem->cartItemProductDiscount() }}" type="number" min="1" max="5" step="1" value="{{ $cartItem->number }}" readonly="readonly">
-                                                            <button class="cart-number cart-number-up" type="button">+</button>
+                                                        @if($cartItem->product->marketable_number > 2)
+                                                            <p>
+                                                                <i class="fa fa-store-alt cart-product-selected-store me-1"></i>
+                                                                <span>کالا موجود در انبار</span>
+                                                            </p>
+                                                        @elseif($cartItem->product->marketable_number <= 2 && $cartItem->product->marketable_number > 0)
+                                                            <p>
+                                                                <i class="fa fa-store-alt-slash  text-danger cart-product-selected-store me-1"></i>
+                                                                <span class="text-danger fw-bold">تنها {{ $cartItem->product->marketable_number}} عدد در انبار باقی مانده </span>
+                                                            </p>
+                                                        @else
+                                                            <p>
+                                                                <i class="fa fa-store-alt-slash  text-danger cart-product-selected-store me-1"></i>
+                                                                <span class="text-danger fw-bold"> کالا ناموجود است</span>
+                                                            </p>
+                                                        @endif
+                                                        <section>
+                                                            <section class="cart-product-number d-inline-block ">
+                                                                <button class="cart-number cart-number-down" type="button">-</button>
+                                                                <input class="number" name="number[{{$cartItem->id}}]" data-product-price="{{ $cartItem->cartItemProductPrice() }}" data-product-discount="{{ $cartItem->cartItemProductDiscount() }}" type="number" min="1" max="5" step="1" value="{{ $cartItem->number }}" readonly="readonly">
+                                                                <button class="cart-number cart-number-up" type="button">+</button>
+                                                            </section>
+                                                            <a class="text-decoration-none ms-4 cart-delete" href="{{ route('customer.sales-process.cart.remove-from-cart', $cartItem) }}"><i class="fa fa-trash-alt"></i> حذف از سبد</a>
                                                         </section>
-                                                        <a class="text-decoration-none ms-4 cart-delete" href="{{ route('customer.sales-process.cart.remove-from-cart', $cartItem) }}"><i class="fa fa-trash-alt"></i> حذف از سبد</a>
+                                                    </section>
+                                                    <section class="align-self-end flex-shrink-1 border rounded p-3">
+                                                        @if(!empty($cartItem->product->activeAmazingSales()))
+
+                                                        <section class="text-nowrap text-muted text-decoration-line-through">{{ priceFormat($cartItem->cartItemProductPrice()) }}</section>
+                                                            <section class="cart-item-discount text-danger text-nowrap mb-1">{{ priceFormat($cartItem->cartItemProductDiscount()) }} -</section>
+                                                        @endif
+                                                        <section class="text-nowrap fw-bold">{{ priceFormat($cartItem->cartItemProductPrice() - $cartItem->cartItemProductDiscount()) }}</section>
                                                     </section>
                                                 </section>
-                                                <section class="align-self-end flex-shrink-1 border rounded p-3">
-                                                    @if(!empty($cartItem->product->activeAmazingSales()))
 
-                                                    <section class="text-nowrap text-muted text-decoration-line-through">{{ priceFormat($cartItem->cartItemProductPrice()) }}</section>
-                                                        <section class="cart-item-discount text-danger text-nowrap mb-1">{{ priceFormat($cartItem->cartItemProductDiscount()) }} -</section>
-                                                    @endif
-                                                    <section class="text-nowrap fw-bold">{{ priceFormat($cartItem->cartItemProductPrice() - $cartItem->cartItemProductDiscount()) }}</section>
-                                                </section>
-                                            </section>
                                         @endforeach
-
                                 </form>
                                 @endif
 

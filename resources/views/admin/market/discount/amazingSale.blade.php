@@ -34,7 +34,7 @@
                 @foreach($amazingSales as $amazingSale)
                     <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $amazingSale->product->name }}</td>
+                    <td>{{  $amazingSale->product->name ?? '-'}}</td>
                     <td>{{ $amazingSale->percentage }}%</td>
                     <td>{{ jalaliDate($amazingSale->start_date) }}</td>
                     <td>{{ jalaliDate($amazingSale->end_date) }}</td>

@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot() {
         // manual login
-        \Auth::login(User::findOrFail(3));
+        \Auth::login(User::findOrFail(2));
         $user = \Auth::user();
         // dd($user);
 

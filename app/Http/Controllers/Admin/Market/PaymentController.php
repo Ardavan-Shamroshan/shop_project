@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin\Market;
 
 use App\Models\Market\Payment;
 use App\Http\Controllers\Controller;
-
 class PaymentController extends Controller {
     public function index() {
         $payments = Payment::all();
@@ -41,6 +40,5 @@ class PaymentController extends Controller {
         $payment->status = 3;
         $payment->save();
         return redirect()->route('admin.market.payment')->with('swal-success', 'وضعیت پرداخت با موفقیت تغییر کرد');
-
     }
 }

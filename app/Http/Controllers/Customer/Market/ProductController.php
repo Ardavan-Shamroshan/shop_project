@@ -22,6 +22,7 @@ class ProductController extends Controller
         $productColors = $product->colors;
         $productGuaranties = $product->guarantees;
         $amazingSale = $product->activeAmazingSales();
+
         if (!empty($amazingSale)) {
             $amazingSaleProductPrice = ($product->price * $amazingSale->percentage) / 100;
             return view('customer.market.product.product', compact('product', 'relatedProducts', 'productImages', 'productColors', 'productGuaranties', 'amazingSale', 'amazingSaleProductPrice', 'comments'));

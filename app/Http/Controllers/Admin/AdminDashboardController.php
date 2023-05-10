@@ -18,6 +18,7 @@ class AdminDashboardController extends Controller {
         $postCategoriesCount = PostCategory::query()->count();
         $commentsCount = Comment::query()->count();
         $adminsCount = User::query()->where('user_type', 1)->count();
+        // dd($adminsCount);
         $usersCount = User::query()->count();
         $ticketsCount = Ticket::query()->count();
         $emailsCount = Email::query()->count();

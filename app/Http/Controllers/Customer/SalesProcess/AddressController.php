@@ -98,7 +98,6 @@ class AddressController extends Controller
         $inputs['order_discount_amount'] = $totalFinalDiscountPriceWithNumbers;
         $inputs['order_common_discount_amount'] = $commonPercentageDiscountAmount;
         $inputs['order_total_product_discount_amount'] = $inputs['order_discount_amount'] + $inputs['order_common_discount_amount'];
-
         // register order
         $order = Order::query()->updateOrCreate([
             'user_id' => $user->id,

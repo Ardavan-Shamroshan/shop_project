@@ -19,12 +19,12 @@ class CategoryController extends Controller
     public function index() {
         $user = Auth::user();
         // dd($user->hasRole('Super Admin', 'Operator'));
-        if($user->can('show-category')){
+        // if($user->can('show-category')){
             $postCategories = PostCategory::query()->orderBy('created_at', 'desc')->simplePaginate(15);
             return view('admin.content.category.index', compact('postCategories'));
-        } else {
-            abort(403);
-        }
+        // } else {
+        //     abort(403);
+        // }
     //     $postCategories = PostCategory::query()->orderBy('created_at', 'desc')->simplePaginate(15);
     //     return view('admin.content.category.index', compact('postCategories'));
     }
