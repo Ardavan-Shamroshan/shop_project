@@ -24,26 +24,14 @@ class ProductCategoryRequest extends FormRequest
      */
     public function rules()
     {
-        if ($this->isMethod('post'))
-            return [
-                'name' => 'required|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,!?؟ ]+$/u',
-                'description' => 'required|max:500|min:5|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/:;،؛\n\r&?؟!«»" ًّ َ ِ ُ ْ () ]+$/u',
-                'image' => 'required|image|mimes:png,jpg,jpeg,gif',
-                'status' => ['required', 'numeric', Rule::in(['0', '1'])],
-                'show_in_menu' => ['required', 'numeric', Rule::in(['0', '1'])],
-                'tags' => 'required|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
-                'parent_id' => 'nullable|regex:/^[0-9]+$/u|exists:product_categories,id',
-            ];
-        else {
-            return [
-                'name' => 'required|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,!?؟ ]+$/u',
-                'description' => 'required|max:500|min:5|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/:;،؛\n\r&?؟!«»" ًّ َ ِ ُ ْ () ]+$/u',
-                'image' => 'image|mimes:png,jpg,jpeg,gif',
-                'status' => ['required', 'numeric', Rule::in(['0', '1'])],
-                'show_in_menu' => ['required', 'numeric', Rule::in(['0', '1'])],
-                'tags' => 'required|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
-                'parent_id' => 'nullable|regex:/^[0-9]+$/u|exists:product_categories,id',
-            ];
-        }
+        return [
+            'name'         => 'required|max:120|min:2',
+            'description'  => 'max:500|min:5',
+            'image'        => 'image|mimes:png,jpg,jpeg,gif',
+            'status'       => ['required', 'numeric', Rule::in(['0', '1'])],
+            'show_in_menu' => ['required', 'numeric', Rule::in(['0', '1'])],
+            'tags'         => ['nullable', 'string'],
+            'parent_id'    => 'nullable|exists:product_categories,id',
+        ];
     }
 }

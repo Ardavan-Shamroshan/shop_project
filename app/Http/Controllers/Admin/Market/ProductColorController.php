@@ -38,7 +38,7 @@ class ProductColorController extends Controller
     public function store(Request $request, Product $product)
     {
         $request->validate([
-            'color_name' => ['required','max:120','min:2','regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,!?؟ ]+$/u'],
+            'color_name' => ['required','max:120','min:2'],
             'color' => ['required'],
             'price_increase' => ['required', 'numeric'],
         ]);

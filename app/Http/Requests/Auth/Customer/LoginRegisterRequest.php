@@ -27,7 +27,7 @@ class LoginRegisterRequest extends FormRequest
         $route = Route::current();
         if($route->getName() == 'auth.customer.loginRegister') {
             return [
-                'id' => ['required', 'min:11', 'max:64', 'regex:/^[a-zA-Z0-9_.@\+]*$/'],
+                'id' => ['required', 'min:11', 'max:64'],
             ];
         } elseif($route->getName() == 'auth.customer.loginConfirm') {
             return [

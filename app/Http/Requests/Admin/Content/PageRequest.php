@@ -21,10 +21,10 @@ class PageRequest extends FormRequest {
      */
     public function rules() {
         return [
-            'title' => 'required|max:225|min:5|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,!?؟ ]+$/u',
-            'body' => 'required|max:2048|min:10|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/:;،؛\n\r&?؟!«»" ًّ َ ِ ُ ْ () ]+$/u',
+            'title' => 'required|max:225|min:5',
+            'body' => 'required|max:2048|min:10',
             'status' => 'required|numeric|in:0,1',
-            'tags' => 'required|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+            'tags' => 'required',
         ];
     }
 }

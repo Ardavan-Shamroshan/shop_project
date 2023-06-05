@@ -26,7 +26,7 @@ class ProductRequest extends FormRequest
     {
         if ($this->isMethod('post'))
             return [
-                'name' => 'required|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+                'name' => 'required|max:120|min:2',
                 'introduction' => 'required|max:20480|min:5',
                 'weight' => 'required|max:1000|min:1|numeric',
                 'length' => 'required|max:1000|min:1|numeric',
@@ -36,16 +36,16 @@ class ProductRequest extends FormRequest
                 'image' => 'required|image|mimes:png,jpg,jpeg,gif',
                 'status' => 'required|numeric|in:0,1',
                 'marketable' => 'required|numeric|in:0,1',
-                'tags' => 'required|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
-                'category_id' => 'required|min:1|max:100000000|regex:/^[0-9]+$/u|exists:product_categories,id',
-                'brand_id' => 'required|min:1|max:100000000|regex:/^[0-9]+$/u|exists:brands,id',
+                'tags' => 'required',
+                'category_id' => 'required|min:1|max:100000000|exists:product_categories,id',
+                'brand_id' => 'required|min:1|max:100000000|exists:brands,id',
                 'published_at' => 'required|numeric',
                 'meta_key.*' => 'required',
                 'meta_value.*' => 'required',
             ];
         else {
             return [
-                'name' => 'required|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+                'name' => 'required|max:120|min:2',
                 'introduction' => 'required|max:20480|min:5',
                 'weight' => 'required|max:1000|min:1|numeric',
                 'length' => 'required|max:1000|min:1|numeric',
@@ -55,9 +55,9 @@ class ProductRequest extends FormRequest
                 'image' => 'image|mimes:png,jpg,jpeg,gif',
                 'status' => 'required|numeric|in:0,1',
                 'marketable' => 'required|numeric|in:0,1',
-                'tags' => 'required|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
-                'category_id' => 'required|min:1|max:100000000|regex:/^[0-9]+$/u|exists:product_categories,id',
-                'brand_id' => 'required|min:1|max:100000000|regex:/^[0-9]+$/u|exists:brands,id',
+                'tags' => 'required',
+                'category_id' => 'required|min:1|max:100000000|exists:product_categories,id',
+                'brand_id' => 'required|min:1|max:100000000|exists:brands,id',
                 'published_at' => 'required|numeric',
                 'meta_key.*' => 'required',
                 'meta_value.*' => 'required',

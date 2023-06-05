@@ -25,8 +25,8 @@ class EmailRequest extends FormRequest
     public function rules()
     {
         return [
-            'subject' => 'required|max:20|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
-            'body' => 'required|max:80|min:5|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/:;،؛\n\r&?؟!«»" ًّ َ ِ ُ ْ () ]+$/u',
+            'subject' => 'required|max:20|min:2',
+            'body' => 'required|max:80|min:5',
             'status' => ['required', 'numeric', Rule::in(['0', '1'])],
             'published_at' => 'required|numeric',
         ];

@@ -27,8 +27,8 @@ class UserRequest extends FormRequest
     {
         if ($this->isMethod('post'))
         return [
-            'first_name' => 'required|max:120|min:1|regex:/^[ا-یa-zA-Z ]+$/u',
-            'last_name' => 'required|max:120|min:1|regex:/^[ا-یa-zA-Z ]+$/u',
+            'first_name' => 'required|max:120|min:1',
+            'last_name' => 'required|max:120|min:1',
             'mobile' => ['required', 'digits:11', 'unique:users'],
             'email' => ['required', 'string', 'email', 'unique:users'],
             'national_code' => ['nullable', 'digits:10', 'unique:users'],
@@ -37,8 +37,8 @@ class UserRequest extends FormRequest
             'activation' => ['required', 'numeric', Rule::in(['0', '1'])],
         ];
         else return [
-            'first_name' => 'required|max:120|min:1|regex:/^[ا-یa-zA-Z ]+$/u',
-            'last_name' => 'required|max:120|min:1|regex:/^[ا-یa-zA-Z ]+$/u',
+            'first_name' => 'required|max:120|min:1',
+            'last_name' => 'required|max:120|min:1',
             'national_code' => ['nullable', 'digits:10', Rule::unique('users')->ignore($this->id)],
             'profile_photo_path' => 'nullable|image|mimes:png,jpg,jpeg,gif',
         ];

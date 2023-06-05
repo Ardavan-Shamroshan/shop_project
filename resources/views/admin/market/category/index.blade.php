@@ -46,7 +46,7 @@
                         <td>{{ $productCategory->parent_id ? $productCategory->parent->name : 'دسته اصلی' }}</td>
                         <td>{!! \Illuminate\Support\Str::limit($productCategory->description, 90) !!}</td>
                         <td class="shadow-sm text-center">
-                             <img src="{{ asset($productCategory->image['indexArray'][$productCategory->image['currentImage']]) }}" alt="عکس" width="70" height="50" class="border rounded">
+                             <img src="{{ $productCategory->image ? asset($productCategory->image['indexArray'][$productCategory->image['currentImage']]) : asset('admin-assets/images/notfound.png') }}" alt="عکس" width="70" height="50" class="border rounded">
                         </td>
                         <td>{{ $productCategory->slug }}</td>
                         <td>{{ $productCategory->tags }}</td>

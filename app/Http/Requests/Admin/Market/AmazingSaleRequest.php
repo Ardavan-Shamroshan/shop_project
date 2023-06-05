@@ -26,7 +26,7 @@ class AmazingSaleRequest extends FormRequest
     {
         return [
             'percentage' => 'required|max:100|min:1|numeric',
-            'product_id' => 'required|min:1|max:100000000|regex:/^[0-9]+$/u|exists:products,id',
+            'product_id' => 'required|min:1|max:100000000|exists:products,id',
             'status' => ['required', 'numeric', Rule::in(['0', '1'])],
             'start_date' => ['required', 'numeric'],
             'end_date' => ['required', 'numeric'],

@@ -23,21 +23,20 @@ class ServiceRequest extends FormRequest {
     public function rules() {
         if ($this->isMethod('post'))
             return [
-                // 'title' => 'required|max:120|min:2|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,،!?؟]+$/u',
                 'title' => 'required|max:120|min:2',
-                'summary' => 'required|max:300|min:5|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/:;،؛\n\r&?؟!«»" ًّ َ ِ ُ ْ () ]+$/u',
+                'summary' => 'required|max:300|min:5',
                 'image' => 'required|image|mimes:png,jpg,jpeg,gif',
                 'status' => ['required', 'numeric', Rule::in(['0', '1'])],
-                'body' => 'required|max:2048|min:5|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/:;،؛\n\r&?؟!«»" ًّ َ ِ ُ ْ () ]+$/u',
+                'body' => 'required|max:2048|min:5',
             ];
         else
             return [
-                // 'title' => 'required|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+                // 'title' => 'required|max:120|min:2',
                 'title' => 'required|max:120|min:2',
-                'summary' => 'required|max:300|min:5|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/:;،؛\n\r&?؟!«»" ًّ َ ِ ُ ْ () ]+$/u',
+                'summary' => 'required|max:300|min:5',
                 'image' => 'image|mimes:png,jpg,jpeg,gif',
                 'status' => ['required', 'numeric', Rule::in(['0', '1'])],
-                'body' => 'required|max:2048|min:5|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/:;،؛\n\r&?؟!«»" ًّ َ ِ ُ ْ () ]+$/u',
+                'body' => 'required|max:2048|min:5',
             ];
     }
 }

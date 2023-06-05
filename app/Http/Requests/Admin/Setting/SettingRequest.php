@@ -21,9 +21,9 @@ class SettingRequest extends FormRequest {
      */
     public function rules() {
         return [
-            'title' => 'required|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,!?؟ ]+$/u',
+            'title' => 'required|max:120|min:2',
             'description' => 'required|max:2048|min:10',
-            'keywords' => 'required|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,!?؟،؛ ]+$/u',
+            'keywords' => 'required|max:120|min:2',
             'email' => ['required', 'string', 'email'],
             'mobile' => ['required', 'digits:11'],
             'phone1' => ['required', 'string'],

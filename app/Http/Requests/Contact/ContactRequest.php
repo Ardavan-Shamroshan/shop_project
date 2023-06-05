@@ -22,12 +22,12 @@ class ContactRequest extends FormRequest {
      */
     public function rules() {
         return [
-            'first_name' => 'required|max:120|min:1|regex:/^[ا-یa-zA-Z ]+$/u',
-            'last_name' => 'required|max:120|min:1|regex:/^[ا-یa-zA-Z ]+$/u',
+            'first_name' => 'required|max:120|min:1',
+            'last_name' => 'required|max:120|min:1',
             'email' => ['required', 'string', 'email', 'unique:users'],
             'mobile' => ['required', 'digits:11'],
-            'subject' => 'required|max:20|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
-            'message' => 'required|max:80|min:5|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/:;،؛\n\r&?؟!«»" ًّ َ ِ ُ ْ () ]+$/u',
+            'subject' => 'required|max:20|min:2',
+            'message' => 'required|max:80|min:5',
         ];
     }
 }

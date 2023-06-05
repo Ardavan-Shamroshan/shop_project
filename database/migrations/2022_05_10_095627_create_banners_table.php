@@ -17,7 +17,7 @@ class CreateBannersTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('image');
-            $table->string('url');
+            $table->string('url')->nullable();
             $table->tinyInteger('position')->default(0)->comment('developer explain 0 or 1 or ... in admin\content\banner model');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();

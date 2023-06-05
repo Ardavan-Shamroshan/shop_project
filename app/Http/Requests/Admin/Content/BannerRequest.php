@@ -12,7 +12,8 @@ class BannerRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize() {
+    public function authorize()
+    {
         return true;
     }
 
@@ -21,22 +22,23 @@ class BannerRequest extends FormRequest
      *
      * @return array
      */
-    public function rules() {
+    public function rules()
+    {
         if ($this->isMethod('post')) {
             return [
-                'title' => ['required', 'max:120', 'min:2', 'regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u'],
-                'url' => ['required', 'max:200', 'min:5', 'regex:/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i'],
-                'status' => ['required', 'numeric', Rule::in(['0', '1'])],
+                'title'    => ['required', 'max:120', 'min:2'],
+                'url'      => ['nullable', 'max:200', 'min:5'],
+                'status'   => ['required', 'numeric', Rule::in(['0', '1'])],
                 'position' => ['required', 'numeric'],
-                'image' => ['required', 'image', 'mimes:png,jpg,jpeg,gif'],
+                'image'    => ['required', 'image', 'mimes:png,jpg,jpeg,gif'],
             ];
         } else
             return [
-                'title' => ['required', 'max:120', 'min:2', 'regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u'],
-                'url' => ['required', 'max:200', 'min:5','regex:/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i'],
-                'status' => ['required', 'numeric', Rule::in(['0', '1'])],
+                'title'    => ['required', 'max:120', 'min:2'],
+                'url'      => ['nullable', 'max:200', 'min:5'],
+                'status'   => ['required', 'numeric', Rule::in(['0', '1'])],
                 'position' => ['required', 'numeric'],
-                'image' => ['image', 'mimes:png,jpg,jpeg,gif'],
+                'image'    => ['image', 'mimes:png,jpg,jpeg,gif'],
             ];
     }
 }

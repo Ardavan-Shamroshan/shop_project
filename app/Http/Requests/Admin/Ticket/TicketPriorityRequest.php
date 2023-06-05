@@ -24,7 +24,7 @@ class TicketPriorityRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:120|min:2|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,،!?؟ ]+$/u',
+            'name' => 'required|max:120|min:2',
             'status' => 'required|numeric|in:0,1',
         ];
     }

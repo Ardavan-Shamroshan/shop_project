@@ -25,9 +25,9 @@ class CategoryValueRequest extends FormRequest
     public function rules()
     {
         return [
-            'value' => 'required|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,!?؟ ]+$/u',
+            'value' => 'required|max:120|min:2',
             'price_increase' => 'required|numeric',
-            'product_id' => 'required|min:1|max:100000000|regex:/^[0-9]+$/u|exists:products,id',
+            'product_id' => 'required|min:1|max:100000000|exists:products,id',
             'type' => ['required',  Rule::in(['0', '1'])],
         ];
     }

@@ -24,9 +24,9 @@ class FAQRequest extends FormRequest
     public function rules()
     {
         return [
-            'question' => 'required|max:225|min:5|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/:;،؛\n\r&?؟!«»" ًّ َ ِ ُ ْ () ]+$/u',
-            'answer' => 'required|max:550|min:5|regex:/^[آا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/:;،؛\n\r&?؟!«»" ًّ َ ِ ُ ْ (). ]+$/u',
-            'tags' => 'required|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي., ]+$/u',
+            'question' => 'required|max:225|min:5',
+            'answer' => 'required|max:550|min:5',
+            'tags' => 'required',
         ];
     }
 }

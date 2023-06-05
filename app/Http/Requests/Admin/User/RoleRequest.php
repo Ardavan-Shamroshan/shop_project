@@ -24,14 +24,14 @@ class RoleRequest extends FormRequest {
         $route = Route::current();
         if ($route->getName() == 'admin.user.role.store')
             return [
-                'name' => 'required|max:120|min:1|regex:/^[ا-یa-zA-Z ]+$/u',
-                'description' => 'required|max:220|min:2|regex:/^[ا-یa-zA-Z ]+$/u',
+                'name' => 'required|max:120|min:1',
+                'description' => 'required|max:220|min:2',
                 'permissions.*' => 'exists:permissions,id'
             ];
         elseif ($route->getName() == 'admin.user.role.update')
             return [
-                'name' => 'required|max:120|min:1|regex:/^[ا-یa-zA-Z ]+$/u',
-                'description' => 'required|max:220|min:2|regex:/^[ا-یa-zA-Z ]+$/u',
+                'name' => 'required|max:120|min:1',
+                'description' => 'required|max:220|min:2',
             ];
         elseif ($route->getName() == 'admin.user.role.permission-update')
             return [

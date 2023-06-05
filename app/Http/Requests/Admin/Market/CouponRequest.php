@@ -25,7 +25,7 @@ class CouponRequest extends FormRequest
     public function rules()
     {
         return [
-            'code' => 'required|max:120|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,!?؟ ]+$/u',
+            'code' => 'required|max:120|min:2',
             'amount_type' => ['required', 'numeric', Rule::in(['0', '1'])],
             'amount' => ['required', (request()->amount_type == 0) ? 'max:100' : '', 'numeric'],
             'discount_ceiling' => 'required|max:100000000000000000|min:1|numeric',

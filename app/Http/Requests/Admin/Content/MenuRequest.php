@@ -25,9 +25,9 @@ class MenuRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:225|min:2|regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,><\/;\n\r&?؟! ]+$/u',
-            'url' => 'required|max:500|min:5|regex:/\b(?:(?:https?|ftp):\/\/|www\.)[-a-z0-9+&@#\/%?=~_|!:,.;]*[-a-z0-9+&@#\/%=~_|]/i',
-            'parent_id' => 'nullable|regex:/^[0-9]+$/u|exists:menus,id',
+            'name' => 'required|max:225|min:2',
+            'url' => 'nullable|max:500|min:5',
+            'parent_id' => 'nullable|exists:menus,id',
             'status' => ['required', 'numeric', Rule::in(['0', '1'])],
         ];
     }

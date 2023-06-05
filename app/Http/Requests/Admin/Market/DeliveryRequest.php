@@ -24,10 +24,10 @@ class DeliveryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:120', 'min:2', 'regex:/^[ا-یa-zA-Z0-9\-۰-۹ء-ي.,!?؟ ]+$/u'],
-            'amount' => ['required', 'regex:/^[0-9.]+$/u'],
+            'name' => ['required', 'max:120', 'min:2'],
+            'amount' => ['required'],
             'delivery_time' => ['required', 'integer'],
-            'delivery_time_unit' => ['required', 'regex:/^[ا-یa-zA-Zء-ي., ]+$/u'],
+            'delivery_time_unit' => ['required'],
         ];
     }
 
