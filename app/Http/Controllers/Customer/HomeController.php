@@ -78,7 +78,7 @@ class HomeController extends Controller
                 $query->whereIn('brand_id', $request->brands);
             })
             ->orderBy($column, $direction)
-            ->paginate(2)
+            ->paginate(8)
             // add previous queries to the paginator
             ->appends($request->query());
 

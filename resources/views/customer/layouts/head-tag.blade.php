@@ -17,3 +17,6 @@
 <link rel="stylesheet" href="{{ asset('customer-assets/assets/css/profile.css') }}">
 <link rel="stylesheet" href="{{ asset('customer-assets/assets/css/login.css') }}">
 <link rel="icon" type="image/x-icon" href="{{ asset('customer-assets/assets/images/logo/8.png') }}">
+
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+{!! htmlScriptTagJsApi() !!}

@@ -148,6 +148,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/saeedpooyanfar/zarinpal" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nwidart/laravel-modules" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/beyondcode/laravel-query-detector" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/biscolab/laravel-recaptcha" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

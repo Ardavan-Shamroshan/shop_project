@@ -52,7 +52,7 @@
                                     <span>پربازدیدترین کالاها</span>
                                 </h2>
                                 <section class="content-header-link">
-                                    <a href="#">مشاهده همه</a>
+                                    <a href="{{ route('customer.products', ['sort' => 4]) }}">مشاهده همه</a>
                                 </section>
                             </section>
                         </section>
@@ -146,9 +146,7 @@
                         </a>
                     </section>
                 @endforeach
-
             </section>
-
         </section>
     </section>
     <!-- end ads section -->
@@ -167,7 +165,7 @@
                                     <span>پیشنهاد آمازون به شما</span>
                                 </h2>
                                 <section class="content-header-link">
-                                    <a href="#">مشاهده همه</a>
+                                    <a href="{{ route('customer.products', ['sort' => 5]) }}">مشاهده همه</a>
                                 </section>
                             </section>
                         </section>
@@ -265,9 +263,6 @@
         </section>
         <!-- end ads section -->
     @endif
-
-
-
 
     <!-- start brand part-->
     <section class="brand-part mb-4 py-4">

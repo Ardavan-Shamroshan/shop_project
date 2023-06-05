@@ -8,3 +8,5 @@
 <link href="{{ asset('admin-assets/sweetalert/sweetalert2.css') }}" rel="stylesheet"/>
 <link rel="stylesheet" href="{{ asset('admin-assets/css/style.css') }}">
 
+<meta name="csrf-token" content="{{ csrf_token() }}" />
+{!! htmlScriptTagJsApi() !!}
