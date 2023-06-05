@@ -19,7 +19,8 @@
                                 <img class="w-100 rounded-2 d-block h-auto" src="{{ asset($slideShowImage->image) }}" alt="{{ $slideShowImage->title }}">
                             </a>
                         </section>
-                    @endforeach
+                    @empty
+                    @endforelse
                 </section>
             </section>
             <section class="col-md-4 ps-md-1 mt-2 mt-md-0">
@@ -29,7 +30,8 @@
                             <img class="w-100 rounded-2" src="{{ asset($topBanner->image) }}" alt="{{ $topBanner->title }}">
                         </a>
                     </section>
-                @endforeach
+                @empty
+                @endforelse
             </section>
         </section>
     </section>
@@ -111,13 +113,15 @@
                                                     <section class="product-colors">
                                                         @forelse($mostVisitedProduct->colors as $mostVisitedProductColor)
                                                             <section class="product-colors-item" style="background-color: {{ $mostVisitedProductColor->color }};"></section>
-                                                        @endforeach
+                                                        @empty
+                                                        @endforelse
                                                     </section>
                                                 </a>
                                             </section>
                                         </section>
                                     </section>
-                                @endforeach
+                                @empty
+                                @endforelse
 
                             </section>
                         </section>
@@ -284,7 +288,7 @@
                             @foreach ($brands as $brand)
                                 <section class="item">
                                     <section class="brand-item">
-                                        <a href="{{ urldecode($brand->url) }}"><img class="rounded-2" src="{{ asset($brand->logo['indexArray']['medium']) }}" alt=""></a>
+                                        <a href="{{ route('customer.products', ['brands[]'=> $brand]) }}"><img class="rounded-2" src="{{ asset($brand->logo['indexArray']['medium']) }}" alt=""></a>
                                     </section>
                                 </section>
                             @endforeach

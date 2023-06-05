@@ -76,7 +76,6 @@
             </section>
         </section>
 
-
         <section class="content-wrapper bg-white p-3 rounded-2 mb-3">
             <section class="sidebar-filter-btn d-grid gap-2">
                 <button class="btn btn-danger" type="submit">اعمال فیلتر</button>

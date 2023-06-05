@@ -19,8 +19,8 @@ class HomeController extends Controller
         $middleBanners = Banner::query()->where('position', 2)->where('status', 1)->take(2)->get();
         $bottomBanner = Banner::query()->where('position', 3)->where('status', 1)->first();
         $brands = Brand::query()->where('status', 1)->get();
-        $mostVisitedProducts = Product::query()->inRandomOrder()->take(10)->get();
-        $offerProducts = Product::query()->inRandomOrder()->take(10)->get();
+        $mostVisitedProducts = Product::with(['amazingSales', 'colors'])->inRandomOrder()->take(10)->get();
+        $offerProducts = Product::with(['amazingSales', 'colors'])->inRandomOrder()->take(10)->get();
         return view('customer.home', compact('slideShowImages', 'topBanners', 'brands', 'middleBanners', 'bottomBanner', 'mostVisitedProducts', 'offerProducts'));
     }
 
