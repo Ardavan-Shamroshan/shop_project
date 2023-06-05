@@ -32,7 +32,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($order->orderItems as $item)
+                @forelse ($order->orderItems as $item)
                     <tr>
                         <th>{{ $loop->iteration }}</th>
                         <td>{{ $item->singleProduct->name ?? '-'}}</td>
@@ -52,7 +52,7 @@
                         </td>
 
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

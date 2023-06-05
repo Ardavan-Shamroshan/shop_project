@@ -33,7 +33,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($menus as $menu)
+                @forelse($menus as $menu)
                     <tr>
                         <th>{{ $loop->iteration }}</th>
                         <td>{{ $menu->name }}</td>
@@ -56,7 +56,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

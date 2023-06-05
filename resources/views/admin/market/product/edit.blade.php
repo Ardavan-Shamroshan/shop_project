@@ -17,7 +17,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>ویرایش کالا</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.product') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">«
+            <a href="{{ route('admin.market.product') }}" class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">«
                 بازگشت</a>
         </section>
         <section>
@@ -51,10 +51,10 @@
                             @enderror
                             <select name="category_id" id="category_id"
                                     class="form-control form-control-sm @error('category_id') border border-danger @enderror">
-                                @foreach($categories as $category)
+                                @forelse($categories as $category)
                                     <option value="{{ $category->id }}"
                                             @if(old('category_id', $product->category_id) == $category->id) selected @endif>{{ $category->name }}</option>
-                                @endforeach
+                                @empty @endforelse
                             </select>
                         </div>
                     </section>
@@ -70,10 +70,10 @@
                                 </span>
                             @enderror
                             <select name="brand_id" id="brand_id" class="form-control form-control-sm @error('brand_id') border border-danger @enderror">
-                                @foreach($brands as $brand)
+                                @forelse($brands as $brand)
                                     <option value="{{ $brand->id }}"
                                             @if(old('brand_id', $product->brand_id) == $brand->id) selected @endif>{{ $brand->original_name }}</option>
-                                @endforeach
+                                @empty @endforelse
                             </select>
                         </div>
                     </section>
@@ -210,7 +210,7 @@
                                     @php
                                         $number = 1;
                                     @endphp
-                                    @foreach ($product->image['indexArray'] as $key => $value)
+                                    @forelse ($product->image['indexArray'] as $key => $value)
                                         <section class="col-md-{{ 6 / $number }}">
                                             <div
                                                 class="form-check pl-0 pt-2 border border-gray rounded text-capitalize text-center shadow-sm">
@@ -230,7 +230,7 @@
                                         @php
                                             $number++;
                                         @endphp
-                                    @endforeach
+                                    @empty @endforelse
                                 </section>
                             </section>
                         </section>
@@ -291,7 +291,7 @@
                     </section>
 
                     <section class=" col-12 border-top border-bottom py-3 mb-3">
-                        @foreach($product->metas as $meta)
+                        @forelse($product->metas as $meta)
                             <section class="row">
                                 <section class="col-6 col-md-3">
                                     <div class="form-group">
@@ -318,9 +318,9 @@
                                     </div>
                                 </section>
                             </section>
-                        @endforeach
+                        @empty @endforelse
                         <section class="col-12">
-                            <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
+                            <button class="btn btn-primary border rounded-lg btn-sm btn-hover color-9">ثبت</button>
                         </section>
                     </section>
                 </section>

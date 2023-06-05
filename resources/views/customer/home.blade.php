@@ -13,7 +13,7 @@
 
             <section class="col-md-8 pe-md-1 ">
                 <section id="slideshow" class="owl-carousel owl-theme">
-                    @foreach ($slideShowImages as $slideShowImage)
+                    @forelse ($slideShowImages as $slideShowImage)
                         <section class="item">
                             <a class="w-100 d-block h-auto text-decoration-none" href="{{ urldecode($slideShowImage->url) }}">
                                 <img class="w-100 rounded-2 d-block h-auto" src="{{ asset($slideShowImage->image) }}" alt="{{ $slideShowImage->title }}">
@@ -23,7 +23,7 @@
                 </section>
             </section>
             <section class="col-md-4 ps-md-1 mt-2 mt-md-0">
-                @foreach ($topBanners as $topBanner)
+                @forelse ($topBanners as $topBanner)
                     <section class="mb-2">
                         <a href="#" class="d-block">
                             <img class="w-100 rounded-2" src="{{ asset($topBanner->image) }}" alt="{{ $topBanner->title }}">
@@ -58,7 +58,7 @@
                         <section class="lazyload-wrapper">
                             <section class="lazyload light-owl-nav owl-carousel owl-theme">
 
-                                @foreach ($mostVisitedProducts as $mostVisitedProduct)
+                                @forelse ($mostVisitedProducts as $mostVisitedProduct)
                                     <section class="item">
                                         <section class="lazyload-item-wrapper">
                                             <section class="product">
@@ -109,7 +109,7 @@
                                                         <section class="product-price">{{ priceFormat($mostVisitedProduct->price - $amazingSaleProductPrice) }}</section>
                                                     </section>
                                                     <section class="product-colors">
-                                                        @foreach($mostVisitedProduct->colors as $mostVisitedProductColor)
+                                                        @forelse($mostVisitedProduct->colors as $mostVisitedProductColor)
                                                             <section class="product-colors-item" style="background-color: {{ $mostVisitedProductColor->color }};"></section>
                                                         @endforeach
                                                     </section>

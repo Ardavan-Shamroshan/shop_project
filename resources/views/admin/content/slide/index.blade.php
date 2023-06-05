@@ -34,7 +34,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($slides as $key => $slide)
+                @forelse($slides as $key => $slide)
                     <tr>
                         <th>{{ $key+=1 }}</th>
                         <td>{{ $slide->title }}</td>
@@ -63,7 +63,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

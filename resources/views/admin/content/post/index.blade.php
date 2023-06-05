@@ -39,7 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($posts as $key => $post)
+                @forelse($posts as $key => $post)
                     <tr>
                         <th>{{ $key+=1 }}</th>
                         <td>{{ $post->title }}</td>
@@ -79,7 +79,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

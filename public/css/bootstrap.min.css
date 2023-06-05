@@ -3673,7 +3673,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
         margin-top: -.25rem;
         background-color: #007bff;
         border: 0;
-        border-radius: 1rem;
+         ;
         -webkit-appearance: none;
         appearance: none;
     }
@@ -3694,7 +3694,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
         cursor: pointer;
         background-color: #dee2e6;
         border-color: transparent;
-        border-radius: 1rem;
+         ;
     }
 
     .custom-range::-moz-range-thumb {
@@ -3702,7 +3702,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
         height: 1rem;
         background-color: #007bff;
         border: 0;
-        border-radius: 1rem;
+         ;
         -moz-appearance: none;
         appearance: none;
     }
@@ -3723,7 +3723,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
         cursor: pointer;
         background-color: #dee2e6;
         border-color: transparent;
-        border-radius: 1rem;
+         ;
     }
 
     .custom-range::-ms-thumb {
@@ -3731,7 +3731,7 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
         height: 1rem;
         background-color: #007bff;
         border: 0;
-        border-radius: 1rem;
+         ;
         appearance: none;
     }
 
@@ -3756,13 +3756,13 @@ input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].bt
 
     .custom-range::-ms-fill-lower {
         background-color: #dee2e6;
-        border-radius: 1rem;
+         ;
     }
 
     .custom-range::-ms-fill-upper {
         margin-right: 15px;
         background-color: #dee2e6;
-        border-radius: 1rem;
+         ;
     }
 
 .nav {

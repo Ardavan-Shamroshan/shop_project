@@ -54,7 +54,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

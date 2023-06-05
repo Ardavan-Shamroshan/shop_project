@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>کاربران ادمین</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.user.admin-user.create') }}" class="btn btn-info btn-sm btn-hover color-8 rounded-pill">ایجاد ادمین جدید</a>
+            <a href="{{ route('admin.user.admin-user.create') }}" class="btn btn-info btn-sm btn-hover color-8 rounded-lg">ایجاد ادمین جدید</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -39,7 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($admins as $key => $admin)
+                @forelse($admins as $key => $admin)
                     <tr>
                         <th>{{ $key += 1 }}</th>
                         <td>{{ $admin->email }}</td>
@@ -76,19 +76,19 @@
                         </td>
 
                         <td class="width-16-rem text-left">
-                            <a href="{{ route('admin.user.admin-user.roles', $admin) }}" class="btn btn-warning btn-sm btn-hover rounded-pill border color-4"><i class="fa fa-user-cog"></i> نقش</a>
-                            <a href="{{ route('admin.user.admin-user.permissions', $admin) }}" class="btn btn-info btn-sm btn-hover rounded-pill border color-5"><i class="fa fa-user-shield"></i> سطوح دسترسی</a>
-                            <a href="{{ route('admin.user.admin-user.edit', $admin->id) }}" class="btn btn-primary btn-sm btn-hover border rounded-pill btn-sm color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
+                            <a href="{{ route('admin.user.admin-user.roles', $admin) }}" class="btn btn-warning btn-sm btn-hover rounded-lg border color-4"><i class="fa fa-user-cog"></i> نقش</a>
+                            <a href="{{ route('admin.user.admin-user.permissions', $admin) }}" class="btn btn-info btn-sm btn-hover rounded-lg border color-5"><i class="fa fa-user-shield"></i> سطوح دسترسی</a>
+                            <a href="{{ route('admin.user.admin-user.edit', $admin->id) }}" class="btn btn-primary btn-sm btn-hover border rounded-lg btn-sm color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
                             <form action="{{ route('admin.user.admin-user.destroy', $admin->id) }}" class="d-inline" method="post">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-danger btn-sm btn-hover color-11 delete border rounded-pill btn-sm">
+                                <button type="submit" class="btn btn-danger btn-sm btn-hover color-11 delete border rounded-lg btn-sm">
                                     <i class="fa fa-times"></i> حذف
                                 </button>
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

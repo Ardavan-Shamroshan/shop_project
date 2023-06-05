@@ -33,9 +33,9 @@
                             <section class="address-alert alert alert-danger align-items-center p-2" role="alert">
                                 <i class="fa fa-exclamation-circle flex-shrink-0 me-2"></i> خطا
                                 <ul>
-                                    @foreach ($errors->all() as $error)
+                                    @forelse ($errors->all() as $error)
                                         <li>{{ $error }}</li>
-                                    @endforeach
+                                    @empty @endforelse
                                 </ul>
                             </section>
                         @endif
@@ -52,10 +52,10 @@
                                                 <label for="category_id" class="font-weight-bold">انتخاب دسته</label>
                                                 <select name="category_id" id="category_id"
                                                         class="form-control form-control-sm">
-                                                    @foreach($categories as $category)
+                                                    @forelse($categories as $category)
                                                         <option value="{{ $category->id }}"
                                                                 @if(old('category_id') == $category->id) selected @endif>{{ $category->name }}</option>
-                                                    @endforeach
+                                                    @empty @endforelse
                                                 </select>
                                             </div>
                                         </section>
@@ -64,10 +64,10 @@
                                                 <label for="priority_id" class="font-weight-bold">انتخاب اولویت</label>
                                                 <select name="priority_id" id="priority_id"
                                                         class="form-control form-control-sm">
-                                                    @foreach($priorities as $priority)
+                                                    @forelse($priorities as $priority)
                                                         <option value="{{ $priority->id }}"
                                                                 @if(old('priority_id') == $priority->id) selected @endif>{{ $priority->name }}</option>
-                                                    @endforeach
+                                                    @empty @endforelse
                                                 </select>
                                             </div>
                                         </section>
@@ -93,7 +93,7 @@
                                         </section>
 
                                         <section class="col-12 mt-2">
-                                            <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">
+                                            <button class="btn btn-primary border rounded-lg btn-sm btn-hover color-9">
                                                 ثبت
                                             </button>
                                         </section>

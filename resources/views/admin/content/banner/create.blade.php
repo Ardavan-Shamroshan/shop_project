@@ -24,7 +24,7 @@
             </section>
 
             <section class="d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-                <a href="{{ route('admin.content.banner') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">بازگشت</a>
+                <a href="{{ route('admin.content.banner') }}" class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">بازگشت</a>
             </section>
 
             <section>
@@ -103,15 +103,15 @@
                                 </span>
                                 @enderror
                                 <select name="position" class="form-control form-control-sm @error('position') border border-danger @enderror">
-                                @foreach($positions as $key => $value)
+                                @forelse($positions as $key => $value)
                                         <option value="{{ $key }}" @if(old('position') == $key) selected @endif>{{ $value }}</option>
-                                @endforeach
+                                @empty @endforelse
                                 </select>
                             </div>
                         </section>
 
                         <section class="col-12">
-                            <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
+                            <button class="btn btn-primary border rounded-lg btn-sm btn-hover color-9">ثبت</button>
                         </section>
                     </section>
                 </form>

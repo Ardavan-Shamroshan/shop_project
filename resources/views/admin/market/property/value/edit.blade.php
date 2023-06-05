@@ -35,9 +35,9 @@
                             @enderror
                             <select name="product_id" id="product_id" class="form-control form-control-sm @error('product_id') border border-danger @enderror">
                                 <option value="">محصول را انتخاب کنید</option>
-                                @foreach($attribute->category->products as $product)
+                                @forelse($attribute->category->products as $product)
                                     <option value="{{ $product->id }}" @if(old('product_id', $value->product_id) === $product->id) selected @endif>{{ $product->name }}</option>
-                                @endforeach
+                                @empty @endforelse
                             </select>
                         </div>
                     </section>

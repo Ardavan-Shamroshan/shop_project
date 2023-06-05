@@ -88,7 +88,7 @@
                             @php
                                 $number = 1;
                             @endphp
-                            @foreach ($service->image['indexArray'] as $key => $value)
+                            @forelse ($service->image['indexArray'] as $key => $value)
                                 <section class="col-md-{{ 6 / $number }}">
                                     <div class="form-check pl-0 py-2 border border-gray rounded text-capitalize text-center shadow-sm">
                                         <input type="radio" class="form-check-input" value="{{ $key }}" id="{{ $number }}"
@@ -103,7 +103,7 @@
                                 @php
                                     $number++;
                                 @endphp
-                            @endforeach
+                            @empty @endforelse
                         </section>
                     </section>
 

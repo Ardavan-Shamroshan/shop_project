@@ -18,7 +18,7 @@
         <section class="main-body-container-header"><h4>ایجاد کالا</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
             <a href="{{ route('admin.market.product') }}"
-               class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">«
+               class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">«
                 بازگشت</a>
         </section>
         <section>
@@ -51,10 +51,10 @@
                             @enderror
                             <select name="category_id" id="category_id"
                                     class="form-control form-control-sm @error('category_id') border border-danger @enderror">
-                                @foreach($categories as $category)
+                                @forelse($categories as $category)
                                     <option value="{{ $category->id }}"
                                             @if(old('category_id') == $category->id) selected @endif>{{ $category->name }}</option>
-                                @endforeach
+                                @empty @endforelse
                             </select>
                         </div>
                     </section>
@@ -70,10 +70,10 @@
                             @enderror
                             <select name="brand_id" id="brand_id" class="form-control form-control-sm @error('brand_id') border border-danger @enderror">
                                 <option value="">برند محصول را انتخاب کنید</option>
-                                @foreach($brands as $brand)
+                                @forelse($brands as $brand)
                                     <option value="{{ $brand->id }}"
                                             @if(old('brand_id') == $brand->id) selected @endif>{{ $brand->original_name }}</option>
-                                @endforeach
+                                @empty @endforelse
                             </select>
                         </div>
                     </section>
@@ -285,14 +285,14 @@
                         </section>
 
                         <section>
-                            <button type="button" class="btn border rounded-pill btn-sm btn-hover color-5" id="btn-copy">
+                            <button type="button" class="btn border rounded-lg btn-sm btn-hover color-5" id="btn-copy">
                                 <i class="fa fa-plus font-size-12"></i> افزودن
                             </button>
                         </section>
                     </section>
 
                     <section class="col-12">
-                        <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-lg btn-sm btn-hover color-9">ثبت</button>
                     </section>
                 </section>
             </form>

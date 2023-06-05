@@ -14,7 +14,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>ایجاد برند جدید</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.brand') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">« بازگشت</a>
+            <a href="{{ route('admin.market.brand') }}" class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">« بازگشت</a>
         </section>
         <section>
             <form action="{{ route('admin.market.brand.store') }}" method="post" enctype="multipart/form-data" id="form">
@@ -93,7 +93,7 @@
                         </div>
                     </section>
                     <section class="col-12 col-md-6">
-                        <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-lg btn-sm btn-hover color-9">ثبت</button>
                     </section>
                 </section>
             </form>

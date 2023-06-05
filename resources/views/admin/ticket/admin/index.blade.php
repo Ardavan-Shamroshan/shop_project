@@ -40,7 +40,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($admins as $key => $admin)
+                        @forelse($admins as $key => $admin)
                             <tr>
                                 <th>{{ $key += 1 }}</th>
                                 <td>{{ $admin->fullname }}</td>
@@ -49,7 +49,7 @@
                                     <a href="{{ route('admin.ticket.admin.set', $admin->id) }}" class="btn btn-sm btn-hover text-white rounded-pill border {{ $admin->ticketAdmin == null ? 'color-9' : 'color-11' }}"><i class="fa {{ $admin->ticketAdmin == null ? 'fa-user-plus' : 'fa-user-minus' }}"></i> {{ $admin->ticketAdmin == null ? 'اضافه' : 'حذف' }}</a>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty @endforelse
 
                         </tbody>
                     </table>

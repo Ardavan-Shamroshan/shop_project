@@ -48,9 +48,9 @@
                                 </span>
                             @enderror
                             <select name="category_id" id="category_id" class="form-control form-control-sm @error('category_id') border border-danger @enderror">
-                                @foreach($postCategories as $postCategory)
+                                @forelse($postCategories as $postCategory)
                                     <option value="{{ $postCategory->id }}" @if(old('category_id', $post->category_id) == $postCategory->id) selected @endif>{{ $postCategory->name }}</option>
-                                @endforeach
+                                @empty @endforelse
                             </select>
                         </div>
                     </section>
@@ -153,7 +153,7 @@
                             @php
                                 $number = 1;
                             @endphp
-                            @foreach ($post->image['indexArray'] as $key => $value)
+                            @forelse ($post->image['indexArray'] as $key => $value)
                                 <section class="col-md-{{ 6 / $number }}">
                                     <div class="form-check pl-0 py-2 border border-gray rounded text-capitalize text-center shadow-sm">
                                         <input type="radio" class="form-check-input" value="{{ $key }}" id="{{ $number }}"
@@ -169,7 +169,7 @@
                                 @php
                                     $number++;
                                 @endphp
-                            @endforeach
+                            @empty @endforelse
                         </section>
                     </section>
 

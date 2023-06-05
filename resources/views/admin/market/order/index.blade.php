@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>سفارشات</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="#" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8 disabled">ایجاد سفارش جدید</a>
+            <a href="#" class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8 disabled">ایجاد سفارش جدید</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -41,7 +41,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach ($orders as $order)
+                @forelse ($orders as $order)
                     <tr>
                         <th>{{ $loop->iteration }}</th>
                         <td>{{ $order->id }}</td>
@@ -57,7 +57,7 @@
                         <td>{{$order->order_status_value}}</td>
                         <td class="width-8-rem text-left">
                             <div class="dropdown transition">
-                                <a href="" class=" dropdown-toggle btn btn-sm btn-block btn-hover color-4 rounded-pill" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                <a href="" class=" dropdown-toggle btn btn-sm btn-block btn-hover color-4 rounded-lg" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-tools"></i><span> عملیات</span>
                                 </a>
                                 <div class="dropdown-menu border-dropdown radius-05 transition shadow-sm " aria-labelledby="dropdownMenuLink">
@@ -75,7 +75,7 @@
                             </div>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

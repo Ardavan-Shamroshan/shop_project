@@ -46,7 +46,7 @@
                         </section>
 
                         <ul class="list-group rounded px-0">
-                            @foreach($notifications as $notification)
+                            @forelse($notifications as $notification)
                                 <li class="list-group-item list-group-item-action">
                                     <a href="#" class="text-decoration-none text-dark">
                                         <section class="media">
@@ -57,7 +57,7 @@
                                         </section>
                                     </a>
                             </li>
-                            @endforeach
+                            @empty @endforelse
                         </ul>
                     </section>
                   </span>
@@ -78,7 +78,7 @@
                         </section>
 
                         <ul class="list-group rounded px-0">
-                            @foreach($unseenTickets as $unseenTicket)
+                            @forelse($unseenTickets as $unseenTicket)
                                 <li class="list-group-item list-group-item-action">
                                     <a href="{{ route('admin.ticket.show', $unseenTicket->id) }}" class="text-decoration-none text-dark">
                                         <section class="media">
@@ -91,7 +91,7 @@
                                         </section>
                                     </a>
                             </li>
-                            @endforeach
+                            @empty @endforelse
                         </ul>
                     </section>
                     </span>
@@ -113,7 +113,7 @@
                         </section>
                         <section class="header-comment-wrapper">
                             <ul class="list-group rounded px-0">
-                                @foreach($unseenComments as $unseenComment)
+                                @forelse($unseenComments as $unseenComment)
                                     <li class="list-group-item list-group-item-action">
                                     <a href="@if ($unseenComment->commentable_type === 'App\Models\Content\Post') {{  route('admin.content.comment.show', $unseenComment->id) }} @else {{ route('admin.market.comment.show', $unseenComment->id) }} @endif" class="text-decoration-none text-dark">
                                         <section class="media">
@@ -126,7 +126,7 @@
                                         </section>
                                     </a>
                             </li>
-                                @endforeach
+                                @empty @endforelse
                             </ul>
                         </section>
                     </section>

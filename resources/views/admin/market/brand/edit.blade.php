@@ -16,7 +16,7 @@
         <section class="main-body-container-header"><h4>ویرایش برند</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
             <a href="{{ route('admin.market.brand') }}"
-               class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">« بازگشت</a>
+               class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">« بازگشت</a>
         </section>
         <section>
             <form action="{{ route('admin.market.brand.update', $brand->id) }}" method="post" enctype="multipart/form-data" id="form">
@@ -111,7 +111,7 @@
                     </section>
 
                     <section class="col-12 col-md-6">
-                        <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-lg btn-sm btn-hover color-9">ثبت</button>
                     </section>
 
                     <section class="col-md-6 my-4">
@@ -119,7 +119,7 @@
                             @php
                                 $number = 1;
                             @endphp
-                            @foreach ($brand->logo['indexArray'] as $key => $value)
+                            @forelse ($brand->logo['indexArray'] as $key => $value)
                                 <section class="col-md-{{ 6 / $number }}">
                                     <div
                                         class="form-check pl-0 pt-2 border border-gray rounded text-capitalize text-center shadow-sm">
@@ -139,7 +139,7 @@
                                 @php
                                     $number++;
                                 @endphp
-                            @endforeach
+                            @empty @endforelse
                         </section>
                     </section>
 

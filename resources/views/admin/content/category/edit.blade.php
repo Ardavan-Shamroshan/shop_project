@@ -117,7 +117,7 @@
                                 @php
                                     $number++;
                                 @endphp
-                            @endforeach
+                            @empty @endforelse
                         </section>
                     </section>
                     <section class="col-12 col-md-6">

@@ -34,7 +34,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($services as $key => $service)
+                @forelse($services as $key => $service)
                     <tr>
                         <th>{{ $key+=1 }}</th>
                         <td>{{ $service->title }}</td>
@@ -63,7 +63,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

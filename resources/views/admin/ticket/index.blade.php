@@ -43,7 +43,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach($tickets as $ticket)
+                    @forelse($tickets as $ticket)
                         <tr>
                             <th>{{ $loop->iteration }}</th>
                             <td>{{ $ticket->user->fullname }}</td>
@@ -59,7 +59,7 @@
                                 </a>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty @endforelse
                     </tbody>
                 </table>
             </section>

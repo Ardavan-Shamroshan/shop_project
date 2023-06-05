@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>کالا ها</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.product.create') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">ایجاد
+            <a href="{{ route('admin.market.product.create') }}" class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">ایجاد
                 کالای جدید</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
@@ -35,7 +35,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($products as $product)
+                @forelse($products as $product)
 
                     <tr>
                         <td>{{ $loop->iteration }}</td>
@@ -47,7 +47,7 @@
                         <td>{{ $product->category->name }}</td>
                         <td class="width-8-rem text-left">
                             <div class="dropdown transition">
-                                <a href="" class="dropdown-toggle btn btn-sm btn-block btn-hover color-4 rounded-pill" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                                <a href="" class="dropdown-toggle btn btn-sm btn-block btn-hover color-4 rounded-lg" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
                                     <i class="fa fa-tools"></i><span> عملیات</span>
                                 </a>
                                 <div class="dropdown-menu border-dropdown radius-05 transition shadow-sm" aria-labelledby="dropdownMenuLink" style="min-width: 7rem!important;">
@@ -65,7 +65,7 @@
                             </div>
                         </td>
 
-                @endforeach
+                @empty @endforelse
 
                 </tbody>
             </table>

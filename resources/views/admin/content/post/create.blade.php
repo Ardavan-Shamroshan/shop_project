@@ -47,9 +47,9 @@
                                 </span>
                             @enderror
                             <select name="category_id" id="category_id" class="form-control form-control-sm @error('category_id') border border-danger @enderror">
-                                @foreach($postCategories as $postCategory)
+                                @forelse($postCategories as $postCategory)
                                     <option value="{{ $postCategory->id }}" @if(old('category_id') == $postCategory->id) selected @endif>{{ $postCategory->name }}</option>
-                                @endforeach
+                                @empty @endforelse
                             </select>
                         </div>
                     </section>

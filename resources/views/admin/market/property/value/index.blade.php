@@ -37,7 +37,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($attribute->values as $value)
+                @forelse($attribute->values as $value)
                     <tr>
                         <th>{{ $loop->iteration }}</th>
                         <td>{{ $attribute->name }}</td>
@@ -56,7 +56,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

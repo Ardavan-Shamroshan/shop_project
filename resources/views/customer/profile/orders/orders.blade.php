@@ -67,7 +67,7 @@
                                                 <a href="{{ route('customer.market.product', $orderItems->singleProduct) }}">
                                                     <img src="{{ asset($orderItems->singleProduct->image['indexArray']['small']) }}" alt="{{ $orderItems->singleProduct->name }}">
                                                 </a>
-                                                @endforeach
+                                                @empty @endforelse
 
                                             </section>
 

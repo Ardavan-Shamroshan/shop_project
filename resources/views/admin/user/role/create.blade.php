@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>ایجاد نقش</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.user.role') }}" class="btn btn-info btn-sm border btn-hover color-8 rounded-pill">« بازگشت</a>
+            <a href="{{ route('admin.user.role') }}" class="btn btn-info btn-sm border btn-hover color-8 rounded-lg">« بازگشت</a>
         </section>
         <section>
             <form action="{{ route('admin.user.role.store') }}" method="post">
@@ -48,12 +48,12 @@
                         </div>
                     </section>
                     <section class="col-12 col-md-3 my-4">
-                        <button class="btn btn-primary border btn-hover color-9 rounded-pill">ثبت</button>
+                        <button class="btn btn-primary border btn-hover color-9 rounded-lg">ثبت</button>
                     </section>
 
                     <section class="col-12">
                         <section class="row border-top mt-3 py-3">
-                            @foreach($permissions as $key => $permission)
+                            @forelse($permissions as $key => $permission)
 
                                 <section class="col-md-2">
 
@@ -65,13 +65,13 @@
                                         </span>
                                     @enderror
 
-                                    <div class="form-check shadow-sm p-2 border rounded-pill btn-sm @error('permissions.' . $key) border-danger @enderror">
+                                    <div class="form-check shadow-sm p-2 border rounded-lg btn-sm @error('permissions.' . $key) border-danger @enderror">
                                         <input type="checkbox" class="form-check-input" name="permissions[]" id="{{ $permission->id }}" value="{{ $permission->id }}" checked>
                                         <label for="{{ $permission->id }}" class="form-check-label mr-3 mt-1">{{ $permission->name }}</label>
                                     </div>
                                 </section>
 
-                            @endforeach
+                            @empty @endforelse
 
                         </section>
                     </section>

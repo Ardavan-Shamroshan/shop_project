@@ -14,7 +14,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>پرداخت ها</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="#" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8 disabled">ایجاد پرداخت جدید</a>
+            <a href="#" class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8 disabled">ایجاد پرداخت جدید</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -35,7 +35,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach($payments as $payment)
+                    @forelse($payments as $payment)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $payment->paymentable->transaction_id ?? '-' }}</td>
@@ -56,12 +56,12 @@
                      @endif
                     </td>
                     <td class="width-22-rem text-left">
-                        <a href="{{ route('admin.market.payment.show', $payment->id) }}" class="btn btn-primary btn-sm border rounded-pill btn-sm btn-hover color-9"><i class="fa fa-eye font-size-12"></i> مشاهده </a>
-                        <a href="{{ route('admin.market.payment.canceled', $payment->id) }}" class="btn btn-primary btn-sm border rounded-pill btn-sm btn-hover color-11"><i class="fa fa-unlink font-size-12"></i> باطل کردن </a>
-                        <a href="{{ route('admin.market.payment.returned', $payment->id) }}" class="btn btn-primary btn-sm border rounded-pill btn-sm btn-hover color-4"><i class="fa fa-retweet font-size-12"></i> برگرداندن </a>
+                        <a href="{{ route('admin.market.payment.show', $payment->id) }}" class="btn btn-primary btn-sm border rounded-lg btn-sm btn-hover color-9"><i class="fa fa-eye font-size-12"></i> مشاهده </a>
+                        <a href="{{ route('admin.market.payment.canceled', $payment->id) }}" class="btn btn-primary btn-sm border rounded-lg btn-sm btn-hover color-11"><i class="fa fa-unlink font-size-12"></i> باطل کردن </a>
+                        <a href="{{ route('admin.market.payment.returned', $payment->id) }}" class="btn btn-primary btn-sm border rounded-lg btn-sm btn-hover color-4"><i class="fa fa-retweet font-size-12"></i> برگرداندن </a>
                     </td>
                 </tr>
-                @endforeach
+                @empty @endforelse
            </table>
         </section>
     </section>

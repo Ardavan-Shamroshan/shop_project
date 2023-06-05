@@ -34,7 +34,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($pages as $key => $page)
+                @forelse($pages as $key => $page)
                     <tr>
                         <th>{{ $key+=1 }}</th>
                         <td>{{ $page->title }}</td>
@@ -59,7 +59,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

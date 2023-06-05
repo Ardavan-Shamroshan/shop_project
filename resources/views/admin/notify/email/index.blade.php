@@ -33,7 +33,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($emails as $key => $email)
+                @forelse($emails as $key => $email)
                     <tr>
                         <th>{{ $key += 1 }}</th>
                         <td>{{ $email->subject }}</td>
@@ -65,7 +65,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
 
                 </tbody>
             </table>

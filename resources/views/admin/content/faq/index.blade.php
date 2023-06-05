@@ -33,7 +33,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($faqs as $key => $faq)
+                @forelse($faqs as $key => $faq)
                     <tr>
                         <th>{{ $key+=1 }}</th>
                         <td>{!! $faq->question  !!}</td>
@@ -57,7 +57,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

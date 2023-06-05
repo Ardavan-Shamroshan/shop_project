@@ -26,8 +26,8 @@
                 <tr>
                     <th>{{ $order->id }}</th>
                     <td class="width-16-rem text-left">
-                        <a href="#" class="btn btn-sm btn-hover btn-dark rounded-pill border" id="print"><i class="fa fa-print"></i> چاپ</a>
-                        <a href="{{ route('admin.market.order.show.detail', $order->id) }}" class="btn btn-sm btn-hover color-9 rounded-pill border"><i class="fa fa-book"></i> جزئیات سفارش</a>
+                        <a href="#" class="btn btn-sm btn-hover btn-dark rounded-lg border" id="print"><i class="fa fa-print"></i> چاپ</a>
+                        <a href="{{ route('admin.market.order.show.detail', $order->id) }}" class="btn btn-sm btn-hover color-9 rounded-lg border"><i class="fa fa-book"></i> جزئیات سفارش</a>
                     </td>
                 </tr>
                 <tr>

@@ -47,9 +47,9 @@
                             @enderror
                             <select name="parent_id" id="parent_id" class="form-control form-control-sm @error('parent_id') border border-danger @enderror">
                                 <option value="">منو اصلی</option>
-                            @foreach($parentMenus as $parentMenu)
+                            @forelse($parentMenus as $parentMenu)
                                     <option value="{{ $parentMenu->id }}" @if(old('parent_id') == $parentMenu->id) selected @endif>{{ $parentMenu->name }}</option>
-                                @endforeach
+                                @empty @endforelse
                             </select>
                         </div>
                     </section>

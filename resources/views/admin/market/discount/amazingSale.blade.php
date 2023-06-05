@@ -13,7 +13,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>فروش های شگفت انگیز</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.discount.amazingSale.create') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">افزودن کالا به لیست فروش شگفت انگیز</a>
+            <a href="{{ route('admin.market.discount.amazingSale.create') }}" class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">افزودن کالا به لیست فروش شگفت انگیز</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -31,7 +31,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($amazingSales as $amazingSale)
+                @forelse($amazingSales as $amazingSale)
                     <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{  $amazingSale->product->name ?? '-'}}</td>
@@ -39,17 +39,17 @@
                     <td>{{ jalaliDate($amazingSale->start_date) }}</td>
                     <td>{{ jalaliDate($amazingSale->end_date) }}</td>
                     <td class="width-16-rem text-left">
-                        <a href="{{ route('admin.market.discount.amazingSale.edit', $amazingSale->id) }}" class="btn btn-primary btn-sm border rounded-pill btn-sm btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش </a>
+                        <a href="{{ route('admin.market.discount.amazingSale.edit', $amazingSale->id) }}" class="btn btn-primary btn-sm border rounded-lg btn-sm btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش </a>
                         <form class="d-inline" action="{{ route('admin.market.discount.amazingSale.destroy', $amazingSale->id) }}" method="post">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm delete border rounded-pill btn-sm btn-hover color-11">
-                                <i class="fa fa-times rounded-pill"></i> حذف
+                            <button type="submit" class="btn btn-danger btn-sm delete border rounded-lg btn-sm btn-hover color-11">
+                                <i class="fa fa-times rounded-lg"></i> حذف
                             </button>
                         </form>
                     </td>
                 </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

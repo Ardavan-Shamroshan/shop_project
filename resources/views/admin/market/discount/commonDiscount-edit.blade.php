@@ -15,7 +15,7 @@
     <section class="main-body-container pb-5">
         <section class="main-body-container-header"><h4>ویرایش تخفیف عمومی جدید</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.discount.commonDiscount') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">« بازگشت</a>
+            <a href="{{ route('admin.market.discount.commonDiscount') }}" class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">« بازگشت</a>
         </section>
         <section>
             <form action="{{ route('admin.market.discount.commonDiscount.update', $commonDiscount->id) }}" method="post" enctype="multipart/form-data" id="form">
@@ -132,7 +132,7 @@
 
 
                     <section class="col-12 col-md-12">
-                        <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-lg btn-sm btn-hover color-9">ثبت</button>
                     </section>
                 </section>
             </form>

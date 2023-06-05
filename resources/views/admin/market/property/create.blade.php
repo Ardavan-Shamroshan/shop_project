@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>ایجاد فرم کالا</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.property') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">«
+            <a href="{{ route('admin.market.property') }}" class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">«
                 بازگشت</a>
         </section>
         <section>
@@ -62,16 +62,16 @@
                             @enderror
                             <select name="category_id" id="category_id"
                                     class="form-control form-control-sm @error('category_id') border border-danger @enderror">
-                                @foreach($categories as $category)
+                                @forelse($categories as $category)
                                     <option value="{{ $category->id }}"
                                             @if(old('category_id') == $category->id) selected @endif>{{ $category->name }}</option>
-                                @endforeach
+                                @empty @endforelse
                             </select>
                         </div>
                     </section>
 
                     <section class="col-12 col-md-6">
-                        <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-lg btn-sm btn-hover color-9">ثبت</button>
                     </section>
                 </section>
             </form>

@@ -23,7 +23,7 @@
                 </section>
                 <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
                     <a href="{{ route('admin.market.product.guarantee', $product->id) }}"
-                       class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">«
+                       class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">«
                         بازگشت</a>
                 </section>
                 <section class="d-flex justify-content-between align-items-center mt-4"></section>
@@ -62,7 +62,7 @@
                         </section>
 
                         <section class="col-12">
-                            <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
+                            <button class="btn btn-primary border rounded-lg btn-sm btn-hover color-9">ثبت</button>
                         </section>
                 </form>
             </section>

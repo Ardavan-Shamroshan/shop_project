@@ -16,7 +16,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>افزودن به لیست فروش شگفت انگیز </h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.discount.amazingSale') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">«
+            <a href="{{ route('admin.market.discount.amazingSale') }}" class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">«
                 بازگشت</a>
         </section>
         <section>
@@ -79,9 +79,9 @@
                             @enderror
                             <select name="product_id" id="product_id" class="form-control form-control-sm @error('product_id') border border-danger @enderror">
                                 <option value="">محصول را انتخاب کنید</option>
-                                @foreach($products as $product)
+                                @forelse($products as $product)
                                     <option value="{{ $product->id }}" @if(old('product_id', $amazingSale->product_id) == $product->id) selected @endif>{{ $product->name }}</option>
-                                @endforeach
+                                @empty @endforelse
                             </select>
                         </div>
                     </section>
@@ -102,7 +102,7 @@
                         </div>
                     </section>
                     <section class="col-12 col-md-12">
-                        <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-lg btn-sm btn-hover color-9">ثبت</button>
                     </section>
                 </section>
             </form>

@@ -68,6 +68,12 @@ use App\Http\Controllers\Customer\Profile\TicketController as ProfileTicketContr
 | Jetstream
 |--------------------------------------------------------------------------
 */
+
+Route::get('manual-login', function (){
+   Auth::login  (\App\Models\User::find(1));
+   return to_route('customer.home');
+});
+
 //Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/dashboard', function () {
 //    return view('dashboard');
 //})->name('dashboard');
@@ -560,6 +566,8 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::get('/', [HomeController::class, 'home'])->name('customer.home');
+Route::get('/products', [HomeController::class, 'products'])->name('customer.products');
+
 
 // Product
 Route::controller(MarketProductController::class)->prefix('product')->group(function () {

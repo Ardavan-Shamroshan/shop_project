@@ -4084,7 +4084,7 @@ input[type="button"].btn-block {
   margin-top: -0.25rem;
   background-color: #007bff;
   border: 0;
-  border-radius: 1rem;
+  ;
   -webkit-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   -webkit-appearance: none;
@@ -4109,7 +4109,7 @@ input[type="button"].btn-block {
   cursor: pointer;
   background-color: #dee2e6;
   border-color: transparent;
-  border-radius: 1rem;
+  ;
 }
 
 .custom-range::-moz-range-thumb {
@@ -4117,7 +4117,7 @@ input[type="button"].btn-block {
   height: 1rem;
   background-color: #007bff;
   border: 0;
-  border-radius: 1rem;
+  ;
   -moz-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   -moz-appearance: none;
@@ -4142,7 +4142,7 @@ input[type="button"].btn-block {
   cursor: pointer;
   background-color: #dee2e6;
   border-color: transparent;
-  border-radius: 1rem;
+  ;
 }
 
 .custom-range::-ms-thumb {
@@ -4153,7 +4153,7 @@ input[type="button"].btn-block {
   margin-left: 0.2rem;
   background-color: #007bff;
   border: 0;
-  border-radius: 1rem;
+  ;
   -ms-transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   appearance: none;
@@ -4182,13 +4182,13 @@ input[type="button"].btn-block {
 
 .custom-range::-ms-fill-lower {
   background-color: #dee2e6;
-  border-radius: 1rem;
+  ;
 }
 
 .custom-range::-ms-fill-upper {
   margin-right: 15px;
   background-color: #dee2e6;
-  border-radius: 1rem;
+  ;
 }
 
 .custom-range:disabled::-webkit-slider-thumb {

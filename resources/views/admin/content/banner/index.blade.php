@@ -42,7 +42,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($banners as $key => $banner)
+                        @forelse ($banners as $key => $banner)
                         <tr>
                             <th>{{ $loop->iteration }}</th>
                             <td>{{ $banner->title }}</td>
@@ -67,7 +67,7 @@
                             </form>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty @endforelse
                     </tbody>
                 </table>
             </section>

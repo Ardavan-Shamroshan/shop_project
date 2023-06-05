@@ -35,7 +35,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($products as $product)
+                @forelse($products as $product)
                     <tr>
                         <th>{{ $loop->iteration }}</th>
                         <td>{{ $product->name }}</td>
@@ -52,7 +52,7 @@
                                 اصلاح موجودی </a>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

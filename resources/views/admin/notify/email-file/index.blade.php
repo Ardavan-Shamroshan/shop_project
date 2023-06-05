@@ -39,7 +39,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($email->files as $key => $file)
+                @forelse($email->files as $key => $file)
                     <tr>
                         <th>{{ $key += 1 }}</th>
                         <td>{{ $email->subject }}</td>
@@ -70,7 +70,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
 
                 </tbody>
             </table>

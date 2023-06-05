@@ -48,7 +48,7 @@
                                     </thead>
                                     <tbody>
 
-                                    @foreach ($tickets as $ticket)
+                                    @forelse ($tickets as $ticket)
 
                                         <tr>
                                             <th>{{ $loop->iteration }}</th>
@@ -67,7 +67,7 @@
                                             </td>
                                         </tr>
 
-                                    @endforeach
+                                    @empty @endforelse
 
 
                                     </tbody>

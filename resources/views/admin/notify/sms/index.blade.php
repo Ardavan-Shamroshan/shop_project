@@ -33,7 +33,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($sms as $key => $message)
+                @forelse($sms as $key => $message)
                     <tr>
                         <th>{{ $key += 1 }}</th>
                         <td>{{ $message->title }}</td>
@@ -58,7 +58,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
 
                 </tbody>
             </table>

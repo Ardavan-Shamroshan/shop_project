@@ -90,9 +90,9 @@
                                 </span>
                                     @enderror
                                     <select name="position" class="form-control form-control-sm @error('position') border border-danger @enderror">
-                                        @foreach($positions as $key => $value)
+                                        @forelse($positions as $key => $value)
                                             <option value="{{ $key }}" @if(old('position', $banner->position) == $key) selected @endif>{{ $value }}</option>
-                                        @endforeach
+                                        @empty @endforelse
                                     </select>
                                 </div>
                                 @error('position')

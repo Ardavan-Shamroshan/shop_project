@@ -38,7 +38,7 @@
                                         <p>
                                             <span style="background-color: {{ $color->color }};" class="cart-product-selected-color me-1"></span>
                                             {{ $color->color_name }}</p>
-                                    @endforeach
+                                    @empty @endforelse
 
                                     @if ($product->marketable_number > 0)
                                         <p><i class="fa fa-store-alt cart-product-selected-store me-1"></i>

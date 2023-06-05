@@ -37,7 +37,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($comments as $key => $comment)
+                @forelse($comments as $key => $comment)
                     <tr>
                         <th>{{ $key += 1 }}</th>
                         <td>{{ \Illuminate\Support\Str::limit($comment->body, 10) }}</td>
@@ -64,7 +64,7 @@
                             @endif
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

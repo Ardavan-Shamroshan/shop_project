@@ -34,7 +34,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach ($ticketCategories as $key => $ticketCategory)
+                        @forelse ($ticketCategories as $key => $ticketCategory)
                             <tr>
                                 <th>{{ $key += 1 }}</th>
                                 <td>{{ $ticketCategory->name }}</td>
@@ -54,7 +54,7 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty @endforelse
                         </tbody>
                     </table>
                 </section>

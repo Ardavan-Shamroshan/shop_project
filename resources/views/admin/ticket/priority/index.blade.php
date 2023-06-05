@@ -42,7 +42,7 @@
                     </thead>
                     <tbody>
 
-                        @foreach ($ticketPriorities as $key => $ticketPriority)
+                        @forelse ($ticketPriorities as $key => $ticketPriority)
 
                         <tr>
                             <th>{{ $key += 1 }}</th>
@@ -63,7 +63,7 @@
                             </form>
                             </td>
                         </tr>
-                        @endforeach
+                        @empty @endforelse
                     </tbody>
                 </table>
             </section>

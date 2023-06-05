@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>دسترسی ها</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.user.permission.create') }}" class="btn btn-info btn-sm rounded-pill btn-hover color-8 border">ایجاد دسترسی جدید</a>
+            <a href="{{ route('admin.user.permission.create') }}" class="btn btn-info btn-sm rounded-lg btn-hover color-8 border">ایجاد دسترسی جدید</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -33,7 +33,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($permissions as $permission)
+                @forelse($permissions as $permission)
                     <tr>
                         <th>{{ $loop->iteration }}</th>
                         <td>{{ $permission->name }}</td>
@@ -43,24 +43,24 @@
                                 @if(empty($permission->roles()->get()->toArray()))
                                     <span class="text-danger">برای این دسترسی هیچ نقشی تعریف نشده است</span>
                                 @else
-                                    @foreach($permission->roles as $role)
+                                    @forelse($permission->roles as $role)
                                         <li>{{  $role->name }}</li>
-                                    @endforeach
+                                    @empty @endforelse
                                 @endif
                             </ul>
                         </td>
                         <td class="text-left">
-                            <a href="{{ route('admin.user.permission.edit', $permission->id) }}" class="btn btn-primary btn-sm rounded-pill btn-hover color-4 text-white border"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
+                            <a href="{{ route('admin.user.permission.edit', $permission->id) }}" class="btn btn-primary btn-sm rounded-lg btn-hover color-4 text-white border"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
                             <form action="{{route('admin.user.permission.destroy', $permission->id)}}" class="d-inline" method="post">
                                 @csrf
                                 @method('delete')
-                                <button type="submit" class="btn btn-danger btn-sm delete rounded-pill btn-hover color-11 border">
+                                <button type="submit" class="btn btn-danger btn-sm delete rounded-lg btn-hover color-11 border">
                                     <i class="fa fa-times"></i> حذف
                                 </button>
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
 
                 </tbody>
             </table>

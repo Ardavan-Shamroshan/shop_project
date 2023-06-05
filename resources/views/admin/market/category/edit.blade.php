@@ -17,7 +17,7 @@
         <section class="main-body-container-header"><h4>ویرایش دسته بندی</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
             <a href="{{ route('admin.market.category') }}"
-               class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">« بازگشت</a>
+               class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">« بازگشت</a>
         </section>
         <section>
             <form action="{{ route('admin.market.category.update', $productCategory->id) }}" method="post"
@@ -54,10 +54,10 @@
                             <select name="parent_id" id="parent_id"
                                     class="form-control form-control-sm @error('parent_id') border border-danger @enderror">
                                 <option value="">منو اصلی</option>
-                                @foreach($parentCategories as $parentCategory)
+                                @forelse($parentCategories as $parentCategory)
                                     <option value="{{ $parentCategory->id }}"
                                             @if(old('parent_id', $productCategory->parent_id) == $parentCategory->id) selected @endif>{{ $parentCategory->name }}</option>
-                                @endforeach
+                                @empty @endforelse
                             </select>
                         </div>
                     </section>
@@ -120,7 +120,7 @@
                             @php
                                 $number = 1;
                             @endphp
-                            @foreach ($productCategory->image['indexArray'] as $key => $value)
+                            @forelse ($productCategory->image['indexArray'] as $key => $value)
                                 <section class="col-md-{{ 6 / $number }}">
                                     <div
                                         class="form-check pl-0 pt-2 border border-gray rounded text-capitalize text-center shadow-sm">
@@ -140,7 +140,7 @@
                                 @php
                                     $number++;
                                 @endphp
-                            @endforeach
+                            @empty @endforelse
 
                             <section class="col-12 col-md-6 mt-5">
                                 <div class="form-group">
@@ -191,7 +191,7 @@
                         </section>
                     </section>
                     <section class="col-12">
-                        <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-lg btn-sm btn-hover color-9">ثبت</button>
                     </section>
                 </section>
             </form>

@@ -36,7 +36,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($postCategories as $key => $postCategory)
+                @forelse($postCategories as $key => $postCategory)
                     <tr>
                         <th>{{ $key+=1 }}</th>
                         <td>{{ $postCategory->name }}</td>
@@ -63,7 +63,7 @@
                             </form>
                         </td>
                     </tr>
-                @endforeach
+                @empty @endforelse
                 </tbody>
             </table>
         </section>

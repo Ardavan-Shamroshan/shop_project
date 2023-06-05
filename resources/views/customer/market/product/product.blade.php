@@ -34,9 +34,9 @@
                                             <img src="{{ asset($productImages->first()['indexArray']['medium']) }}" alt="">
                                         </section>
                                         <section class="product-gallery-thumbs">
-                                            @foreach ($productImages as $key => $gallery)
+                                            @forelse ($productImages as $key => $gallery)
                                                 <img class="product-gallery-thumb" src="{{ asset($gallery['indexArray']['medium']) }}" alt="{{ $product->name . '-' . ($key + 1) }}" data-input="{{ asset($gallery['indexArray']['medium']) }}">
-                                            @endforeach
+                                            @empty @endforelse
                                         </section>
 
                                     </section>
@@ -68,10 +68,10 @@
                                                 <span>رنگ انتخاب شده : <span id="selected_color_name">{{ $productColors->first()->color_name }}</span></span>
                                             </p>
                                             <p>
-                                                @foreach ($productColors as $key => $color)
+                                                @forelse ($productColors as $key => $color)
                                                     <label for="{{ "color_$color->id" }}" style="background-color: {{ $color->color ?? '#fff' }};" class="product-info-colors me-1 border border-4 border-light p-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title={{ $color->color_name }}></label>
                                                     <input type="radio" name="color" id="{{ "color_$color->id" }}" class="d-none" value="{{ $color->id }}" data-color-name="{{ $color->color_name }}" data-color-price="{{ $color->price_increase }}" @checked($key === 0)>
-                                                @endforeach
+                                                @empty @endforelse
                                             </p>
                                         @endif
 
@@ -79,10 +79,10 @@
                                             <p>
                                                 <i class="fa fa-shield-alt cart-product-selected-warranty me-1"></i>
                                                 گارانتی :
-                                                <select name="guaranty" id="guaranty" class="p-1 border rounded-pill">
-                                                    @foreach ($productGuaranties as $key => $guaranty)
+                                                <select name="guaranty" id="guaranty" class="p-1 border rounded-lg">
+                                                    @forelse ($productGuaranties as $key => $guaranty)
                                                         <option value="{{ $guaranty->id }}" data-guaranty-price="{{ $guaranty->price_increase }}" @selected($key === 0)>{{ $guaranty->name }}</option>
-                                                    @endforeach
+                                                    @empty @endforelse
 
                                                 </select>
                                             </p>
@@ -148,7 +148,7 @@
                                         @if (!empty($amazingSale))
                                             <section class="d-flex justify-content-between align-items-center">
                                                 <p class="text-muted">تخفیف کالا</p>
-                                                <p class="text-light badge bg-danger rounded-pill" id="product_discount_price" data-product-discount-price="{{ $amazingSale->percentage }}">{{ discountFormat($amazingSale->percentage) }}</p>
+                                                <p class="text-light badge bg-danger rounded-lg" id="product_discount_price" data-product-discount-price="{{ $amazingSale->percentage }}">{{ discountFormat($amazingSale->percentage) }}</p>
                                             </section>
 
                                             <section class="border-bottom mb-3"></section>
@@ -216,7 +216,7 @@
                         <section class="lazyload-wrapper">
                             <section class="lazyload light-owl-nav owl-carousel owl-theme">
 
-                                @foreach ($relatedProducts as $relatedProduct)
+                                @forelse ($relatedProducts as $relatedProduct)
                                     <section class="item">
                                         <section class="lazyload-item-wrapper">
                                             <section class="product">
@@ -273,16 +273,16 @@
 
                                                     <section class="product-colors">
                                                         @if ($relatedProduct->colors->isNotEmpty())
-                                                            @foreach ($relatedProduct->colors as $key => $color)
+                                                            @forelse ($relatedProduct->colors as $key => $color)
                                                                 <section class="product-colors-item" style="background-color: {{ $color->color ?? '#fff' }};;"></section>
-                                                            @endforeach
+                                                            @empty @endforelse
                                                         @endif
                                                     </section>
                                                 </a>
                                             </section>
                                         </section>
                                     </section>
-                                @endforeach
+                                @empty @endforelse
 
                             </section>
                         </section>
@@ -344,18 +344,18 @@
                             </section>
                             <section class="product-features mb-4 table-responsive">
                                 <table class="table table-bordered border-white">
-                                    @foreach($product->values as $value)
+                                    @forelse($product->values as $value)
                                         <tr class="border-2">
                                             <td>{{ $value->attribute->name }}</td>
                                             <td>{{ json_decode($value->value)->value }} {{ $value->attribute->unit }}</td>
                                         </tr>
-                                    @endforeach
-                                    @foreach($product->metas as $meta)
+                                    @empty @endforelse
+                                    @forelse($product->metas as $meta)
                                         <tr class="border-2">
                                             <td>{{ $meta->meta_key }}</td>
                                             <td>{{ $meta->meta_value }}</td>
                                         </tr>
-                                    @endforeach
+                                    @empty @endforelse
                                 </table>
                             </section>
 
@@ -419,7 +419,7 @@
 
                                 @if(!empty($comments))
 
-                                    @foreach($comments as $comment)
+                                    @forelse($comments as $comment)
                                         <section class="product-comment">
                                             <section class="product-comment-header d-flex justify-content-start">
                                                 <section class="product-comment-date">{{ convertEnglishToPersian(jalaliDate($comment->created_at,'%d %B، %Y')) }}</section>
@@ -429,7 +429,7 @@
                                                 {{ $comment->body }}
                                             </section>
 
-                                            @foreach($comment->answers as $answer)
+                                            @forelse($comment->answers as $answer)
                                                 <section class="product-comment px-5 bg-light border">
                                                     <section class="product-comment-header d-flex justify-content-start">
                                                         <section class="product-comment-date">{{ convertEnglishToPersian(jalaliDate($answer->created_at,'%d %B، %Y')) }}</section>
@@ -440,11 +440,11 @@
                                                     </section>
                                                 </section>
 
-                                            @endforeach
+                                            @empty @endforelse
 
                                         </section>
 
-                                    @endforeach
+                                    @empty @endforelse
                                 @endif
 
                             </section>
@@ -465,7 +465,7 @@
                 <img src="{{ asset('customer-assets/assets/images/logo/8.png') }}" class="rounded mr-2" alt="فروشگاه آمازون">
                 <strong class="mr-auto">فروشگاه آمازون</strong>
                 <small>{{ jalaliDate('now - 1 minutes', true) }}</small>
-                <button type="button" class="btn btn-sm ml-2 mb-1 close border-none rounded-pill" data-dismiss="toast" aria-label="Close">
+                <button type="button" class="btn btn-sm ml-2 mb-1 close border-none rounded-lg" data-dismiss="toast" aria-label="Close">
                     <strong aria-hidden="true">&times;</strong>
                 </button>
             </div>
