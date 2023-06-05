@@ -23,7 +23,7 @@
                 </section>
 
                 <section class="d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-                    <a href="#" class="btn btn-info btn-sm disabled rounded-pill border btn-hover color-8">ایجاد تیکت </a>
+                    <a href="#" class="btn btn-info  disabled rounded-pill border btn-hover color-8">ایجاد تیکت </a>
                     <div class="max-width-16-rem">
                         <input type="text" class="form-control form-control-sm form-text" placeholder="جستجو">
                     </div>
@@ -46,7 +46,7 @@
                                 <td>{{ $admin->fullname }}</td>
                                 <td>{{ $admin->email }}</td>
                                 <td class="width-16-rem text-left">
-                                    <a href="{{ route('admin.ticket.admin.set', $admin->id) }}" class="btn btn-sm btn-hover text-white rounded-pill border {{ $admin->ticketAdmin == null ? 'color-9' : 'color-11' }}"><i class="fa {{ $admin->ticketAdmin == null ? 'fa-user-plus' : 'fa-user-minus' }}"></i> {{ $admin->ticketAdmin == null ? 'اضافه' : 'حذف' }}</a>
+                                    <a href="{{ route('admin.ticket.admin.set', $admin->id) }}" class="btn  btn-hover text-white rounded-pill border {{ $admin->ticketAdmin == null ? 'color-9' : 'color-11' }}"><i class="fa {{ $admin->ticketAdmin == null ? 'fa-user-plus' : 'fa-user-minus' }}"></i> {{ $admin->ticketAdmin == null ? 'اضافه' : 'حذف' }}</a>
                                 </td>
                             </tr>
                         @empty @endforelse

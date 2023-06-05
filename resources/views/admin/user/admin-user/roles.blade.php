@@ -14,7 +14,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>ایجاد نقش ادمین</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.user.admin-user') }}" class="btn btn-info btn-sm btn-hover color-8 rounded-lg">« بازگشت</a>
+            <a href="{{ route('admin.user.admin-user') }}" class="btn btn-info  btn-hover color-8 rounded-lg">« بازگشت</a>
         </section>
         <section>
             <form action="{{ route('admin.user.admin-user.roles.store', $admin) }}" method="post" enctype="multipart/form-data">

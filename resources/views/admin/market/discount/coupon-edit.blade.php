@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>ویرایش کوپن تخفیف جدید</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.discount.coupon') }}" class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">« بازگشت</a>
+            <a href="{{ route('admin.market.discount.coupon') }}" class="btn btn-info  border rounded-lg  btn-hover color-8">« بازگشت</a>
         </section>
         <section>
             <form action="{{ route('admin.market.discount.coupon.update', $coupon->id) }}" method="post" enctype="multipart/form-data" id="form">
@@ -159,7 +159,7 @@
                     </section>
 
                     <section class="col-12 col-md-12">
-                        <button class="btn btn-primary border rounded-lg btn-sm btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-lg  btn-hover color-9">ثبت</button>
                     </section>
                 </section>
             </form>

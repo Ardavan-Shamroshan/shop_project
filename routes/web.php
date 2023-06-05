@@ -70,8 +70,8 @@ use App\Http\Controllers\Customer\Profile\TicketController as ProfileTicketContr
 */
 
 Route::get('manual-login', function (){
-   Auth::login  (\App\Models\User::find(1));
-   return to_route('customer.home');
+    Auth::login  (\App\Models\User::find(1));
+    return to_route('customer.home');
 });
 
 //Route::middleware(['auth:sanctum', 'verified', 'admin'])->get('/dashboard', function () {
@@ -566,7 +566,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 |--------------------------------------------------------------------------
 */
 Route::get('/', [HomeController::class, 'home'])->name('customer.home');
-Route::get('/products', [HomeController::class, 'products'])->name('customer.products');
+Route::get('/products/{category:slug?}', [HomeController::class, 'products'])->name('customer.products');
 
 
 // Product

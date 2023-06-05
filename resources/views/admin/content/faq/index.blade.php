@@ -14,7 +14,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>سوالات متداول</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.content.faq.create') }}" class="btn btn-info btn-sm rounded-pill btn-hover color-8">ایجاد پرسش و پاسخ </a>
+            <a href="{{ route('admin.content.faq.create') }}" class="btn btn-info  rounded-pill btn-hover color-8">ایجاد پرسش و پاسخ </a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -48,12 +48,12 @@
                             </label>
                         </td>
                         <td class="width-16-rem text-left">
-                            <a href="{{ route('admin.content.faq.edit', $faq->id) }}" class="btn btn-primary btn-sm rounded-pill btn-hover color-9"><i class="fa fa-pen font-size-12"></i>
+                            <a href="{{ route('admin.content.faq.edit', $faq->id) }}" class="btn btn-primary  rounded-pill btn-hover color-9"><i class="fa fa-pen font-size-12"></i>
                                 ویرایش </a>
                             <form class="d-inline" action="{{ route('admin.content.faq.destroy', $faq->id) }}" method="post">
                                 @csrf
                                 {{ method_field('delete') }}
-                                <button type="submit" class="btn btn-danger delete border btn-sm rounded-pill btn-hover color-11"><i class="fa fa-times"></i> حذف</button>
+                                <button type="submit" class="btn btn-danger delete border  rounded-pill btn-hover color-11"><i class="fa fa-times"></i> حذف</button>
                             </form>
                         </td>
                     </tr>

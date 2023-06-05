@@ -26,7 +26,7 @@ class ProductCategoryRequest extends FormRequest
     {
         return [
             'name'         => 'required|max:120|min:2',
-            'description'  => 'max:500|min:5',
+            'description'  => ['nullable','max:500'],
             'image'        => 'image|mimes:png,jpg,jpeg,gif',
             'status'       => ['required', 'numeric', Rule::in(['0', '1'])],
             'show_in_menu' => ['required', 'numeric', Rule::in(['0', '1'])],

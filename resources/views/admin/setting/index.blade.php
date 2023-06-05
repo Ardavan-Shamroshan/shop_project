@@ -14,7 +14,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>تنظیمات</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.setting.create') }}" class="btn btn-info btn-sm disabled rounded-pill btn-hover color-8">ایجاد تنظیمات</a>
+            <a href="{{ route('admin.setting.create') }}" class="btn btn-info  disabled rounded-pill btn-hover color-8">ایجاد تنظیمات</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -70,8 +70,8 @@
                         <img src="{{ asset($setting->icon) }}" alt="عکس" width="70" height="50" class="border rounded">
                     </td>
                     <td class="width-16-rem text-left">
-                        <a href="{{ route('admin.setting.edit', $setting->id) }}" class="btn btn-primary btn-sm rounded-pill btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش </a>
-                        <button type="submit" class="btn btn-danger btn-sm disabled rounded-pill btn-hover color-11"><i class="fa fa-times"></i> حذف</button>
+                        <a href="{{ route('admin.setting.edit', $setting->id) }}" class="btn btn-primary  rounded-pill btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش </a>
+                        <button type="submit" class="btn btn-danger  disabled rounded-pill btn-hover color-11"><i class="fa fa-times"></i> حذف</button>
                     </td>
                 </tr>
                 </tbody>

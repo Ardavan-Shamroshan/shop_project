@@ -16,7 +16,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>نمایش پرداخت</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.payment') }}" class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">«
+            <a href="{{ route('admin.market.payment') }}" class="btn btn-info  border rounded-lg  btn-hover color-8">«
                 بازگشت</a>
         </section>
 

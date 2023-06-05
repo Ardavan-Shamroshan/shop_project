@@ -14,7 +14,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>اعلامیه پیامکی</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.notify.sms.create') }}" class="btn btn-info btn-sm btn-hover color-8 rounded-pill">ایجاد اطلاعیه پیامکی</a>
+            <a href="{{ route('admin.notify.sms.create') }}" class="btn btn-info  btn-hover color-8 rounded-pill">ایجاد اطلاعیه پیامکی</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -48,11 +48,11 @@
                             </label>
                         </td>
                         <td class="width-16-rem text-left">
-                            <a href="{{ route('admin.notify.sms.edit', $message->id) }}" class="btn btn-info btn-sm btn-hover color-9 rounded-pill"><i class="fa fa-pen font-size-12"></i> ویرایش </a>
+                            <a href="{{ route('admin.notify.sms.edit', $message->id) }}" class="btn btn-info  btn-hover color-9 rounded-pill"><i class="fa fa-pen font-size-12"></i> ویرایش </a>
                             <form class="d-inline" action="{{ route('admin.notify.sms.destroy', $message->id) }}" method="post">
                                 @csrf
                                 {{ method_field('delete') }}
-                                <button type="submit" class="btn btn-danger btn-sm delete border btn-hover color-11 rounded-pill">
+                                <button type="submit" class="btn btn-danger  delete border btn-hover color-11 rounded-pill">
                                     <i class="fa fa-times"></i> حذف
                                 </button>
                             </form>

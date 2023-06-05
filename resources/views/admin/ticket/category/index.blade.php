@@ -18,7 +18,7 @@
                     <h4>دسته بندی</h4>
                 </section>
                 <section class="d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-                    <a href="{{ route('admin.ticket.category.create') }}" class="btn btn-info btn-sm btn-hover color-8 rounded-pill">ایجاد دسته بندی</a>
+                    <a href="{{ route('admin.ticket.category.create') }}" class="btn btn-info  btn-hover color-8 rounded-pill">ایجاد دسته بندی</a>
                     <div class="max-width-16-rem">
                         <input type="text" class="form-control form-control-sm form-text" placeholder="جستجو">
                     </div>
@@ -44,11 +44,11 @@
                                     </label>
                                 </td>
                                 <td class="width-16-rem text-left">
-                                    <a href="{{ route('admin.ticket.category.edit', $ticketCategory->id) }}" class="btn btn-primary btn-sm btn-hover border rounded-pill btn-sm color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
+                                    <a href="{{ route('admin.ticket.category.edit', $ticketCategory->id) }}" class="btn btn-primary  btn-hover border rounded-pill  color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
                                     <form class="d-inline" action="{{ route('admin.ticket.category.destroy', $ticketCategory->id) }}" method="post">
                                         @csrf
                                         @method('delete')
-                                        <button class="btn btn-danger btn-sm delete btn-hover rounded-pill border color-11" type="submit">
+                                        <button class="btn btn-danger  delete btn-hover rounded-pill border color-11" type="submit">
                                             <i class="fa fa-times"></i> حذف
                                         </button>
                                     </form>

@@ -14,7 +14,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>فرم کالا</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.property.create') }}" class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">ایجاد فرم کالای جدید</a>
+            <a href="{{ route('admin.market.property.create') }}" class="btn btn-info  border rounded-lg  btn-hover color-8">ایجاد فرم کالای جدید</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -39,12 +39,12 @@
                     <td>{{ $attribute->unit }}</td>
                     <td>{{ $attribute->category->name }}</td>
                     <td class="width-22-rem text-left">
-                        <a href="{{ route('admin.market.property.value', $attribute->id) }}" class="btn btn-primary btn-sm border rounded-lg btn-sm btn-hover color-4"><i class="fa fa-project-diagram font-size-12"></i> ویژگی ها </a>
-                        <a href="{{ route('admin.market.property.edit', $attribute->id) }}" class="btn btn-primary btn-sm border rounded-lg btn-sm btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش </a>
+                        <a href="{{ route('admin.market.property.value', $attribute->id) }}" class="btn btn-primary  border rounded-lg  btn-hover color-4"><i class="fa fa-project-diagram font-size-12"></i> ویژگی ها </a>
+                        <a href="{{ route('admin.market.property.edit', $attribute->id) }}" class="btn btn-primary  border rounded-lg  btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش </a>
                         <form class="d-inline" action="{{ route('admin.market.property.destroy', $attribute->id) }}" method="post">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger btn-sm delete border rounded-lg btn-sm btn-hover color-11">
+                            <button type="submit" class="btn btn-danger  delete border rounded-lg  btn-hover color-11">
                                 <i class="fa fa-times rounded-lg"></i> حذف
                             </button>
                         </form>

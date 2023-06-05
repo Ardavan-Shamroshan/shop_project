@@ -24,7 +24,7 @@
 
 
             <section class="d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-                <a href="{{ route('admin.ticket.priority.create') }}" class="btn btn-info btn-sm rounded-pill btn-hover color-8">ایجاد اولویت</a>
+                <a href="{{ route('admin.ticket.priority.create') }}" class="btn btn-info  rounded-pill btn-hover color-8">ایجاد اولویت</a>
                 <div class="max-width-16-rem">
                     <input type="text" class="form-control form-control-sm form-text" placeholder="جستجو">
                 </div>
@@ -55,11 +55,11 @@
                                 </label>
                             </td>
                             <td class="width-16-rem text-left">
-                                <a href="{{ route('admin.ticket.priority.edit', $ticketPriority->id) }}" class="btn btn-primary btn-sm rounded-pill btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
+                                <a href="{{ route('admin.ticket.priority.edit', $ticketPriority->id) }}" class="btn btn-primary  rounded-pill btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
                                 <form class="d-inline" action="{{ route('admin.ticket.priority.destroy', $ticketPriority->id) }}" method="post">
                                     @csrf
                                     {{ method_field('delete') }}
-                                <button class="btn btn-danger btn-sm delete rounded-pill btn-hover color-11" type="submit"><i class="fa fa-times"></i> حذف</button>
+                                <button class="btn btn-danger  delete rounded-pill btn-hover color-11" type="submit"><i class="fa fa-times"></i> حذف</button>
                             </form>
                             </td>
                         </tr>

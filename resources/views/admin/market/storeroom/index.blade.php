@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>انبار</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="#" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8 disabled">ایجاد انبار جدید</a>
+            <a href="#" class="btn btn-info  border rounded-pill  btn-hover color-8 disabled">ایجاد انبار جدید</a>
             <div class="max-width-22-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -46,9 +46,9 @@
                         <td>{{ $product->frozen_number }}</td>
                         <td>{{ $product->sold_number }}</td>
                         <td class="width-22-rem text-left">
-                            <a href="{{ route('admin.market.storeroom.addToStore', $product->id) }}" class="btn btn-primary btn-sm border rounded-pill btn-sm btn-hover color-5"><i class="fa fa-plus-circle font-size-12"></i>
+                            <a href="{{ route('admin.market.storeroom.addToStore', $product->id) }}" class="btn btn-primary  border rounded-pill  btn-hover color-5"><i class="fa fa-plus-circle font-size-12"></i>
                                 افزایش موجودی </a>
-                            <a href="{{ route('admin.market.storeroom.edit', $product->id) }}" class="btn btn-danger btn-sm border rounded-pill btn-sm btn-hover color-4"><i class="fa fa-pen font-size-12 rounded-pill"></i>
+                            <a href="{{ route('admin.market.storeroom.edit', $product->id) }}" class="btn btn-danger  border rounded-pill  btn-hover color-4"><i class="fa fa-pen font-size-12 rounded-pill"></i>
                                 اصلاح موجودی </a>
                         </td>
                     </tr>

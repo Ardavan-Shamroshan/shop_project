@@ -23,8 +23,7 @@ class ProductController extends Controller
     {
         // $products = Product::query()->orderBy('created_at', 'asc')->toSql();
         // dd($products);
-        $products = Product::query()->orderBy('created_at', 'asc')->simplePaginate(15);
-
+        $products = Product::with('category')->latest()->simplePaginate(15);
         return view('admin.market.product.index', compact('products'));
     }
 

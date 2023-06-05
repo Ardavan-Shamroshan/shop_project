@@ -20,7 +20,7 @@
                 </section>
 
                 <section class="d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-                    <a href="{{ route('admin.setting') }}" class="btn btn-info btn-sm rounded-pill btn-hover color-8">« بازگشت</a>
+                    <a href="{{ route('admin.setting') }}" class="btn btn-info  rounded-pill btn-hover color-8">« بازگشت</a>
                 </section>
 
                 <section>

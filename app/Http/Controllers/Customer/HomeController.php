@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Content\Banner;
 use App\Models\Market\Brand;
 use App\Models\Market\Product;
+use App\Models\Market\ProductCategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,10 +24,18 @@ class HomeController extends Controller
         return view('customer.home', compact('slideShowImages', 'topBanners', 'brands', 'middleBanners', 'bottomBanner', 'mostVisitedProducts', 'offerProducts'));
     }
 
-    public function products(Request $request)
+    public function products(Request $request, ProductCategory $category)
     {
         // brands
         $brands = Brand::all();
+        $parentCategories = ProductCategory::with('children')
+            ->whereNull('parent_id')
+            ->get();
+
+        // initialize category and related products
+        $productModel = !empty($category->getOriginal())
+            ? $category->load('products')->products()
+            : new Product();
 
         // set sort options
         switch ($request->sort) {
@@ -55,7 +64,7 @@ class HomeController extends Controller
                 $direction = 'ASC';
         }
 
-        $products = Product::query()
+        $products = $productModel
             ->when($request->search, function ($query) use ($request) {
                 $query->where('name', 'LIKE', "%$request->search%");
             })
@@ -69,7 +78,7 @@ class HomeController extends Controller
                 $query->whereIn('brand_id', $request->brands);
             })
             ->orderBy($column, $direction)
-            ->paginate(3)
+            ->paginate(2)
             // add previous queries to the paginator
             ->appends($request->query());
 
@@ -78,7 +87,6 @@ class HomeController extends Controller
             ->when($request->brands)
             ->find($request->brands, ['persian_name']);
 
-        return view('customer.market.product.products', compact('products', 'brands', 'selectedBrands'));
-
+        return view('customer.market.product.products', compact('products', 'brands', 'selectedBrands', 'parentCategories', 'category'));
     }
 }

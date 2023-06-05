@@ -14,7 +14,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>اضافه کردن به انبار</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.market.storeroom') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">« بازگشت</a>
+            <a href="{{ route('admin.market.storeroom') }}" class="btn btn-info  border rounded-pill  btn-hover color-8">« بازگشت</a>
         </section>
         <section>
             <form action="{{ route('admin.market.storeroom.store', $product->id) }}" method="post" enctype="multipart/form-data" id="form">
@@ -63,7 +63,7 @@
                             <input type="text" class="form-control form-control-sm @error('marketable_number') border border-danger @enderror" name="marketable_number" id="marketable_number" value="{{ old('marketable_number') }}">
                         </div>
                         <section>
-                            <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
+                            <button class="btn btn-primary border rounded-pill  btn-hover color-9">ثبت</button>
                         </section>
                     </section>
                     <section class="col-12 col-md-9">

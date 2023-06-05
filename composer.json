@@ -24,13 +24,14 @@
         "saeedpooyanfar/zarinpal": "^5.0"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest",
-        "spatie/laravel-ignition": "^1.0",
+        "beyondcode/laravel-query-detector": "^1.7",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.3.3"
+        "phpunit/phpunit": "^9.3.3",
+        "roave/security-advisories": "dev-latest",
+        "spatie/laravel-ignition": "^1.0"
     },
     "autoload": {
         "files" : [

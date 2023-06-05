@@ -15,7 +15,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>پست ها</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.content.post.create') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">ایجاد پست جدید</a>
+            <a href="{{ route('admin.content.post.create') }}" class="btn btn-info  border rounded-pill  btn-hover color-8">ایجاد پست جدید</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
             </div>
@@ -65,15 +65,15 @@
                         <td class="width-16-rem text-left">
 
                             @can('update', $post)
-                                <a href="{{ route('admin.content.post.edit', $post->id) }}" class="btn btn-primary btn-sm border rounded-pill btn-sm btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
+                                <a href="{{ route('admin.content.post.edit', $post->id) }}" class="btn btn-primary  border rounded-pill  btn-hover color-9"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
                             @else
-                                <small class="btn btn-sm text-primary"> دسترسی ندارید</small>
+                                <small class="btn  text-primary"> دسترسی ندارید</small>
                             @endcan
 
                             <form class="d-inline" action="{{ route('admin.content.post.destroy', $post->id) }}" method="post">
                                 @csrf
                                 {{ method_field('delete') }}
-                                <button type="submit" class="btn btn-danger btn-sm delete border rounded-pill btn-sm btn-hover color-11">
+                                <button type="submit" class="btn btn-danger  delete border rounded-pill  btn-hover color-11">
                                     <i class="fa fa-times"></i> حذف
                                 </button>
                             </form>

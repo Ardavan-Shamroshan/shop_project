@@ -6,7 +6,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item font-size-12"><i class="fa fa-home text-muted"></i><a
-                    href="{{ route('admin.home') }}">خانه</a></li>
+                        href="{{ route('admin.home') }}">خانه</a></li>
             <li class="breadcrumb-item font-size-12 p-0"><a href="">بخش فروش</a></li>
             <li class="breadcrumb-item font-size-12 p-0"><a href="{{ route('admin.market.category') }}">دسته بندی</a>
             </li>
@@ -17,7 +17,7 @@
         <section class="main-body-container-header"><h4>ایجاد دسته بندی</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
             <a href="{{ route('admin.market.category') }}"
-               class="btn btn-info btn-sm border rounded-lg btn-sm btn-hover color-8">« بازگشت</a>
+               class="btn btn-info  border rounded-lg  btn-hover color-8">« بازگشت</a>
         </section>
         <section>
             <form action="{{ route('admin.market.category.store') }}" method="post" enctype="multipart/form-data"
@@ -52,11 +52,14 @@
                             @enderror
                             <select name="parent_id" id="parent_id"
                                     class="form-control form-control-sm @error('parent_id') border border-danger @enderror">
-                                <option value="">منو اصلی</option>
+                                <option value="" class="badge badge-light">منو اصلی</option>
                                 @forelse($parentCategories as $parentCategory)
-                                    <option value="{{ $parentCategory->id }}"
-                                            @if(old('parent_id') == $parentCategory->id) selected @endif>{{ $parentCategory->name }}</option>
+                                    <option value="{{ $parentCategory->id }}" @selected(old('parent_id') == $parentCategory->id) class="badge badge-info font-size-12">{{ $parentCategory->name }}</option>
+                                    @forelse($parentCategory->children as $subCategory)
+                                        <option value="{{ $subCategory->id }}" @selected(old('parent_id') == $parentCategory->id) class="badge badge-light font-size-12 border-dark">{{ $subCategory->name }}</option>
+                                    @empty @endforelse
                                 @empty @endforelse
+
                             </select>
                         </div>
                     </section>
@@ -149,7 +152,7 @@
                         </div>
                     </section>
                     <section class="col-12 col-md-6">
-                        <button class="btn btn-primary border rounded-lg btn-sm btn-hover color-9">ثبت</button>
+                        <button class="btn btn-primary border rounded-lg  btn-hover color-9">ثبت</button>
                     </section>
                 </section>
             </form>

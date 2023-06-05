@@ -14,7 +14,7 @@
     <section class="main-body-container">
         <section class="main-body-container-header"><h4>ویرایش پرسش و پاسخ</h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.content.faq') }}" class="btn btn-info btn-sm border rounded-pill btn-sm btn-hover color-8">« بازگشت</a>
+            <a href="{{ route('admin.content.faq') }}" class="btn btn-info  border rounded-pill  btn-hover color-8">« بازگشت</a>
         </section>
         <section>
             <form action="{{ route('admin.content.faq.update', $faq->id) }}" method="post" id="form">
@@ -67,7 +67,7 @@
                             <textarea name="question" id="" class="form-control form-control-sm @error('question') border border-danger @enderror" rows="15">{{ old('question', $faq->question) }}</textarea>
                         </div>
                         <section class="col-md-6">
-                            <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
+                            <button class="btn btn-primary border rounded-pill  btn-hover color-9">ثبت</button>
                         </section>
                     </section>
 

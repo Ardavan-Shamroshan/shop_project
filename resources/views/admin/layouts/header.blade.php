@@ -12,7 +12,7 @@
 
 
             <section>
-                <span class="mr-5"><a href="{{ route('customer.home') }}" class="btn btn-sm btn-link" target="_blank">نمایش وبگاه</a></span>
+                <span class="mr-5"><a href="{{ route('customer.home') }}" class="btn  btn-link" target="_blank">نمایش وبگاه</a></span>
 
                     <span class="mr-5">
                         <span id="search-area" class="search-area d-none">

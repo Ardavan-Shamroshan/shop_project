@@ -17,8 +17,8 @@
         <section class="main-body-container-header"><h4>فایل های اعلامیه ایمیلی </h4></section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
             <section class="d-flex flex-row-reverse">
-                <a href="{{ route('admin.notify.email-file.create', $email->id) }}" class="btn btn-info btn-sm btn-hover color-3 rounded-pill mr-2">ایجاد فایل های اطلاعیه ایمیلی</a>
-                <a href="{{ route('admin.notify.email') }}" class="btn btn-info btn-sm btn-hover color-8 rounded-pill ml-2">« بازگشت</a>
+                <a href="{{ route('admin.notify.email-file.create', $email->id) }}" class="btn btn-info  btn-hover color-3 rounded-pill mr-2">ایجاد فایل های اطلاعیه ایمیلی</a>
+                <a href="{{ route('admin.notify.email') }}" class="btn btn-info  btn-hover color-8 rounded-pill ml-2">« بازگشت</a>
             </section>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
@@ -59,12 +59,12 @@
                             </label>
                         </td>
                         <td class="width-16-rem text-left">
-                            <a href="{{ route('admin.notify.email-file.edit', $file->id) }}" class="btn btn-info btn-sm btn-hover color-9 rounded-pill"><i class="fa fa-pen font-size-12"></i> ویرایش
+                            <a href="{{ route('admin.notify.email-file.edit', $file->id) }}" class="btn btn-info  btn-hover color-9 rounded-pill"><i class="fa fa-pen font-size-12"></i> ویرایش
                             </a>
                             <form class="d-inline" action="{{ route('admin.notify.email-file.destroy', $file->id) }}" method="post">
                                 @csrf
                                 {{ method_field('delete') }}
-                                <button type="submit" class="btn btn-danger btn-sm delete border btn-hover color-11 rounded-pill">
+                                <button type="submit" class="btn btn-danger  delete border btn-hover color-11 rounded-pill">
                                     <i class="fa fa-times"></i> حذف
                                 </button>
                             </form>

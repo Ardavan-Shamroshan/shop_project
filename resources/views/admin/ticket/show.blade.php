@@ -24,7 +24,7 @@
                 </section>
 
                 <section class="d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-                    <a href="{{ route('admin.ticket') }}" class="btn btn-info btn-sm btn-hover rounded-pill border color-8">« بازگشت</a>
+                    <a href="{{ route('admin.ticket') }}" class="btn btn-info  btn-hover rounded-pill border color-8">« بازگشت</a>
                 </section>
 
                 <section class="card mb-3 mx-5">
@@ -89,7 +89,7 @@
                                 </div>
                             </section>
                             <section class="col-12">
-                                <button class="btn btn-primary border rounded-pill btn-sm btn-hover color-9">ثبت</button>
+                                <button class="btn btn-primary border rounded-pill  btn-hover color-9">ثبت</button>
                             </section>
                         </section>
                     </form>

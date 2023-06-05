@@ -16,7 +16,7 @@
             <h4>کاربران</h4>
         </section>
         <section class="body-content d-flex justify-content-between align-items-center mt-4 mb-3 border-bottom pb-2">
-            <a href="{{ route('admin.user.create') }}" class="btn btn-info btn-sm btn-hover color-8 rounded-lg">ایجاد
+            <a href="{{ route('admin.user.create') }}" class="btn btn-info  btn-hover color-8 rounded-lg">ایجاد
                 کاربر جدید</a>
             <div class="max-width-16-rem">
                 <input type="text" placeholder="جستجو" class="form-control form-control-sm form-text">
@@ -69,14 +69,14 @@
 
                         <td class="width-16-rem text-left">
                             <a href="{{ route('admin.user.edit', $user->id) }}"
-                               class="btn btn-primary btn-sm btn-hover border rounded-lg btn-sm color-9"><i
+                               class="btn btn-primary  btn-hover border rounded-lg  color-9"><i
                                         class="fa fa-pen font-size-12"></i> ویرایش</a>
                             <form action="{{ route('admin.user.destroy', $user->id) }}" class="d-inline"
                                   method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit"
-                                        class="btn btn-danger btn-sm btn-hover color-11 delete border rounded-lg btn-sm">
+                                        class="btn btn-danger  btn-hover color-11 delete border rounded-lg ">
                                     <i class="fa fa-times"></i> حذف
                                 </button>
                             </form>
