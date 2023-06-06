@@ -574,6 +574,7 @@ Route::controller(MarketProductController::class)->prefix('product')->group(func
     Route::get('/{product:slug}/', 'product')->name('customer.market.product');
     Route::post('/{product:slug}/add-comment', 'addComment')->name('customer.market.product.add-comment');
     Route::get('/{product:slug}/add-to-favorite', 'addToFavorite')->name('customer.market.product.add-to-favorite');
+    Route::get('/{product:slug}/add-to-compare', 'addToCompare')->name('customer.market.product.add-to-compare');
     Route::get('/{product:slug}/add-rate', 'addRate')->name('customer.market.product.add-rate');
 });
 
@@ -625,6 +626,7 @@ Route::middleware('auth')->prefix('profile')->group(function () {
     Route::controller(ProfileAddressController::class)->prefix('my-addresses')->group(function () {
         Route::get('/', 'index')->name('customer.profile.my-addresses');
     });
+
     // orders
     Route::controller(ProfileOrderController::class)->prefix('orders')->group(function () {
         Route::get('/', 'index')->name('customer.profile.orders');
@@ -634,6 +636,9 @@ Route::middleware('auth')->prefix('profile')->group(function () {
         Route::get('/', 'index')->name('customer.profile.my-favorites');
         Route::get('/remove/{product}', 'remove')->name('customer.profile.my-favorites.remove');
     });
+
+    // compare products
+    Route::get('my-compares', [\App\Http\Controllers\Customer\Profile\CompareController::class, 'index'])->name('customer.profile.my-compares');
 
     // tickets
     Route::controller(ProfileTicketController::class)->prefix('my-tickets')->group(function () {

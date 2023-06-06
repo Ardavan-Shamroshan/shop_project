@@ -11,7 +11,6 @@
  *  www.TheMastercut.co
  *
  ***/
-
         @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
         /* Styling h1 and links
@@ -142,27 +141,52 @@
                                                 <span>کالا ناموجود</span></p>
                                         @endif
 
-                                        <p class="product-add-to-favorite product-add-to-favorite-disable-styles">
-                                            @guest
-                                                <button type="button" class="btn btn-light btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
-                                                    <i class="fa fa-heart"></i>
-                                                    <span>افزودن به علاقه مندی</span>
-                                                </button>
-                                            @endguest
-                                            @auth
-                                                @if($product->users->contains(auth()->user()->id))
-                                                    <button type="button" class="btn btn-light  btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
-                                                        <i class="fa fa-heart text-danger"></i>
-                                                        <span>حذف از علاقه مندی</span>
-                                                    </button>
-                                                @else
+                                        <div class="d-flex gap-2">
+                                            <p class="product-add-to-favorite product-add-to-favorite-disable-styles">
+                                                @guest
                                                     <button type="button" class="btn btn-light btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
-                                                        <i class="fa fa-heart"></i> <span>افزودن به علاقه مندی</span>
+                                                        <i class="fa fa-heart"></i>
+                                                        <span>افزودن به علاقه مندی</span>
                                                     </button>
-                                                @endif
-                                            @endauth
-                                        </p>
+                                                @endguest
+                                                @auth
+                                                    @if($product->users->contains(auth()->user()->id))
+                                                        <button type="button" class="btn btn-light  btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
+                                                            <i class="fa fa-heart text-danger"></i>
+                                                            <span>حذف از علاقه مندی</span>
+                                                        </button>
+                                                    @else
+                                                        <button type="button" class="btn btn-light btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-favorite', $product) }}">
+                                                            <i class="fa fa-heart"></i> <span>افزودن به علاقه مندی</span>
+                                                        </button>
+                                                    @endif
+                                                @endauth
+                                            </p>
 
+                                            <div class="product-add-to-compare product-add-to-compare-disable-styles">
+                                                @guest
+                                                    <button type="button" class="btn btn-light btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-compare', $product) }}">
+                                                        <i class="fa fa-border-all"></i>
+                                                        <span>مقایسه محصول</span>
+                                                    </button>
+                                                @endguest
+                                                @auth
+                                                    @if($product->compares->contains(function ($compare, $key) {
+                                                            return $compare->id == auth()->user()->compare->id;
+                                                    }))
+                                                        <button type="button" class="btn btn-light  btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-compare', $product) }}">
+                                                            <i class="fa fa-border-all text-danger"></i>
+                                                            <span>مقایسه محصول </span>
+                                                        </button>
+                                                    @else
+                                                        <button type="button" class="btn btn-light btn-sm text-decoration-none" data-url="{{ route('customer.market.product.add-to-compare', $product) }}">
+                                                            <i class="fa fa-border-all"></i> <span>افزودن به علاقه مندی</span>
+                                                        </button>
+                                                    @endif
+                                                @endauth
+                                            </div>
+
+                                        </div>
                                         <section>
                                             <section class="cart-product-number d-inline-block ">
                                                 <button class="cart-number cart-number-down" type="button">-</button>
@@ -262,73 +286,7 @@
                         <section class="lazyload-wrapper">
                             <section class="lazyload light-owl-nav owl-carousel owl-theme">
 
-                                @forelse ($relatedProducts as $relatedProduct)
-                                    <section class="item">
-                                        <section class="lazyload-item-wrapper">
-                                            <section class="product">
-                                                <section class="product-add-to-cart">
-                                                    <a href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="افزودن به سبد خرید"><i class="fa fa-cart-plus"></i></a>
-                                                </section>
-
-                                                @auth
-                                                    @if($relatedProduct->users->contains(auth()->user()->id))
-                                                        <section class="product-add-to-favorite">
-                                                            <button data-bs-toggle="tooltip" data-bs-placement="left" title="حذف از علاقه مندی" data-url="{{ route('customer.market.product.add-to-favorite', $relatedProduct) }}">
-                                                                <i class="fa fa-heart text-danger"></i></button>
-                                                        </section>
-                                                    @else
-                                                        <section class="product-add-to-favorite">
-                                                            <button data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه از علاقه مندی" data-url="{{ route('customer.market.product.add-to-favorite', $relatedProduct) }}">
-                                                                <i class="fa fa-heart"></i></button>
-                                                        </section>
-                                                    @endif
-                                                @endauth
-                                                @guest
-                                                    <section class="product-add-to-favorite">
-                                                        <button data-bs-toggle="tooltip" data-bs-placement="left" title="اضافه از علاقه مندی" data-url="{{ route('customer.market.product.add-to-favorite', $relatedProduct) }}">
-                                                            <i class="fa fa-heart"></i></button>
-                                                    </section>
-                                                @endguest
-
-                                                <a class="product-link" href="{{ route('customer.market.product', $relatedProduct) }}">
-
-                                                    <section class="product-image">
-                                                        <img class="" src="{{ asset($relatedProduct->image['indexArray'][$relatedProduct->image['currentImage']]) }}" alt="{{ $relatedProduct->title }}">
-                                                    </section>
-                                                    <section class="product-colors"></section>
-                                                    <section class="product-name">
-                                                        <h3>{{ $relatedProduct->name }}</h3>
-                                                    </section>
-
-                                                    @if (!empty($relatedProduct->activeAmazingSales()))
-                                                        @php
-                                                            $amazingSaleProductPrice = ($relatedProduct->price * $relatedProduct->activeAmazingSales()->percentage) / 100;
-                                                        @endphp
-                                                        <section class="product-price-wrapper">
-                                                            <section class="product-discount">
-                                                                <span class="product-old-price text-decoration-line-through">{{ priceFormat($relatedProduct->price) }} </span>
-                                                                <span class="product-discount-amount">{{ discountFormat($relatedProduct->activeAmazingSales()->percentage) }}</span>
-                                                            </section>
-                                                            <section class="product-price content-header-title">{{ priceFormat($relatedProduct->price - $amazingSaleProductPrice) }}</section>
-                                                        </section>
-                                                    @else
-                                                        <section class="product-price-wrapper">
-                                                            <section class="product-price content-header-title">{{ priceFormat($relatedProduct->price) }}</section>
-                                                        </section>
-                                                    @endif
-
-                                                    <section class="product-colors">
-                                                        @if ($relatedProduct->colors->isNotEmpty())
-                                                            @forelse ($relatedProduct->colors as $key => $color)
-                                                                <section class="product-colors-item" style="background-color: {{ $color->color ?? '#fff' }};;"></section>
-                                                            @empty @endforelse
-                                                        @endif
-                                                    </section>
-                                                </a>
-                                            </section>
-                                        </section>
-                                    </section>
-                                @empty @endforelse
+                                @each('customer.layouts.partials.product.product-item', $relatedProducts, 'relatedProduct')
 
                             </section>
                         </section>
@@ -566,6 +524,26 @@
                         } else if (result.status === 2) {
                             $(elementChildren).removeClass('text-danger');
                             $(element).attr('data-bs-original-title', 'افزودن به علاقه مندی');
+                        } else if (result.status === 3) {
+                            $('.toast').toast('show')
+                        }
+                    }
+                });
+            })
+            $('.product-add-to-compare > button').click(function () {
+                var url = $(this).attr('data-url');
+                var element = $(this);
+                var elementChildren = $('.product-add-to-compare > button[data-url="' + url + '"]').children();
+
+                $.ajax({
+                    url: url,
+                    success: function (result) {
+                        if (result.status === 1) {
+                            $(elementChildren).addClass('text-danger');
+                            $(element).attr('data-bs-original-title', 'اضافه به مقایسه');
+                        } else if (result.status === 2) {
+                            $(elementChildren).removeClass('text-danger');
+                            $(element).attr('data-bs-original-title', 'افزودن به مقایسه');
                         } else if (result.status === 3) {
                             $('.toast').toast('show')
                         }

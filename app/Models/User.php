@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Market\Compare;
 use App\Models\Market\Order;
 use App\Models\Market\OrderItem;
 use App\Models\Market\Payment;
@@ -131,14 +132,21 @@ class User extends Authenticatable
     }
 
     /**
+     * Get compare of the product for the user
+     */
+    public function compare() {
+        return $this->hasOne(Compare::class)->withDefault();
+    }
+
+    /**
      * Methods
      */
     public function isUserPurchasedProduct($product_id)
     {
         $product_ids = collect();
-        foreach ($this->orderItems->where('product_id', $product->id)->get() as $item)
+        foreach ($this->orderItems()->where('product_id', $product_id)->get() as $item)
             $product_ids->push($item->product_id);
-        $product_ids = $product_ids->unique;
+        $product_ids = $product_ids->unique();
 
         return $product_ids;
     }

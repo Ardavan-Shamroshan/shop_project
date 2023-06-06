@@ -34,7 +34,7 @@
                                     <img src="{{ asset($product->image['indexArray']['medium']) }}" alt=""></section>
                                 <section class="align-self-start w-100">
                                     <p class="fw-bold">{{ $product->name }}</p>
-                                    @foreach($product->colors as $color)
+                                    @forelse($product->colors as $color)
                                         <p>
                                             <span style="background-color: {{ $color->color }};" class="cart-product-selected-color me-1"></span>
                                             {{ $color->color_name }}</p>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Customer\Market;
 
 use App\Models\Content\Comment;
+use App\Models\Market\Compare;
 use Illuminate\Http\Request;
 use App\Models\Market\Product;
 use App\Http\Controllers\Controller;
@@ -57,7 +58,23 @@ class ProductController extends Controller
         } else return response()->json(['status' => 3]);
     }
 
-    public function addRate(Request $request, Product $product)
+
+    public function addToCompare(Product $product)
+    {
+        if (auth()->check()) {
+            $user = auth()->user();
+            $userCompareList = Compare::query()->firstOrCreate(['user_id' => $user->id]);
+
+            $product->compares()->toggle($userCompareList->id);
+            if ($product->compares->contains($userCompareList->id))
+                return response()->json(['status' => 1]);
+            else
+                return response()->json(['status' => 2]);
+        } else return response()->json(['status' => 3]);
+    }
+
+    public
+    function addRate(Request $request, Product $product)
     {
         $validated = $request->validate(['rating' => [Rule::in([1, 2, 3, 4, 5])]]);
         $product_ids = auth()->user()->isUserPurchasedProduct($product->id);
