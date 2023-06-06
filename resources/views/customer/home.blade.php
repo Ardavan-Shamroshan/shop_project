@@ -108,7 +108,7 @@
                                                                 else
                                                                     $amazingSaleProductPrice = 0;
                                                         @endphp
-                                                        <section class="product-price">{{ priceFormat($mostVisitedProduct->price - $amazingSaleProductPrice) }}</section>
+                                                        <section class="product-price content-header-title">{{ priceFormat($mostVisitedProduct->price - $amazingSaleProductPrice) }}</section>
                                                     </section>
                                                     <section class="product-colors">
                                                         @forelse($mostVisitedProduct->colors as $mostVisitedProductColor)
@@ -220,7 +220,7 @@
                                                                 else
                                                                     $amazingSaleProductPrice = 0;
                                                         @endphp
-                                                        <section class="product-price">{{ priceFormat($offerProduct->price - $amazingSaleProductPrice) }}</section>
+                                                        <section class="product-price content-header-title">{{ priceFormat($offerProduct->price - $amazingSaleProductPrice) }}</section>
                                                     </section>
                                                     <section class="product-colors">
                                                         @foreach($offerProduct->colors as $offerProductColor)

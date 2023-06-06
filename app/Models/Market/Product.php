@@ -3,16 +3,16 @@
 namespace App\Models\Market;
 
 use App\Models\Content\Comment;
-use App\Models\Content\Post;
 use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Nagy\LaravelRating\Traits\Rateable;
 
 class Product extends Model
 {
-    use HasFactory, SoftDeletes, Sluggable;
+    use HasFactory, SoftDeletes, Sluggable, Rateable;
 
     protected $fillable = [
         'name',

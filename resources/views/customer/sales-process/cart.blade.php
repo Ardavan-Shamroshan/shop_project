@@ -213,11 +213,11 @@
                                                                 <span class="product-old-price text-decoration-line-through">{{ priceFormat($relatedProduct->price) }} </span>
                                                                 <span class="product-discount-amount">{{ discountFormat($relatedProduct->activeAmazingSales()->percentage) }}</span>
                                                             </section>
-                                                            <section class="product-price">{{ priceFormat($relatedProduct->price - $amazingSaleProductPrice) }}</section>
+                                                            <section class="product-price content-header-title">{{ priceFormat($relatedProduct->price - $amazingSaleProductPrice) }}</section>
                                                         </section>
                                                     @else
                                                         <section class="product-price-wrapper">
-                                                            <section class="product-price">{{ priceFormat($relatedProduct->price) }}</section>
+                                                            <section class="product-price content-header-title">{{ priceFormat($relatedProduct->price) }}</section>
                                                         </section>
                                                     @endif
 

@@ -50,23 +50,41 @@
                             @forelse ($products as $product)
                                 <section class="col-md-3 p-0">
                                     <section class="product">
-                                        <section class="product-add-to-cart"><a href="#" data-bs-toggle="tooltip"
-                                                                                data-bs-placement="left" title="افزودن به سبد خرید"><i
+                                        <section class="product-add-to-cart"><a href="{{ route('customer.market.product', $product) }}" data-bs-toggle="tooltip" data-bs-placement="left" title="افزودن به سبد خرید"><i
                                                         class="fa fa-cart-plus"></i></a></section>
-                                        <section class="product-add-to-favorite"><a href="#" data-bs-toggle="tooltip"
-                                                                                    data-bs-placement="left" title="افزودن به علاقه مندی"><i
+                                        <section class="product-add-to-favorite"><a href="#" data-bs-toggle="tooltip" data-bs-placement="left" title="افزودن به علاقه مندی"><i
                                                         class="fa fa-heart"></i></a></section>
-                                        <a class="product-link" href="#">
+                                        <a class="product-link" href="{{ route('customer.market.product', $product) }}">
                                             <section class="product-image">
-                                                <img class="" src="{{ asset($product->image['indexArray']['medium']) }}" alt="">
+                                                <img src="{{ asset($product->image['indexArray']['medium']) }}" alt="">
                                             </section>
                                             <section class="product-colors"></section>
                                             <section class="product-name">
                                                 <h3>{{ $product->name }}</h3>
                                             </section>
                                             <section class="product-price-wrapper">
-                                                <section class="product-price">{{ priceFormat($product->price) }}</section>
+                                                <section class="product-discount">
+                                                    @if(!empty($product->activeAmazingSales()))
+                                                        <span class="product-old-price">{{ priceFormat($product->price) }} </span>
+                                                        <span class="product-discount-amount">{{ discountFormat($product->activeAmazingSales()->percentage) }}</span>
+                                                    @endif
+                                                </section>
+                                                @php
+                                                    $amazingSale = $product->activeAmazingSales();
+                                                        if (!empty($amazingSale))
+                                                            $amazingSaleProductPrice = ($product->price * $amazingSale->percentage) / 100;
+                                                        else
+                                                            $amazingSaleProductPrice = 0;
+                                                @endphp
+                                                <section class="product-price content-header-title">{{ priceFormat($product->price - $amazingSaleProductPrice) }}</section>
+                                                <section class="product-colors">
+                                                    @forelse($product->colors as $productColor)
+                                                        <section class="product-colors-item" style="background-color: {{ $productColor->color }};"></section>
+                                                    @empty
+                                                    @endforelse
+                                                </section>
                                             </section>
+
                                         </a>
                                     </section>
                                 </section>

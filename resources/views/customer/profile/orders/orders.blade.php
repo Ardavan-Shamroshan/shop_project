@@ -7,15 +7,12 @@
     <section class="">
         <section id="main-body-two-col" class="container-xxl body-container">
             <section class="row">
-
                 <!-- profile sidebar -->
                     @include('customer.layouts.partials.profile-sidebar')
                 <!-- end profile sidebar -->
 
-
                 <main id="main-body" class="main-body col-md-9">
                     <section class="content-wrapper bg-white p-3 rounded-2 mb-2">
-
                         <!-- start content header -->
                         <section class="content-header">
                             <section class="d-flex justify-content-between align-items-center">
@@ -63,9 +60,10 @@
                                                 <i class="fa fa-clock"></i> {{ $order->paymentStatusValue }}</section>
 
                                             <section class="order-item-products">
-                                                @foreach($order->orderItems as $orderItems)
-                                                <a href="{{ route('customer.market.product', $orderItems->singleProduct) }}">
-                                                    <img src="{{ asset($orderItems->singleProduct->image['indexArray']['small']) }}" alt="{{ $orderItems->singleProduct->name }}">
+                                                @forelse($order->orderItems as $orderItems)
+                                                <a href="{{ route('customer.market.product', $orderItems->singleProduct) }}" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ $orderItems->singleProduct->name }}">
+{{--                                                    <img src="{{ asset($orderItems->singleProduct->image['indexArray']['small']) }}" alt="{{ $orderItems->singleProduct->name }}">--}}
+                                                    <img src="{{ asset(json_decode($orderItems->product)->image->indexArray->small) }}" alt="{{ $orderItems->singleProduct->name }}">
                                                 </a>
                                                 @empty @endforelse
 

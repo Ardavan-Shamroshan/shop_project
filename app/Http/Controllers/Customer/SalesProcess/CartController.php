@@ -13,7 +13,7 @@ class CartController extends Controller
     public function cart() {
         if (Auth::check()) {
             $cartItems = CartItem::query()->where('user_id', Auth::user()->id)->get();
-            $relatedProducts = Product::all();
+            $relatedProducts = Product::with('colors', 'amazingSales')->get();
             return view('customer.sales-process.cart', compact('cartItems', 'relatedProducts'));
         } else return redirect()->route('auth.customer.loginRegisterForm');
     }

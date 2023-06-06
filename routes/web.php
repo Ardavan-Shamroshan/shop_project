@@ -574,6 +574,7 @@ Route::controller(MarketProductController::class)->prefix('product')->group(func
     Route::get('/{product:slug}/', 'product')->name('customer.market.product');
     Route::post('/{product:slug}/add-comment', 'addComment')->name('customer.market.product.add-comment');
     Route::get('/{product:slug}/add-to-favorite', 'addToFavorite')->name('customer.market.product.add-to-favorite');
+    Route::get('/{product:slug}/add-rate', 'addRate')->name('customer.market.product.add-rate');
 });
 
 Route::prefix('sales-process')->group(function () {

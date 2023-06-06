@@ -1,6 +1,51 @@
 @extends('customer.layouts.master-twin-col')
 @section('head-tag')
     <title>{{ $product->name }}</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
+
+    <style>
+        /***
+ *  Simple Pure CSS Star Rating Widget Bootstrap 4
+ *
+ *  www.TheMastercut.co
+ *
+ ***/
+
+        @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+        /* Styling h1 and links
+        ––––––––––––––––––––––––––––––––– */
+        .starrating > input {
+            display: none;
+        }
+
+        /* Remove radio buttons */
+
+        .starrating > label:before {
+            content: "\f005"; /* Star */
+            margin: 2px;
+            font-size: 1.2em;
+            font-family: FontAwesome;
+            display: inline-block;
+        }
+
+        .starrating > label {
+            color: #222222; /* Start color when not clicked */
+        }
+
+        .starrating > input:checked ~ label {
+            color: #ffca08;
+        }
+
+        /* Set yellow color when star checked */
+
+        .starrating > input:hover ~ label {
+            color: #ffca08;
+        }
+
+        /* Set yellow color when star hover */
+    </style>
 @endsection
 @section('content')
     <!-- start cart -->
@@ -69,7 +114,8 @@
                                             </p>
                                             <p>
                                                 @forelse ($productColors as $key => $color)
-                                                    <label for="{{ "color_$color->id" }}" style="background-color: {{ $color->color ?? '#fff' }};" class="product-info-colors me-1 border border-4 border-light p-3" data-bs-toggle="tooltip" data-bs-placement="bottom" title={{ $color->color_name }}></label>
+                                                    <label for="{{ "color_$color->id" }}" style="background-color: {{ $color->color ?? '#fff' }};" class="product-info-colors me-1 border border-4 border-light p-3" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                                           title={{ $color->color_name }}></label>
                                                     <input type="radio" name="color" id="{{ "color_$color->id" }}" class="d-none" value="{{ $color->id }}" data-color-name="{{ $color->color_name }}" data-color-price="{{ $color->price_increase }}" @checked($key === 0)>
                                                 @empty @endforelse
                                             </p>
@@ -114,7 +160,6 @@
                                                         <i class="fa fa-heart"></i> <span>افزودن به علاقه مندی</span>
                                                     </button>
                                                 @endif
-
                                             @endauth
                                         </p>
 
@@ -127,7 +172,8 @@
                                         </section>
 
                                         <p class="mb-3 mt-5">
-                                            <i class="fa fa-info-circle me-1"></i>کاربر گرامی خرید شما هنوز نهایی نشده است. برای ثبت سفارش و تکمیل خرید باید ابتدا آدرس خود را انتخاب کنید و سپس نحوه ارسال را انتخاب کنید. نحوه ارسال انتخابی شما محاسبه و به این مبلغ اضافه شده خواهد شد. و در نهایت پرداخت این
+                                            <i class="fa fa-info-circle me-1"></i>کاربر گرامی خرید شما هنوز نهایی نشده است. برای ثبت سفارش و تکمیل خرید باید ابتدا آدرس خود را انتخاب کنید و سپس نحوه ارسال را انتخاب کنید. نحوه ارسال انتخابی شما محاسبه و به این مبلغ اضافه شده خواهد شد. و در نهایت
+                                            پرداخت این
                                             سفارش صورت میگیرد. پس از ثبت سفارش کالا بر اساس نحوه ارسال که شما انتخاب کرده اید کالا برای شما در مدت زمان مذکور ارسال می گردد.
                                         </p>
                                     </section>
@@ -263,11 +309,11 @@
                                                                 <span class="product-old-price text-decoration-line-through">{{ priceFormat($relatedProduct->price) }} </span>
                                                                 <span class="product-discount-amount">{{ discountFormat($relatedProduct->activeAmazingSales()->percentage) }}</span>
                                                             </section>
-                                                            <section class="product-price">{{ priceFormat($relatedProduct->price - $amazingSaleProductPrice) }}</section>
+                                                            <section class="product-price content-header-title">{{ priceFormat($relatedProduct->price - $amazingSaleProductPrice) }}</section>
                                                         </section>
                                                     @else
                                                         <section class="product-price-wrapper">
-                                                            <section class="product-price">{{ priceFormat($relatedProduct->price) }}</section>
+                                                            <section class="product-price content-header-title">{{ priceFormat($relatedProduct->price) }}</section>
                                                         </section>
                                                     @endif
 
@@ -363,13 +409,37 @@
                             <section id="comments" class="content-header mt-2 mb-4">
                                 <section class="d-flex justify-content-between align-items-center">
                                     <h2 class="content-header-title content-header-title-small">
-                                        دیدگاه ها </h2>
+                                        امتیاز و دیدگاه کاربران </h2>
                                     <section class="content-header-link">
                                         <!--<a href="#">مشاهده همه</a>-->
                                     </section>
                                 </section>
                             </section>
                             <section class="product-comments mb-4">
+                                @auth
+                                    @if(auth()->user()->isUserPurchasedProduct($product->id))
+                                        <form class="mb-4" method="get" action="{{ route('customer.market.product.add-rate', $product) }}">
+                                            <p class="content-header-title-small text-muted mb-0">هنوز امتیازی ثبت نشده است</p>
+                                            <div class="starrating risingstar d-flex justify-content-end flex-row-reverse mb-1">
+                                                <input type="submit" id="star5" name="rating" value="5"/><label for="star5" title="5 star"></label>
+                                                <input type="submit" id="star4" name="rating" value="4"/><label for="star4" title="4 star"></label>
+                                                <input type="submit" id="star3" name="rating" value="3"/><label for="star3" title="3 star"></label>
+                                                <input type="submit" id="star2" name="rating" value="2"/><label for="star2" title="2 star"></label>
+                                                <input type="submit" id="star1" name="rating" value="1"/><label for="star1" title="1 star"></label>
+                                            </div>
+                                        </form>
+                                        <p class="content-header-title-small text-muted mt-0">میانگین امتیاز: {{ number_format($product->ratingsAvg(), 1,'/') }}</p>
+                                    @endif
+                                @endauth
+                                @guest
+                                    <section class="product-comment">
+                                        <section class="product-comment-header d-flex justify-content-start">
+                                            <section class="product-comment-title">برای امتیاز دهی باید
+                                                <a href="{{ route('auth.customer.loginRegisterForm') }}" class="text-decoration-none">وارد بشوید</a>.
+                                            </section>
+                                        </section>
+                                    </section>
+                                @endguest
 
                                 <section class="comment-add-wrapper">
                                     <button class="comment-add-button" type="button" data-bs-toggle="modal" data-bs-target="#add-comment">
@@ -588,5 +658,4 @@
         //end product introduction, features and comment
 
     </script>
-
 @endsection
