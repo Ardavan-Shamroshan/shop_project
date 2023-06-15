@@ -10,7 +10,6 @@
       <sourceFolder url="file://$MODULE_DIR$/tests/Feature" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests/Unit" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/Modules" isTestSource="false" packagePrefix="Modules\" />
-      <sourceFolder url="file://$MODULE_DIR$/Modules/ContentCategory/" isTestSource="false" packagePrefix="Modules\ContentCategory\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/uuid" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ramsey/collection" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
@@ -152,6 +151,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/biscolab/laravel-recaptcha" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/maximebf/debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nagy/laravel-rating" />
+      <excludeFolder url="file://$MODULE_DIR$/storage/debugbar" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

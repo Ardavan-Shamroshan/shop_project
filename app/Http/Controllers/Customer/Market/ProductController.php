@@ -14,16 +14,28 @@ class ProductController extends Controller
 {
     public function product(Product $product)
     {
-        $relatedProducts = Product::with('colors', 'amazingSales')->get();
+        // related products where has a category && same category with $product (the id of the category equals to product category id)
+        $relatedProducts = Product::with('colors', 'amazingSales', 'category')->whereHas('category', function ($query) use ($product) {
+            $query->where('id', $product->category->id);
+        })->get()->except($product->id);
+
+        // approved comments
         $comments = $product->approvedComments();
+
+        // product gallery images
         $productGallery = $product->images;
         $productImages = collect();
         $productImages->push($product->image);
         foreach ($productGallery as $image)
             $productImages->push($image->image);
 
+        // product colors
         $productColors = $product->colors;
+
+        // product guaranties
         $productGuaranties = $product->guarantees;
+
+        // active amazing sales
         $amazingSale = $product->activeAmazingSales();
 
         if (!empty($amazingSale)) {
@@ -35,9 +47,7 @@ class ProductController extends Controller
 
     public function addComment(Product $product, Request $request)
     {
-        $validated = $request->validate([
-            'body' => ['required', 'max:2048'],
-        ]);
+        $validated = $request->validate(['body' => ['required', 'max:2048'],]);
 
         $validated['body'] = str_replace(PHP_EOL, '<br>', $request->body);
         $validated['author_id'] = Auth::user()->id;
@@ -73,8 +83,7 @@ class ProductController extends Controller
         } else return response()->json(['status' => 3]);
     }
 
-    public
-    function addRate(Request $request, Product $product)
+    public function addRate(Request $request, Product $product)
     {
         $validated = $request->validate(['rating' => [Rule::in([1, 2, 3, 4, 5])]]);
         $product_ids = auth()->user()->isUserPurchasedProduct($product->id);
