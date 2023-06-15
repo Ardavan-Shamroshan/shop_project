@@ -51,6 +51,7 @@ use App\Http\Controllers\Customer\Profile\OrderController as ProfileOrderControl
 use App\Http\Controllers\Customer\Profile\FavoriteController;
 use App\Http\Controllers\Customer\Profile\AddressController as ProfileAddressController;
 use App\Http\Controllers\Customer\Profile\TicketController as ProfileTicketController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -69,8 +70,8 @@ use App\Http\Controllers\Customer\Profile\TicketController as ProfileTicketContr
 |--------------------------------------------------------------------------
 */
 
-Route::get('manual-login', function (){
-    Auth::login  (\App\Models\User::find(1));
+Route::get('manual-login', function () {
+    Auth::login(\App\Models\User::find(1));
     return to_route('customer.home');
 });
 
@@ -652,6 +653,13 @@ Route::middleware('auth')->prefix('profile')->group(function () {
 
 });
 
+
+/*
+|--------------------------------------------------------------------------
+| Api Sample
+|--------------------------------------------------------------------------
+*/
+Route::get('api/products-list', [MarketProductController::class, 'productsListApi']);
 
 /*
 |--------------------------------------------------------------------------

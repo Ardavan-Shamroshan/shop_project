@@ -15,6 +15,7 @@ class ProductController extends Controller
     public function product(Product $product)
     {
         // related products where has a category && same category with $product (the id of the category equals to product category id)
+        // except current product
         $relatedProducts = Product::with('colors', 'amazingSales', 'category')->whereHas('category', function ($query) use ($product) {
             $query->where('id', $product->category->id);
         })->get()->except($product->id);
@@ -92,5 +93,13 @@ class ProductController extends Controller
             return redirect()->route('customer.products')->with('alert-section-success', 'امتیاز شما ثبت شد. نظرات و امتیازات شما موجب بهبود عملکرد ما میشود.');
         } else
             return to_route('auth.customer.loginRegister');
+    }
+
+    /**
+     * product list api
+     */
+    public function productsListApi()
+    {
+        return view('api.products.products');
     }
 }
