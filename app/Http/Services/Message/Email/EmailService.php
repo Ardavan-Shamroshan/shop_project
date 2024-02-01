@@ -18,7 +18,7 @@ class EmailService implements MessageInterface
 
     public function fire() {
         Mail::to($this->to)->send(new MailViewProvider(
-            $this->details, $this->subject, $this->from
+            $this->details, $this->subject, $this->from, public_path('/customer-assets/assets/images/logo/8.png')
         ));
         return true;
     }

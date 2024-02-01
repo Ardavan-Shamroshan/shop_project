@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9f741635-d5f4-4f68-a9d8-bd19a8645836" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/AutoEmail.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/AutoEmail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/emails/send-otp.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/emails/send-otp.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Services/Message/Email/EmailService.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Services/Message/Email/EmailService.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Services/Message/Email/MailViewProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Services/Message/Email/MailViewProvider.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +220,7 @@
       <workItem from="1701871086653" duration="2844000" />
       <workItem from="1704451032963" duration="910000" />
       <workItem from="1704466891413" duration="3130000" />
-      <workItem from="1706777491816" duration="4101000" />
+      <workItem from="1706777491816" duration="4781000" />
     </task>
     <servers />
   </component>
