@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin\Notify;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Notify\EmailRequest;
-use App\Http\Services\Message\Email\EmailService;
-use App\Http\Services\Message\MessageService;
+use App\Jobs\Email\SendEmailToUsersJob;
 use App\Models\Notify\Email;
+use App\Models\User;
 
 class EmailController extends Controller
 {
@@ -118,17 +118,10 @@ class EmailController extends Controller
 
     public function send(Email $email)
     {
-        $emailService = new EmailService();
-        $emailService->setDetails([
-            'title' => $email->subject,
-            'body'  => $email->body
-        ]);
-        $emailService->setFrom('noreply@example.com', 'example');
-        $emailService->setSubject($email->subject);
-        $emailService->setTo('raphael2000r@gmail.com');
+        $users = User::query()->whereNotNull('email')->get();
 
-        $messagesService = new MessageService($emailService);
-        $messagesService->send();
+        SendEmailToUsersJob::dispatch($users, $email);
+
         return redirect()->back()->with('swal-success', 'با موفقیت ارسال شد');
     }
 }
