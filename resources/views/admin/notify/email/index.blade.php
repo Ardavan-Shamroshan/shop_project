@@ -48,8 +48,8 @@
                             </label>
                         </td>
                         <td class="width-16-rem text-left">
-                            <a href="{{ route('admin.notify.email.edit', $email->id) }}" class="btn btn-info  btn-hover color-9 rounded-pill"><i class="fa fa-pen font-size-12"></i> ویرایش
-                            </a>
+                            <a href="{{ route('admin.notify.email.edit', $email->id) }}" class="btn btn-info  btn-hover color-9 rounded-pill"><i class="fa fa-pen font-size-12"></i> ویرایش</a>
+                            <a href="{{ route('admin.notify.email.send', $email )}}" class="btn btn-info  btn-hover color-3 rounded-pill"><i class="fa fa-envelope font-size-12"></i> ارسال</a>
                             <form class="d-inline" action="{{ route('admin.notify.email.destroy', $email->id) }}" method="post">
                                 @csrf
                                 {{ method_field('delete') }}
@@ -58,9 +58,9 @@
                                 </button>
 
                                 @if($email->files->isEmpty())
-                                    <a href="{{ route('admin.notify.email-file.create', $email->id) }}" class="btn btn-info  btn-hover color-3 rounded-pill mt-1"><i class="fa fa-paperclip font-size-12"></i> ایجاد فایل های ضمیمه</a>
+                                    <a href="{{ route('admin.notify.email-file.create', $email->id) }}" class="btn btn-info  btn-hover color-3 rounded-pill mt-1"><i class="fa fa-paperclip font-size-12"></i> ضمیمه</a>
                                 @else
-                                    <a href="{{ route('admin.notify.email-file', $email->id) }}" class="btn btn-info  btn-hover color-4 rounded-pill mt-1"><i class="fa fa-file-archive"></i> فایل های ضمیمه شده</a>
+                                    <a href="{{ route('admin.notify.email-file', $email->id) }}" class="btn btn-info  btn-hover color-4 rounded-pill mt-1"><i class="fa fa-file-archive"></i> ضمیمه شده</a>
                                 @endif
                             </form>
                         </td>

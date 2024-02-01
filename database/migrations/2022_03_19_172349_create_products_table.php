@@ -27,7 +27,7 @@ class CreateProductsTable extends Migration
             $table->bigInteger('view')->default(0);
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('marketable')->default(1)->comment('1 => marketable, 0 => is not marketable');
-            $table->string('tags');
+            $table->string('tags')->nullable();
             $table->tinyInteger('sold_number')->default(0);
             $table->tinyInteger('frozen_number')->default(0);
             $table->tinyInteger('marketable_number')->default(0);

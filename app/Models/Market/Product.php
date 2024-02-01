@@ -5,6 +5,7 @@ namespace App\Models\Market;
 use App\Models\Content\Comment;
 use App\Models\User;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -49,6 +50,11 @@ class Product extends Model
         ];
     }
 
+    public function scopeSold(Builder $query): void
+    {
+        $query->where('sold_number', '>', 0);
+    }
+
     public function category()
     {
         return $this->belongsTo(ProductCategory::class, 'category_id');
@@ -68,6 +74,7 @@ class Product extends Model
     {
         return $this->hasMany(ProductColor::class);
     }
+
     public function images()
     {
         return $this->hasMany(Gallery::class);
@@ -98,15 +105,18 @@ class Product extends Model
         return $this->amazingSales()->where('start_date', '<', now())->where('end_date', '>', now())->first();
     }
 
-    public function approvedComments() {
+    public function approvedComments()
+    {
         return $this->comments()->where('approved', 1)->whereNull('parent_id')->get();
     }
 
-    public function users() {
+    public function users()
+    {
         return $this->belongsToMany(User::class);
     }
 
-    public function compares() {
+    public function compares()
+    {
         return $this->belongsToMany(Compare::class);
     }
 }

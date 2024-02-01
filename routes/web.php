@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Controllers\Admin\Market\GuaranteeController;
 use App\Http\Controllers\Customer\HomeController;
 use App\Http\Controllers\Customer\Profile\ProfileController;
@@ -93,7 +92,6 @@ Route::namespace('Auth')->group(function () {
     Route::middleware('throttle:customer-login-resend-otp-limiter')->get('login-resend-otp/{token}', [LoginRegisterController::class, 'loginResendOtp'])->name('auth.customer.loginResendOtp');
     Route::get('logout', [LoginRegisterController::class, 'logout'])->name('auth.customer.logout');
 });
-
 
 /*
 |--------------------------------------------------------------------------
@@ -466,6 +464,7 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
             Route::put('/update/{email}', [EmailController::class, 'update'])->name('admin.notify.email.update');
             Route::delete('/destroy/{email}', [EmailController::class, 'destroy'])->name('admin.notify.email.destroy');
             Route::get('/status/{email}', [EmailController::class, 'status'])->name('admin.notify.email.status');
+            Route::get('/send/{email}', [EmailController::class, 'send'])->name('admin.notify.email.send');
         });
 
         // email file
@@ -568,6 +567,9 @@ Route::prefix('admin')->namespace('Admin')->group(function () {
 */
 Route::get('/', [HomeController::class, 'home'])->name('customer.home');
 Route::get('/products/{category:slug?}', [HomeController::class, 'products'])->name('customer.products');
+
+// page
+Route::get('/page/{page:slug}', [HomeController::class, 'page'])->name('customer.page');
 
 
 // Product

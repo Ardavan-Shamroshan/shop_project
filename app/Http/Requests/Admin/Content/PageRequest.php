@@ -24,7 +24,7 @@ class PageRequest extends FormRequest {
             'title' => 'required|max:225|min:5',
             'body' => 'required|max:2048|min:10',
             'status' => 'required|numeric|in:0,1',
-            'tags' => 'required',
+            'tags' => 'nullable',
         ];
     }
 }

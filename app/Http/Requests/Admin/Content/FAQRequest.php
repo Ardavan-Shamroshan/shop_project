@@ -26,7 +26,7 @@ class FAQRequest extends FormRequest
         return [
             'question' => 'required|max:225|min:5',
             'answer' => 'required|max:550|min:5',
-            'tags' => 'required',
+            'tags' => 'nullable',
         ];
     }
 }

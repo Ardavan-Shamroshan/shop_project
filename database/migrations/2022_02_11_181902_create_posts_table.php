@@ -20,7 +20,7 @@ class CreatePostsTable extends Migration {
             $table->string('slug')->unique()->nullable();
             $table->tinyInteger('status')->default(0);
             $table->tinyInteger('commentable')->default(0)->comment('0 => uncommentable, 1 => commentable');
-            $table->string('tags');
+            $table->string('tags')->nullable();
             $table->timestamp('published_at')->nullable();
             $table->foreignId('author_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('category_id')->constrained('post_categories')->onUpdate('cascade')->onDelete('cascade');

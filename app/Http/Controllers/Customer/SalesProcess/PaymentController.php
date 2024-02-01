@@ -178,7 +178,7 @@ class PaymentController extends Controller
             // save all cart items into order_items table before deleting cart items
             OrderItem::query()->create([
                 'order_id' => $order->id,
-                'product_id' => $cartItem->product_id,
+                'pduct_id' => $cartItem->product_id,
                 'product' => $cartItem->product,
                 'amazing_sale_id' => $cartItem->product->activeAmazingSales()->id ?? null,
                 'amazing_sale_object' => $cartItem->product->activeAmazingSales() ?? null,
@@ -230,9 +230,6 @@ class PaymentController extends Controller
                 return redirect()->route('customer.home')->with('alert-section-error', 'پرداخت لغو شد');
             }
         });
-
-
-
 
     }
 }

@@ -30,7 +30,7 @@ class BrandRequest extends FormRequest
                 'persian_name' => 'required|max:120|min:2',
                 'logo' => 'required|image|mimes:png,jpg,jpeg,gif',
                 'status' => ['required', 'numeric', Rule::in(['0', '1'])],
-                'tags' => 'required',
+                'tags' => 'nullable',
             ];
         else {
             return [
@@ -38,7 +38,7 @@ class BrandRequest extends FormRequest
                 'persian_name' => 'required|max:120|min:2',
                 'logo' => 'image|mimes:png,jpg,jpeg,gif',
                 'status' => ['required', 'numeric', Rule::in(['0', '1'])],
-                'tags' => 'required',
+                'tags' => 'nullable',
             ];
         }
     }

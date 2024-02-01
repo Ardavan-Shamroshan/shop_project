@@ -26,7 +26,6 @@
                 <tr>
                     <th>#</th>
                     <th>عنوان</th>
-                    <th>آدرس پیج</th>
                     <th>اسلاگ</th>
                     <th>تگ ها</th>
                     <th>وضعیت</th>
@@ -38,9 +37,8 @@
                     <tr>
                         <th>{{ $key+=1 }}</th>
                         <td>{{ $page->title }}</td>
-                        <td>{{ $page->url }}</td>
                         <td>{{ $page->slug }}</td>
-                        <td>{{ $page->tags }}</td>
+                        <td>{{ $page->tags ?? '-' }}</td>
                         <td>
                             <label for="">
                                 <input type="checkbox" id="{{ $page->id }}" onchange="changeStatus({{ $page->id }})"

@@ -125,7 +125,6 @@ class LoginRegisterController extends Controller
 
         // if otp not match
         if ($otp->otp_code !== $inputs['otp']) {
-            if (empty($otp))
                 return redirect()->route('auth.customer.loginConfirmForm', $token)->withErrors([
                     'otp' => 'کد وارد شده صحیح نمی باشد',
                 ]);

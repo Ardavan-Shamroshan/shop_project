@@ -47,7 +47,7 @@ class ProfileCompletionController extends Controller
 
         // email check
         if (isset($request->email) && empty($user->email)) {
-            $email = convertArabicToEnglish($request->$email);
+            $email = convertArabicToEnglish($request->email);
             $email = convertPersianToEnglish($email);
             $inputs['$email'] = $email;
         }

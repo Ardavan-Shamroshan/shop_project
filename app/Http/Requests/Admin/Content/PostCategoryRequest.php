@@ -30,7 +30,7 @@ class PostCategoryRequest extends FormRequest
                 'description' => 'required|max:500|min:5',
                 'image' => 'required|image|mimes:png,jpg,jpeg,gif',
                 'status' => ['required', 'numeric', Rule::in(['0', '1'])],
-                'tags' => 'required',
+                'tags' => 'nullable',
             ];
         else
             return [
@@ -38,7 +38,7 @@ class PostCategoryRequest extends FormRequest
                 'description' => 'required|max:500|min:5',
                 'image' => 'image|mimes:png,jpg,jpeg,gif',
                 'status' => ['required', 'numeric', Rule::in(['0', '1'])],
-                'tags' => 'required',
+                'tags' => 'nullable',
             ];
     }
 }

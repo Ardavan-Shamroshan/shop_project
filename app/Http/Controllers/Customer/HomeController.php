@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Customer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Content\Banner;
-use App\Models\Market\AmazingSale;
+use App\Models\Content\Page;
 use App\Models\Market\Brand;
 use App\Models\Market\Product;
 use App\Models\Market\ProductCategory;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -34,7 +33,7 @@ class HomeController extends Controller
             ->get();
 
         // initialize category and related products
-        $productModel = !empty($category->getOriginal())
+        $productModel = ! empty($category->getOriginal())
             ? $category->load('products')->products()
             : new Product();
 
@@ -65,7 +64,11 @@ class HomeController extends Controller
                 $direction = 'ASC';
         }
 
+
         $products = $productModel->with('colors')
+
+            // ->sold()
+
             ->when($request->search, function ($query) use ($request) {
                 $query->where('name', 'LIKE', "%$request->search%");
             })
@@ -83,11 +86,18 @@ class HomeController extends Controller
             // add previous queries to the paginator
             ->appends($request->query());
 
+
         // select only persian name from selected brands query
         $selectedBrands = Brand::query()
             ->when($request->brands)
             ->find($request->brands, ['persian_name']);
 
         return view('customer.market.product.products', compact('products', 'brands', 'selectedBrands', 'parentCategories', 'category'));
+    }
+
+    // page
+    public function page(Page $page)
+    {
+        return view('customer.page.index', compact('page'));
     }
 }
