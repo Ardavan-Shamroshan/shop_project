@@ -30,7 +30,7 @@ class AutoEmail extends Command
      */
     public function handle()
     {
-        $emailsToSend = Email::query()->where('published_at', '=', now())->get();
+        $emailsToSend = Email::query()->where('published_at', '<', now())->get();
         $emailsToSend->map(function ($email) {
             SendEmailToUsersJob::dispatch(
                 User::whereNotNull('email')->get(),
