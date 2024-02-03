@@ -11,7 +11,8 @@ class MailViewProvider extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $details;
+    public array $details;
+    private mixed $attaches;
 
     public function __construct($details, $subject, $from, $attaches = null)
     {
@@ -21,18 +22,19 @@ class MailViewProvider extends Mailable
         $this->attaches = $attaches;
     }
 
-    public function build()
+    public function build(): MailViewProvider
     {
         return $this->subject($this->subject)->view('emails.send-otp');
     }
 
-    public function attachments()
+    public function attachments(): array
     {
-        return [
-            Attachment::fromPath($this->attaches)
-                ->as('987654321123456789.png')
-                ->withMime('image/png')
-        ];
+        return $this->attaches;
+        // return [
+        //     Attachment::fromPath($this->attaches)
+        //         ->as('987654321123456789.png')
+        //         ->withMime('image/png')
+        // ];
     }
 
 }

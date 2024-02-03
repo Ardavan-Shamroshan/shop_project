@@ -33,11 +33,19 @@ class SendEmailToUsersJob implements ShouldQueue
             $emailService = new EmailService();
             $emailService->setDetails([
                 'title' => $this->email->subject,
-                'body'  => $this->email->body
+                'body'  => $this->email->body,
             ]);
+
+            $files    = $this->email->files;
+            $filePath = [];
+            foreach ($files as $file) {
+                $filePath[] = public_path($file->file_path);
+            }
+
             $emailService->setFrom('noreply@example.com', 'example');
             $emailService->setSubject($this->email->subject);
             $emailService->setTo($user->email);
+            $emailService->setFiles($filePath);
 
             $messagesService = new MessageService($emailService);
             $messagesService->send();
